@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>DS Mid LEC — Visual + Full Content + Java Code</title>
+<style>
+:root{--bg:#f4f7fb;--paper:#fff;--ink:#172033;--muted:#657086;--line:#dbe4f0;--blue:#315eea;--blue2:#edf2ff;--green:#0f7b58;--green2:#eaf8f2;--amber:#a85d00;--amber2:#fff5df;--red:#b42318;--red2:#fff0ee;--purple:#6e49c9;--purple2:#f3eeff;--cyan:#168a9c;--cyan2:#e9fbff;--shadow:0 16px 42px rgba(25,45,80,.08);--code:#0a1220;--codeInk:#e9f2ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans Thai","Leelawadee UI","Segoe UI",Tahoma,sans-serif;background:radial-gradient(circle at 100% 0,rgba(49,94,234,.12),transparent 28rem),radial-gradient(circle at 0 45%,rgba(15,123,88,.08),transparent 26rem),var(--bg);color:var(--ink);line-height:1.76}
+header{background:linear-gradient(135deg,#10204c,#334fb6 58%,#5876df);color:#fff;padding:62px 22px 58px;position:relative;overflow:hidden}header:after{content:"";position:absolute;width:460px;height:460px;border:1px solid rgba(255,255,255,.16);border-radius:50%;right:-100px;top:-230px}.hero{max-width:1420px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;position:relative;z-index:1;align-items:center}.eyebrow{font-size:.8rem;font-weight:950;letter-spacing:.12em;text-transform:uppercase;opacity:.86}h1{font-size:clamp(2.7rem,6vw,5.2rem);line-height:1.02;letter-spacing:-.04em;margin:.5rem 0 1rem}.hero p{font-size:1.08rem;max-width:880px;opacity:.95}.heroCard{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.23);border-radius:20px;padding:20px;backdrop-filter:blur(8px)}.heroCard b{display:block;font-size:1.1rem;margin-bottom:8px}.heroCard li{margin:5px 0}
+.wrap{max-width:1460px;margin:auto;padding:0 18px 90px}.toolbar{margin-top:-25px;position:relative;z-index:4;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px;padding:12px;display:flex;gap:8px;flex-wrap:wrap}.toolbar a,.toolbar button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:9px 12px;text-decoration:none;font-weight:850;cursor:pointer}
+.layout{display:grid;grid-template-columns:305px minmax(0,1fr);gap:25px;margin-top:24px;align-items:start}nav{position:sticky;top:14px;max-height:calc(100vh - 28px);overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow)}nav h3{margin:4px 8px 10px}nav a{display:block;text-decoration:none;color:var(--ink);padding:7px 9px;border-radius:9px;font-size:.88rem}nav a:hover{background:var(--blue2)}nav a.sub{padding-left:21px;color:var(--muted)}
+section{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:30px;margin-bottom:25px;box-shadow:var(--shadow);scroll-margin-top:18px}.chapter{border-top:8px solid var(--blue)}.array{border-top-color:#315eea}.dynamic{border-top-color:#1596a7}.list{border-top-color:#ce7700}.stack{border-top-color:#6e49c9}.queue{border-top-color:#0f7b58}.sort{border-top-color:#d14970}.kicker{font-size:.77rem;letter-spacing:.1em;font-weight:950;text-transform:uppercase;color:#213a86}h2{font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.25;margin:.1rem 0 .7rem}h3{font-size:1.38rem;margin:31px 0 10px}h4{font-size:1.05rem;margin:0 0 7px}.lead{font-size:1.08rem;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:16px;padding:17px;background:var(--paper)}.blue{background:var(--blue2)}.green{background:var(--green2)}.amber{background:var(--amber2)}.red{background:var(--red2)}.purple{background:var(--purple2)}.cyan{background:var(--cyan2)}
+.rule{background:linear-gradient(135deg,#172554,#324d9e);color:#fff;border-radius:16px;padding:15px 18px;margin:15px 0;font-weight:850}.note{border-left:5px solid var(--blue);background:var(--blue2);border-radius:0 12px 12px 0;padding:11px 14px;margin:14px 0}.note.warn{border-left-color:var(--amber);background:var(--amber2)}.note.bad{border-left-color:var(--red);background:var(--red2)}.note.good{border-left-color:var(--green);background:var(--green2)}
+.visual{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fff,#f7faff);padding:18px;margin:14px 0;overflow:auto}.visualTitle{font-weight:950;color:#1f3376;margin-bottom:10px}.caption{font-size:.9rem;color:var(--muted);margin-top:8px}.arr{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end}.cell{min-width:52px;text-align:center;border:2px solid var(--blue);background:#fff;border-radius:9px;padding:9px 7px;font-weight:950}.cell small{display:block;font-size:.7rem;color:var(--muted);font-weight:700;margin-top:2px}.cell.hot{background:var(--amber2);border-color:var(--amber)}.cell.good{background:var(--green2);border-color:var(--green)}.matrix{display:grid;gap:4px;width:max-content}.mrow{display:flex;gap:4px}.mcell{width:45px;height:40px;border:2px solid var(--blue);border-radius:8px;background:#fff;display:grid;place-items:center;font-weight:950}.mcell.hot{background:var(--amber2);border-color:var(--amber)}
+.flow{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.arrow{font-size:1.45rem;color:var(--blue);font-weight:950}.nodeRow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.node{display:flex;border:2px solid var(--blue);border-radius:10px;overflow:hidden;background:#fff}.node span{padding:10px 12px;border-right:1px solid var(--line);font-weight:900}.node span:last-child{border-right:0}.node.hot{border-color:var(--amber);background:var(--amber2)}.tag{padding:4px 8px;border-radius:999px;background:var(--blue2);color:#203777;font-size:.75rem;font-weight:900}.null{padding:7px 10px;border-radius:9px;background:var(--red2);color:var(--red);font-weight:900}.queueTrack{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.qcell{min-width:56px;padding:10px;border:2px solid var(--green);background:var(--green2);border-radius:10px;text-align:center;font-weight:950}.stackBox{max-width:220px;min-height:170px;border:3px solid var(--purple);border-top:0;border-radius:0 0 15px 15px;padding:8px;display:flex;flex-direction:column-reverse;gap:7px;background:#fff}.stackItem{padding:10px;text-align:center;border:2px solid var(--purple);background:var(--purple2);border-radius:9px;font-weight:950}
+pre{position:relative;background:var(--code);color:var(--codeInk);padding:17px;border-radius:14px;overflow:auto;line-height:1.58;margin:10px 0}pre code{background:transparent!important;border:0!important;color:inherit!important;padding:0!important}code{font-family:Consolas,"SFMono-Regular",monospace;background:var(--blue2);border:1px solid var(--line);border-radius:6px;padding:2px 5px}.copy{position:absolute;right:9px;top:9px;border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.08);color:#fff;border-radius:7px;padding:5px 8px;cursor:pointer;font-size:.74rem}
+.codeExplain{border:1px solid var(--line);border-radius:14px;background:#fafcff;padding:13px 15px;margin:8px 0 17px}.codeExplain b{color:#233b87}.codeExplain li{margin:4px 0}.steps{counter-reset:step}.step{counter-increment:step;border-left:5px solid var(--blue);padding:10px 13px;margin:8px 0;background:#fafcff;border-radius:0 12px 12px 0}.step:before{content:"STEP " counter(step);font-size:.73rem;font-weight:950;color:#2b438d;display:block;letter-spacing:.06em;margin-bottom:4px}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:12px 0;font-size:.94rem}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--blue2);text-align:left}tr:last-child td{border-bottom:0}.badge{display:inline-block;border-radius:999px;background:var(--blue2);color:#213a7e;padding:4px 8px;font-size:.74rem;font-weight:900;margin:2px}.source{border-top:1px dashed var(--line);margin-top:18px;padding-top:10px;color:var(--muted);font-size:.86rem}details{border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin:10px 0;background:#fff}summary{font-weight:900;cursor:pointer}
+@media(max-width:1020px){.hero,.layout,.grid2,.grid3{grid-template-columns:1fr}nav{position:relative;top:0;max-height:none}}@media(max-width:600px){section{padding:20px 14px}.cell{min-width:43px}.mcell{width:37px;height:35px}}
+
+:root{
+  --paper2:#f8fbff;
+  --indigo:var(--blue);
+  --navy:#16234f;
+  --greenbg:var(--green2);
+  --redbg:var(--red2);
+  --amberbg:var(--amber2);
+}
+nav{
+  border:2px solid rgba(49,94,234,.20)!important;
+  box-shadow:0 18px 40px rgba(49,94,234,.12), var(--shadow)!important;
+}
+.navNote{
+  margin:0 4px 12px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:linear-gradient(180deg,var(--blue2),#fff);
+  color:var(--muted);
+  font-size:.86rem;
+}
+nav a{
+  border:1px solid transparent;
+  margin-bottom:4px;
+}
+nav a:hover, nav a.active{
+  background:var(--blue2)!important;
+  border-color:rgba(49,94,234,.22);
+  font-weight:900;
+}
+nav a.active{
+  box-shadow:inset 4px 0 0 var(--blue);
+}
+nav a.sub{
+  margin-left:8px;
+  background:#fafcff;
+  border:1px dashed rgba(49,94,234,.14);
+}
+.contentsShow{
+  border:2px solid rgba(49,94,234,.16);
+  border-radius:20px;
+  background:linear-gradient(180deg,#fff,var(--blue2));
+  padding:18px;
+  margin:16px 0;
+}
+.contentsGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.contentsItem{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  padding:12px 14px;
+}
+.contentsItem b{display:block;margin-bottom:4px}
+.contentsItem small{color:var(--muted)}
+/* exam */
+.examHero{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--blue2),#fff);padding:16px 18px;margin:14px 0}
+.examHero ol{margin:.45rem 0 .2rem 1.2rem}
+.examControls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.examControls button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:11px;padding:9px 13px;font-weight:850;cursor:pointer}
+.examControls button.primary{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.examControls button.danger{background:var(--redbg);color:var(--red)}
+.examSticky{position:sticky;top:8px;z-index:6;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:15px;padding:9px 12px;margin:10px 0}
+.examStickyRow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.examJump{display:grid;grid-template-columns:repeat(15,1fr);gap:5px;margin:14px 0}
+.examJump button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:7px;min-height:31px;font-size:.77rem;cursor:pointer}
+.examJump button.answered{background:var(--blue2);border-color:var(--indigo);font-weight:900}
+.examJump button.correct{background:var(--greenbg);border-color:var(--green)}
+.examJump button.wrong{background:var(--redbg);border-color:var(--red)}
+.quizQ{border:1px solid var(--line);border-radius:18px;padding:18px;margin:15px 0;background:var(--paper2);scroll-margin-top:18px}
+.quizQ.correctQ{border:2px solid var(--green);background:var(--greenbg)}
+.quizQ.wrongQ{border:2px solid var(--red);background:var(--redbg)}
+.quizHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+.quizNum{font-weight:950;font-size:1.07rem}
+.quizCat{font-size:.75rem;font-weight:900;padding:4px 9px;border-radius:999px;background:var(--blue2);color:var(--navy);white-space:nowrap}
+.quizPrompt{font-weight:750;margin:8px 0 12px}
+.quizPrompt pre{margin-top:8px}
+.choices{display:grid;gap:9px}
+.choice{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 12px;cursor:pointer}
+.choice:hover{background:var(--blue2)}
+.choice.selected{border:2px solid var(--indigo);background:var(--blue2)}
+.choice input{margin-top:4px}
+.choice.correctChoice{border:2px solid var(--green);background:var(--greenbg)}
+.choice.wrongChoice{border:2px solid var(--red);background:var(--redbg)}
+.explanation{display:none;margin-top:12px;border-left:5px solid var(--indigo);padding:11px 13px;background:#fff;border-radius:0 12px 12px 0}
+.quizQ.graded .explanation{display:block}
+.perQControls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.perQCheck{border:1px solid var(--indigo);background:var(--indigo)!important;color:white!important;border-radius:10px;padding:8px 12px;font-weight:900;cursor:pointer}
+.perQClear{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 12px;font-weight:850;cursor:pointer}
+.perQFeedback{display:none;margin-top:10px;padding:10px 12px;border-radius:11px;font-weight:850}
+.perQFeedback.show{display:block}
+.perQFeedback.ok{background:var(--greenbg);color:var(--green);border:1px solid var(--green)}
+.perQFeedback.bad{background:var(--redbg);color:var(--red);border:1px solid var(--red)}
+.perQFeedback.warn{background:var(--amberbg);color:var(--amber);border:1px solid var(--amber)}
+.examResult{display:none;border:2px solid var(--indigo);border-radius:20px;padding:20px;margin:18px 0;background:var(--blue2)}
+.examResult.show{display:block}
+.scoreBig{font-size:clamp(2rem,5vw,4rem);font-weight:950;line-height:1;color:var(--navy)}
+.topicBreakdown{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:15px}
+.topicScore{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px}
+.hiddenByMode{display:none!important}
+.copy{
+  position:absolute;top:10px;right:10px;border:1px solid rgba(255,255,255,.2);
+  background:#1b2740;color:#fff;border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer
+}
+pre{position:relative}
+@media (max-width:1000px){
+  .contentsGrid,.topicBreakdown{grid-template-columns:1fr}
+  .examJump{grid-template-columns:repeat(8,1fr)}
+}
+@media (max-width:600px){
+  .examJump{grid-template-columns:repeat(5,1fr)}
+}
+
+
+/* ===== Detailed Study Expansion ===== */
+.deepDive{
+  margin-top:26px;
+  border-top:3px dashed var(--line);
+  padding-top:24px;
+}
+.deepDiveTitle{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:12px
+}
+.deepDiveTitle .mark{
+  display:inline-grid;place-items:center;width:36px;height:36px;
+  border-radius:10px;background:var(--blue2);color:var(--blue);font-weight:950
+}
+.explainGrid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0
+}
+.explainBox{
+  border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff
+}
+.explainBox.think{background:var(--blue2)}
+.explainBox.work{background:var(--green2)}
+.explainBox.exam{background:var(--amber2)}
+.steps{
+  counter-reset:step;display:grid;gap:10px;margin:14px 0
+}
+.steps .step{
+  counter-increment:step;
+  display:grid;grid-template-columns:38px 1fr;gap:10px;
+  border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px
+}
+.steps .step:before{
+  content:counter(step);width:32px;height:32px;display:grid;place-items:center;
+  border-radius:50%;background:var(--blue);color:white;font-weight:950
+}
+.codeWalk{
+  border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--paper2);margin:10px 0
+}
+.codeWalk b{color:var(--navy)}
+.opTable td:first-child{font-weight:900;white-space:nowrap}
+.memoryMap{
+  border:1px dashed rgba(49,94,234,.35);border-radius:16px;padding:15px;background:linear-gradient(180deg,#fff,var(--blue2));margin:14px 0
+}
+.compareCards{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0
+}
+.examFocus{
+  border:2px solid rgba(180,106,0,.35);background:var(--amber2);
+  border-radius:16px;padding:15px;margin:14px 0
+}
+.supplement{
+  border:2px dashed rgba(110,73,201,.4);
+  background:var(--purple2);border-radius:16px;padding:14px;margin:14px 0
+}
+@media(max-width:1000px){
+  .explainGrid,.compareCards{grid-template-columns:1fr}
+}
+
+
+/* ===== FIX: readability / broken step layout ===== */
+.rule code{
+  background:#ffffff !important;
+  color:#172554 !important;
+  border:1px solid rgba(255,255,255,.7) !important;
+  padding:3px 7px !important;
+  border-radius:7px !important;
+  font-weight:900;
+}
+
+/* เดิม .steps .step ใช้ CSS Grid กับ text node โดยตรง ทำให้ข้อความ/code แตกเป็นคอลัมน์แคบ */
+.steps{
+  counter-reset:step;
+  display:grid;
+  gap:10px;
+  margin:14px 0;
+}
+.steps .step{
+  counter-increment:step;
+  display:block !important;
+  position:relative;
+  min-height:62px;
+  padding:15px 16px 15px 64px !important;
+  border:1px solid var(--line) !important;
+  border-left:1px solid var(--line) !important;
+  background:#fff !important;
+  border-radius:14px !important;
+  margin:0 !important;
+  overflow:visible;
+}
+.steps .step:before{
+  content:counter(step) !important;
+  position:absolute;
+  left:14px;
+  top:14px;
+  width:34px;
+  height:34px;
+  display:grid !important;
+  place-items:center;
+  border-radius:50%;
+  background:var(--blue);
+  color:#fff !important;
+  font-size:.9rem !important;
+  font-weight:950;
+  letter-spacing:0 !important;
+  margin:0 !important;
+}
+.steps .step code{
+  display:inline !important;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:anywhere;
+}
+
+/* visual step แบบ Linked List ที่ไม่พึ่ง anonymous grid items */
+.linkedSteps{display:grid;gap:12px}
+.linkedStep{
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  background:#fff;
+}
+.linkedStepNum{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--blue);color:#fff;font-weight:950
+}
+.linkedStepBody b{display:block;margin-bottom:8px}
+.linkedMiniDiagram{
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  padding:10px 0 2px;
+}
+.linkedCode{
+  display:inline-block;
+  background:var(--blue2);
+  color:#172554;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:5px 8px;
+  font-family:Consolas,monospace;
+  font-weight:900;
+}
+.richCodeExplain{
+  border:1px solid var(--line);
+  border-left:5px solid var(--blue);
+  border-radius:0 14px 14px 0;
+  background:#fbfdff;
+  padding:13px 15px;
+  margin:8px 0 18px;
+}
+.richCodeExplain .title{
+  display:block;
+  font-weight:950;
+  color:#233b87;
+  margin-bottom:7px;
+}
+.richCodeExplain ul{margin:5px 0 0;padding-left:21px}
+.richCodeExplain li{margin:5px 0}
+.richCodeExplain .why{
+  display:block;
+  margin-top:9px;
+  padding:8px 10px;
+  border-radius:9px;
+  background:var(--amber2);
+}
+
+
+.dedupNote{margin:10px 0 16px}
+.dedupExplain p{margin:5px 0 0}
+</style>
+</head>
+<body>
+<header>
+<div class="hero">
+<div><div class="eyebrow">520 213 • MIDTERM LEC • FULL REVIEW</div><h1>DS Mid — ฉบับละเอียด<br/>ภาพ + เนื้อหา + Java Code</h1><p>เวอร์ชันนี้เพิ่มเนื้อหาให้แน่นขึ้นมาก และใส่ตัวอย่าง Java ทุกหัวข้อสำคัญ โดยยังคงมีภาพประกอบเพื่อให้มองโครงสร้างออก ไม่ใช่เนื้อหาล้วนหรือรูปอย่างเดียว</p></div>
+<div class="heroCard"><b>ในหนึ่งหัวข้อจะมีครบ</b><ol><li>ความหมายและภาพในหัว</li><li>การทำงานทีละขั้น</li><li>ตัวอย่าง Java</li><li>อธิบายโค้ดทีละส่วน</li><li>จุด Error / Logical Error ที่มีสิทธิ์ออก LEC</li></ol></div>
+</div>
+</header>
+<div class="wrap"><div class="toolbar"><button onclick="window.print()">พิมพ์ / Save PDF</button><a href="#array">เริ่ม Array</a><a href="#sorting">ไป Sorting</a></div>
+<div class="layout"><nav><h3>สารบัญฉบับเต็ม</h3>
+<div class="navNote"><b>ฉบับละเอียด</b><br/>แต่ละบทมีส่วน “อ่านแบบละเอียด” เพิ่มด้านล่าง พร้อม Java, ไล่ขั้นตอน, จุดหลอก และ Complexity</div>
+<a href="#overview">ภาพรวม</a>
+<a href="#array">1. Array</a>
+<a class="sub" href="#array2d">↳ 2D / Ragged / Object Array</a>
+<a class="sub" href="#arrayref">↳ Reference / Method</a>
+<a href="#dynamic">2. Dynamic Array</a>
+<a class="sub" href="#dynamicops">↳ add/insert/replace/delete</a>
+<a href="#list">3. Linked List</a>
+<a class="sub" href="#singly">↳ Singly</a>
+<a class="sub" href="#doubly">↳ Doubly</a>
+<a href="#stack">4. Stack</a>
+<a class="sub" href="#stackapp">↳ Reverse / Palindrome / Postfix</a>
+<a href="#queue">5. Queue</a>
+<a href="#deque">6. Deque</a>
+<a href="#priority">7. Priority Queue</a>
+<a href="#sorting">8. Sorting 6 แบบ</a>
+<a href="#errors">9. Error Patterns</a>
+<a href="#mockexam">10. Mock Exam 103 ข้อ</a>
+<a href="#last">11. Last Minute</a></nav>
+<main>
+<section id="overview"><div class="kicker">OVERVIEW</div><h2>ก่อนเริ่ม: ฉบับละเอียด — อธิบายตั้งแต่แนวคิด → ภาพ → Java → Error → Complexity</h2>
+<div class="contentsShow">
+<div class="visualTitle">สารบัญแบบโชว์ในหน้าเนื้อหา</div>
+<div class="contentsGrid">
+<div class="contentsItem"><b>1) Array</b><small>Array 1 มิติ, 2D Array, Ragged Array, Object Array, Reference</small></div>
+<div class="contentsItem"><b>2) Dynamic Array</b><small>addFirst, addLast, insert, replace, deleteFirst, deleteLast, delete</small></div>
+<div class="contentsItem"><b>3) Linked List</b><small>Singly Linked List, Doubly Linked List, head/tail/count, insert/delete</small></div>
+<div class="contentsItem"><b>4) Stack</b><small>LIFO, push/pop/top, reverse, palindrome, infix to postfix, postfix evaluation</small></div>
+<div class="contentsItem"><b>5) Queue / 6) Deque</b><small>FIFO, front/rear, enqueue/dequeue, methods ของ Queue และ Deque</small></div>
+<div class="contentsItem"><b>7) Priority Queue / 8) Sorting</b><small>Heap, Comparator และ Bubble / Selection / Shell / Radix / Merge / Quick</small></div>
+</div>
+</div>
+<div class="grid3"><div class="card blue"><h4>Array</h4>มี index → กระโดดไปตำแหน่งที่ต้องการได้ตรง</div><div class="card amber"><h4>Linked List</h4>ไม่มี random index → เดินตาม next/prev</div><div class="card purple"><h4>Stack</h4>แตะข้อมูลหลักที่ TOP → LIFO</div><div class="card green"><h4>Queue</h4>เข้า Rear ออก Front → FIFO</div><div class="card cyan"><h4>Deque</h4>เปิด operation สองด้าน</div><div class="card red"><h4>Priority Queue</h4>ตัวที่ priority มาก่อนตามกติกา comparator</div></div><div class="rule">เวลาอ่านโค้ดอย่ามองเป็นตัวอักษรอย่างเดียว ให้แปลทุกบรรทัดเป็น “ช่องไหนเปลี่ยน / reference ไหนย้าย / ใครอยู่หน้า-ท้าย”</div></section>
+<section class="chapter array" id="array"><div class="kicker">CHAPTER 1</div><h2>Array — โครงสร้างพื้นฐานที่ใช้ Index</h2><p class="lead">Array เก็บข้อมูลหลายค่าใน object เดียวกัน ข้อมูลทุกช่องมีชนิดเดียวกัน และเข้าถึงด้วย index เริ่มจาก 0 จุดสำคัญคือขนาดของ Array ธรรมดาจะถูกกำหนดตอนสร้างแล้วไม่สามารถเปลี่ยน length ของ object เดิมได้</p>
+<h3>1.1 ประกาศ vs สร้าง Array</h3><pre><code>int[] a;              // มีตัวแปร reference แต่ยังไม่มี Array object
+
+a = new int[5];       // สร้าง Array object ขนาด 5
+
+int[] b = {10,20,30}; // สร้างพร้อมค่าเริ่มต้น</code></pre><div class="codeExplain"><b>อ่านโค้ดให้เป็นภาพ</b><ul><li><code>int[] a;</code> ยังไม่มีช่องข้อมูลจริง</li><li><code>new int[5]</code> สร้างช่อง 5 ช่อง: index 0,1,2,3,4</li><li>สมาชิก int ที่ยังไม่กำหนดค่าเริ่มเป็น 0</li></ul></div>
+<div class="visual"><div class="visualTitle">ภาพของ <code>new int[5]</code></div><div class="arr"><div class="cell">0<small>0</small></div><div class="cell">0<small>1</small></div><div class="cell">0<small>2</small></div><div class="cell">0<small>3</small></div><div class="cell">0<small>4</small></div></div></div>
+<h3>1.2 อ่านและแก้ค่าด้วย Index</h3><pre><code>int[] score = {70, 80, 90, 60};
+
+System.out.println(score[0]); // 70
+score[3] = 100;
+System.out.println(score[3]); // 100</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ไล่ assignment ทีละบรรทัดว่าเป็นการเปลี่ยน “ค่า”, “index” หรือ “reference”</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div><div class="note bad"><b>Error ที่พบบ่อย:</b> <code>score[4]</code> ผิด เพราะ length=4 แต่ index ที่ถูกคือ 0..3</div>
+<h3>1.3 วน Array ด้วย for</h3><pre><code>for (int i = 0; i &lt; score.length; i++) {
+    System.out.println("index=" + i + " value=" + score[i]);
+}</code></pre><div class="codeExplain"><ul><li><code>i=0</code> เริ่มช่องแรก</li><li><code>i &lt; score.length</code> ป้องกันไม่ให้ index เกิน</li><li><code>score[i]</code> อ่านค่าช่องปัจจุบัน</li></ul></div>
+<h3>1.4 Enhanced for</h3><pre><code>for (int x : score) {
+    System.out.println(x);
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>มี loop สำหรับทำงานซ้ำกับข้อมูลหลายตำแหน่ง ให้ตรวจค่าเริ่มต้น เงื่อนไข และการเพิ่ม/ลดตัวแปร loop</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div><div class="note warn">เหมาะกับ “อ่านทุกค่า” แต่ถ้าต้องใช้ index หรือเขียนกลับตำแหน่งเดิม ใช้ for แบบ index จะชัดกว่า</div>
+<div id="array2d"><h3>1.5 2D Array</h3><p>2D Array ใน Java มองเป็น “Array ของ Array” ตัวแรกระบุ row ตัวที่สองระบุ column</p><div class="visual"><div class="visualTitle"><code>matrix[2][1]</code></div><div class="flow"><div class="matrix"><div class="mrow"><div class="mcell">1</div><div class="mcell">2</div><div class="mcell">3</div></div><div class="mrow"><div class="mcell">4</div><div class="mcell">5</div><div class="mcell">6</div></div><div class="mrow"><div class="mcell">7</div><div class="mcell hot">8</div><div class="mcell">9</div></div></div><div class="card"><b>row 2</b> = แถวที่ 3<br><b>column 1</b> = ช่องที่ 2<br/>คำตอบ = 8</br></div></div></div>
+<pre><code>int[][] matrix = {
+    {1,2,3},
+    {4,5,6},
+    {7,8,9}
+};
+
+for (int i = 0; i &lt; matrix.length; i++) {
+    for (int j = 0; j &lt; matrix[i].length; j++) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ตัวแปรชนิด <code>int[][]</code> เป็น reference ไปยัง 2D Array หรือ Array ของ Array</li><li>ถ้ามีลูปซ้อน: ลูปนอกมักเดินทีละแถว ส่วนลูปในเดินสมาชิกของแถวนั้น</li><li>ใน Ragged Array ควรอิง <code>array[i].length</code> เพราะแต่ละแถวอาจยาวไม่เท่ากัน</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> เวลาเจอโค้ด 2D ให้แยกในหัวเป็น <b>row ก่อน แล้ว column</b> และตรวจว่า row นั้นถูกสร้างแล้วหรือยัง</span></div>
+<h3>1.6 Ragged Array</h3><pre><code>int[][] ragged = {
+    {1,2,3,4},
+    {5,6,7},
+    {8,9}
+};</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 1.6 Ragged Array</span><p>จุดที่ต่างจาก 2D แบบสี่เหลี่ยมคือแต่ละแถวมี length ไม่เท่ากัน ดังนั้น loop ด้านในต้องอิง array[i].length</p></div><div class="visual"><div class="matrix"><div class="mrow"><div class="mcell">1</div><div class="mcell">2</div><div class="mcell">3</div><div class="mcell">4</div></div><div class="mrow"><div class="mcell">5</div><div class="mcell">6</div><div class="mcell">7</div></div><div class="mrow"><div class="mcell">8</div><div class="mcell">9</div></div></div><div class="caption">แต่ละแถวยาวไม่เท่ากัน จึงต้องใช้ <code>ragged[i].length</code></div></div>
+<h3>1.7 Object Array</h3><pre><code>class Student {
+    int id;
+    String name;
+
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+Student[] s = new Student[3];
+// ตอนนี้ s[0], s[1], s[2] ยังเป็น null
+
+s[0] = new Student(101, "A");
+s[1] = new Student(102, "B");</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>new Student[n]</code> สร้าง Array ของ reference จำนวน n ช่อง</li><li>แต่ละช่องเริ่มเป็น <code>null</code> จนกว่าจะทำ <code>new Student(...)</code></li><li>ถ้าเรียก field/method ผ่านช่องที่ยัง null จะเกิด <code>NullPointerException</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Object Array ต้องแยกคำว่า <b>สร้าง Array</b> กับ <b>สร้าง Object แต่ละตัว</b> ออกจากกัน</span></div><div class="note bad"><b>จุดหลอก:</b> <code>new Student[3]</code> สร้าง Array ของ reference ไม่ได้สร้าง Student 3 object</div></div>
+<div id="arrayref"><h3>1.8 Reference Assignment ไม่ใช่ Copy</h3><pre><code>int[] x = {1,2,3};
+int[] y = x;
+
+y[1] = 99;
+System.out.println(x[1]); // 99</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>การ assign Array reference เช่น <code>y = x</code> ไม่ได้ copy สมาชิก</li><li>x และ y จะชี้ Array object ตัวเดียวกัน</li><li>ดังนั้นแก้สมาชิกผ่านชื่อหนึ่ง อีกชื่อหนึ่งก็เห็นค่าที่เปลี่ยน</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ถ้าต้องการสำเนาแยก object ต้องสร้าง Array ใหม่แล้ว copy หรือใช้เมธอด copy ที่เหมาะสม</span></div><div class="visual"><div class="flow"><div class="card">x<br/>y</div><div class="arrow">→</div><div class="arr"><div class="cell">1</div><div class="cell hot">99</div><div class="cell">3</div></div></div><div class="caption">x และ y ชี้ object ตัวเดียวกัน</div></div>
+<h3>1.9 ส่ง Array เข้า Method</h3><pre><code>static void change(int[] a) {
+    a[0] = 500;
+}
+
+int[] x = {1,2,3};
+change(x);
+System.out.println(x[0]); // 500</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 1.9 ส่ง Array เข้า Method</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div><p>แม้ Java เป็น pass-by-value แต่ค่าที่ถูก copy สำหรับ reference คือ reference value จึงทำให้ parameter และตัวแปรผู้เรียกชี้ object เดียวกันและแก้สมาชิกภายในร่วมกันได้</p><div class="note warn">แต่ถ้าภายใน method เขียน <code>a = new int[10]</code> จะเปลี่ยนแค่ local parameter a ไม่ได้เปลี่ยน reference x ของคนเรียก</div></div>
+<div class="source">ส่วน Array/2D/Ragged/Object Array/Arrays utility ยึดตามชุด Week 2–3 ที่คุณส่งมา</div>
+<div class="deepDive" id="array-detail">
+<div class="deepDiveTitle"><span class="mark">A</span><h3 style="margin:0">อ่าน Array แบบละเอียด: จากภาพ → Memory → Code → ข้อสอบ</h3></div>
+<div class="explainGrid">
+<div class="explainBox think"><h4>คิดยังไง</h4>ให้นึกว่า Array เป็น “แถวของช่องที่มีหมายเลขกำกับ” ทุกช่องอยู่ใน Array object เดียวกัน การเข้าถึงจึงเน้นคำว่า <b>index</b></div>
+<div class="explainBox work"><h4>ทำงานยังไง</h4>ตัวแปร Array ใน Java เป็น reference ที่ชี้ไปยัง Array object ส่วน index ใช้เลือกช่องที่ต้องการภายใน object นั้น</div>
+<div class="explainBox exam"><h4>ข้อสอบชอบถามอะไร</h4>index สุดท้าย, default value, 2D/Ragged, reference alias, enhanced for, pass array เข้า method, ArrayIndexOutOfBounds</div>
+</div>
+<h3>1) การประกาศ, การสร้าง และค่าเริ่มต้น</h3>
+<pre><code>int[] a;              // ประกาศ reference อย่างเดียว
+a = new int[5];       // สร้าง Array object 5 ช่อง
+
+int[] b = {10,20,30}; // สร้างพร้อมกำหนดค่า</code></pre>
+<div class="codeWalk"><b>แปลทีละบรรทัด:</b> <code>int[] a;</code> ยังไม่มีช่องข้อมูลจริง แต่หลัง <code>new int[5]</code> Java จึงสร้าง Array object และให้ a ชี้ไปยัง object นั้น</div>
+<div class="tableWrap"><table class="opTable">
+<tr><th>ชนิดข้อมูล</th><th>ค่าเริ่มต้นใน Array เมื่อสร้างด้วย new</th><th>ตัวอย่าง</th></tr>
+<tr><td>int / long / short / byte</td><td>0</td><td><code>new int[3] → [0,0,0]</code></td></tr>
+<tr><td>double / float</td><td>0.0</td><td><code>new double[2]</code></td></tr>
+<tr><td>boolean</td><td>false</td><td><code>new boolean[2]</code></td></tr>
+<tr><td>char</td><td>อักขระค่า 0</td><td>ไม่ใช่ตัวอักษร '0'</td></tr>
+<tr><td>Object reference</td><td>null</td><td><code>new Student[3]</code> มี 3 ช่องที่เริ่มเป็น null</td></tr>
+</table></div>
+<h3>2) Index และ Length ต้องแยกให้ออก</h3>
+<div class="memoryMap">
+<div class="arr">
+<div class="cell">11<small>0</small></div><div class="cell">22<small>1</small></div><div class="cell">33<small>2</small></div><div class="cell">44<small>3</small></div>
+</div>
+<p><b>length = 4</b> แต่ index ที่ถูกต้องคือ 0,1,2,3 ดังนั้นสูตรคือ <code>index สุดท้าย = length - 1</code></p>
+</div>
+<h3>3) Loop แบบ index กับ enhanced for ใช้ต่างกันยังไง</h3>
+<div class="compareCards">
+<div class="card blue"><h4>ต้องการตำแหน่ง → ใช้ index loop</h4>
+<pre><code>for(int i=0; i&lt;a.length; i++){
+    a[i] = a[i] * 2;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>มี loop สำหรับทำงานซ้ำกับข้อมูลหลายตำแหน่ง ให้ตรวจค่าเริ่มต้น เงื่อนไข และการเพิ่ม/ลดตัวแปร loop</li><li>ไล่ assignment ทีละบรรทัดว่าเป็นการเปลี่ยน “ค่า”, “index” หรือ “reference”</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div>
+<p>เหมาะเมื่อแก้ค่าจริงใน Array หรือจำเป็นต้องรู้ว่าอยู่ index ไหน</p></div>
+<div class="card green"><h4>ต้องการอ่านค่าอย่างเดียว → enhanced for</h4>
+<pre><code>for(int x : a){
+    System.out.println(x);
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — ต้องการอ่านค่าอย่างเดียว → enhanced for</span><p>ตัวอย่างนี้ใช้หลักเดียวกับคำอธิบายก่อนหน้า แต่ให้โฟกัสที่ state ที่เปลี่ยนในบรรทัดของโค้ดชุดนี้โดยตรง</p></div>
+<p>สะดวกสำหรับอ่านทุกตัว แต่ <code>x = 99</code> ไม่ได้เขียน 99 กลับลงช่อง Array ของ primitive</p></div>
+</div>
+<h3>4) 2D Array จริง ๆ คือ Array ของ Array</h3>
+<pre><code>int[][] m = new int[3][4];
+
+// m.length      = 3 แถว
+// m[0].length   = 4 ช่องในแถว 0
+// m[2][3]       = ช่องสุดท้าย
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 4) 2D Array จริง ๆ คือ Array ของ Array</span><p>ให้อ่านมิติแรกเป็น row และมิติที่สองเป็น column พร้อมตรวจขอบเขตของแต่ละมิติแยกกัน</p></div>
+<div class="steps">
+<div class="step"><div><b>มิติแรก</b> ใช้เลือกแถว เช่น <code>m[2]</code></div></div>
+<div class="step"><div><b>มิติที่สอง</b> ใช้เลือกช่องในแถวนั้น เช่น <code>m[2][3]</code></div></div>
+<div class="step"><div><b>Ragged Array</b> แต่ละแถวอาจมี length ต่างกัน จึงควรใช้ <code>m[i].length</code> ใน loop ด้านใน</div></div>
+</div>
+<h3>5) Ragged Array และ Null Row</h3>
+<pre><code>int[][] r = new int[3][];
+
+r[0] = new int[2];
+r[1] = new int[4];
+// r[2] ยังเป็น null
+
+System.out.println(r[0].length); // 2
+System.out.println(r[2].length); // NullPointerException
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 5) Ragged Array และ Null Row</span><p>จุดที่ต้องโฟกัสคือ outer array ถูกสร้างแล้ว แต่บาง row อาจยังเป็น null; ก่อนอ่าน row.length ต้องแน่ใจว่า row นั้นถูก new แล้ว</p></div>
+<div class="examFocus"><b>วิธีมองข้อสอบ:</b> ถ้าเห็น <code>new int[3][]</code> ให้แยกในหัวว่า “สร้าง outer array แล้ว แต่ row ด้านในยังไม่ได้สร้าง”</div>
+<h3>6) Reference Alias: สองชื่อชี้ของเดียวกัน</h3>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “6) Reference Alias: สองชื่อชี้ของเดียวกัน” ใช้โค้ดหลักเดียวกับ “1.8 Reference Assignment ไม่ใช่ Copy” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<p>สาเหตุไม่ใช่เพราะ Java copy ข้อมูลให้ แต่เพราะ x และ y เก็บ reference ที่ชี้ Array object ตัวเดียวกัน</p>
+<h3>7) Copy Array ที่ “แยก object” ออกจากกัน</h3>
+<pre><code>int[] src = {1,2,3};
+int[] dst = new int[src.length];
+
+for(int i=0; i&lt;src.length; i++){
+    dst[i] = src[i];
+}
+
+dst[0] = 99;
+// src[0] ยังเป็น 1
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 7) Copy Array ที่ “แยก object” ออกจากกัน</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>
+<div class="note good"><b>เครื่องมือจาก java.util.Arrays ที่อาจารย์พูดถึง:</b> <code>Arrays.copyOf()</code>, <code>Arrays.copyOfRange()</code>, <code>Arrays.toString()</code> ช่วยงาน Array ได้ แต่ข้อสอบที่ถาม algorithm ควรเข้าใจการ copy จริง ๆ ด้วย</div>
+<h3>8) Array ส่งเข้า Method: Java ยังเป็น Pass-by-Value</h3>
+<pre><code>static void change(int[] a){
+    a[0] = 50;            // แก้ Array object เดิมได้
+    a = new int[]{7,8};   // เปลี่ยนแค่ local reference a
+}
+
+int[] x = {1,2,3};
+change(x);
+
+// x = [50,2,3]
+</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>คำสั่ง <code>new int[n]</code> คือจุดที่สร้าง Array object จริง</li><li>สมาชิก int เริ่มต้นเป็น 0 และ index ถูกต้องคือ 0 ถึง n-1</li><li>ตัวแปร Array เก็บ reference ที่ชี้ไปยัง object นั้น</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> อย่าสับสนระหว่าง <b>จำนวนช่อง (length)</b> กับ <b>index สุดท้าย (length-1)</b></span></div>
+<p>ค่าที่ถูกส่งเข้า method คือ “ค่าของ reference” ดังนั้น parameter ภายใน method ยังชี้ object เดิมได้ แต่การ assign parameter ให้ชี้ object ใหม่ ไม่ได้เปลี่ยนตัวแปร reference ของผู้เรียก</p>
+<h3>9) Complexity ที่ควรรู้ระดับ LEC</h3>
+<div class="tableWrap"><table>
+<tr><th>Operation</th><th>เวลาโดยทั่วไป</th><th>เหตุผล</th></tr>
+<tr><td>อ่าน <code>a[i]</code></td><td>O(1)</td><td>เข้าถึงด้วย index โดยตรง</td></tr>
+<tr><td>ค้นหาค่าใน Array ยังไม่เรียง</td><td>O(n)</td><td>อาจต้องตรวจทุกช่อง</td></tr>
+<tr><td>แทรกกลางและรักษาลำดับ</td><td>O(n)</td><td>ต้องเลื่อนสมาชิก</td></tr>
+<tr><td>ลบกลางและรักษาลำดับ</td><td>O(n)</td><td>สมาชิกด้านหลังต้องเลื่อนซ้าย</td></tr>
+</table></div>
+</div>
+</section>
+<section class="chapter dynamic" id="dynamic"><div class="kicker">CHAPTER 2</div><h2>Dynamic Array — สร้างใหม่ + Copy + Return</h2><p class="lead">แนวในสไลด์อาจารย์คือฝึกเขียนเมธอดเพิ่ม/แทรก/แทน/ลบข้อมูลด้วย Array ธรรมดา เพื่อให้เข้าใจว่าถ้าขนาดเปลี่ยน เราต้องสร้าง Array ใหม่</p>
+<h3>2.1 addFirst()</h3><div class="visual"><div class="flow"><div class="arr"><div class="cell">1</div><div class="cell">2</div><div class="cell">3</div></div><div class="arrow">+ 0 ที่หน้า →</div><div class="arr"><div class="cell hot">0</div><div class="cell">1</div><div class="cell">2</div><div class="cell">3</div></div></div></div>
+<pre><code>public static int[] addFirst(int[] source, int x) {
+    int[] temp = new int[source.length + 1];
+    temp[0] = x;
+
+    for (int i = 0; i &lt; source.length; i++) {
+        temp[i + 1] = source[i];
+    }
+
+    return temp;
+}</code></pre><div class="codeExplain"><ol><li>สร้าง temp ใหญ่กว่าเดิม 1</li><li>ข้อมูลใหม่อยู่ temp[0]</li><li>source[i] ถูกย้ายไป temp[i+1]</li><li>return reference ของ Array ใหม่</li></ol></div><pre><code>int[] x = {1,2,3,4,5};
+x = addFirst(x, 0);
+// x = [0,1,2,3,4,5]</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>สร้าง <code>temp</code> ยาวกว่าเดิม 1 ช่อง เพราะ Array เดิมขยายไม่ได้</li><li>ใส่ค่าใหม่ที่ <code>temp[0]</code></li><li>สมาชิกเดิมถูกย้ายไป <code>temp[i+1]</code> จึงเลื่อนไปขวา 1 ช่อง</li><li>ต้อง <code>return temp</code> เพื่อให้ผู้เรียกได้รับ reference ของ Array ใหม่</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ภาพในหัว: <b>สร้างใหม่ → ใส่ค่าใหม่ → copy ของเดิม → return</b></span></div>
+<div class="note bad"><b>Logical Error ที่อาจออก:</b> ถ้าเขียนเมธอด void แล้วจบด้วย <code>source = temp;</code> ข้อมูลใน x ของ main จะยังไม่เปลี่ยน เพราะ source เป็น local parameter</div>
+<div id="dynamicops"><h3>2.2 addLast()</h3><pre><code>public static int[] addLast(int[] source, int x) {
+    int[] temp = new int[source.length + 1];
+
+    for (int i = 0; i &lt; source.length; i++) {
+        temp[i] = source[i];
+    }
+
+    temp[temp.length - 1] = x;
+    return temp;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>สร้าง temp ยาวกว่าเดิม 1 ช่อง</li><li>copy สมาชิกเดิมไปตำแหน่งเดิม ไม่ต้องเลื่อน</li><li>ใส่ x ที่ <code>temp[temp.length-1]</code></li><li>คืน temp กลับไปให้ตัวแปรหลักรับ reference ใหม่</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> addLast ง่ายกว่า addFirst เพราะข้อมูลเดิมไม่ต้องเลื่อนตำแหน่ง</span></div><div class="note warn">สไลด์ Week 3 หน้าตัวอย่างโค้ด addLast มีบรรทัด <code>temp[0] = x</code> ซึ่งขัดกับ algorithm บนสไลด์ที่บอกให้ใส่ข้อมูลใหม่ “ช่องสุดท้าย” เว็บนี้จึงแสดงเวอร์ชันที่สอดคล้องกับ algorithm เพื่อใช้ทำความเข้าใจ และแยกเรื่องนี้ไว้ชัดเจน</div>
+<h3>2.3 insert()</h3><div class="visual"><div class="flow"><div class="arr"><div class="cell">1</div><div class="cell">2</div><div class="cell">3</div><div class="cell">4</div></div><div class="arrow">insert 0 at 2</div><div class="arr"><div class="cell">1</div><div class="cell">2</div><div class="cell hot">0</div><div class="cell">3</div><div class="cell">4</div></div></div></div><pre><code>public static int[] insert(int[] source, int x, int index) {
+    int[] temp = new int[source.length + 1];
+
+    for (int i = 0; i &lt; index; i++)
+        temp[i] = source[i];
+
+    temp[index] = x;
+
+    for (int i = index; i &lt; source.length; i++)
+        temp[i + 1] = source[i];
+
+    return temp;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ส่วนก่อน index ที่จะแทรก copy อยู่ตำแหน่งเดิม</li><li>เขียนข้อมูลใหม่ลง <code>temp[index]</code></li><li>สมาชิกเดิมตั้งแต่ index เป็นต้นไปต้องย้ายไป <code>temp[i+1]</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> จุดที่ข้อสอบชอบหลอกคือ loop ด้านขวา ถ้าลืม +1 ข้อมูลใหม่จะถูกทับ</span></div><div class="rule">Insert กลาง = ก่อน index อยู่ที่เดิม • ช่อง index เป็นข้อมูลใหม่ • ตั้งแต่ index ของเดิมเลื่อนไปขวา 1</div>
+<h3>2.4 replace()</h3><pre><code>public static void replace(int[] source, int x, int key) {
+    for (int i = 0; i &lt; source.length; i++) {
+        if (source[i] == key) {
+            source[i] = x;
+            break;
+        }
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>replace ไม่ได้เปลี่ยนจำนวนสมาชิก</li><li>ถ้ารู้ index ที่ถูกต้องสามารถแก้ <code>a[index]</code> ได้โดยตรง</li><li>ควรตรวจว่า index อยู่ในช่วง 0..length-1 ก่อน</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ต่างจาก add/delete ตรงที่ไม่จำเป็นต้องสร้าง Array ใหม่เพียงเพื่อเปลี่ยนค่า</span></div><p>replace ไม่เปลี่ยนจำนวนช่อง จึงไม่จำเป็นต้องสร้าง Array ใหม่ในกรณีนี้</p>
+<h3>2.5 deleteFirst()</h3><pre><code>public static int[] deleteFirst(int[] source) {
+    int[] temp = new int[source.length - 1];
+    for (int i = 1; i &lt; source.length; i++)
+        temp[i - 1] = source[i];
+    return temp;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>Array ใหม่สั้นกว่าเดิม 1 ช่อง</li><li>สมาชิกที่ไม่ถูกลบต้องถูก copy ไปยัง Array ใหม่</li><li>ถ้าลบกลาง สมาชิกด้านขวาของตำแหน่งลบต้องเลื่อนไปซ้าย 1 ช่อง</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ตรวจขอบเขต loop ให้สัมพันธ์กับ <code>temp.length</code> เพราะ temp สั้นกว่า source</span></div>
+<h3>2.6 deleteLast()</h3><pre><code>public static int[] deleteLast(int[] source) {
+    int[] temp = new int[source.length - 1];
+    for (int i = 0; i &lt; temp.length; i++)
+        temp[i] = source[i];
+    return temp;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 2.6 deleteLast()</span><p>ลบท้ายไม่ต้องเลื่อนสมาชิกกลาง แค่สร้าง array สั้นลง 1 และ copy เฉพาะจำนวนช่องของ temp</p></div>
+<h3>2.7 delete(index)</h3><pre><code>public static int[] delete(int[] source, int index) {
+    int[] temp = new int[source.length - 1];
+
+    for (int i = 0; i &lt; index; i++)
+        temp[i] = source[i];
+
+    for (int i = index + 1; i &lt; source.length; i++)
+        temp[i - 1] = source[i];
+
+    return temp;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 2.7 delete(index)</span><p>ให้แบ่งข้อมูลเป็นซ้ายของตำแหน่งลบกับขวาของตำแหน่งลบ แล้วต่อ/เลื่อนข้ามตัวที่ถูกลบ</p></div></div>
+<div class="source">อิงเมธอด Dynamic Array ใน Week 3: addFirst/addLast/insert/replace/deleteFirst/deleteLast/delete</div>
+<div class="deepDive" id="dynamic-detail">
+<div class="deepDiveTitle"><span class="mark">D</span><h3 style="margin:0">Dynamic Array แบบละเอียด</h3></div>
+<p>ประเด็นสำคัญที่สุดของบทนี้คือ <b>Array object เดิมเปลี่ยน length ไม่ได้</b> ดังนั้นคำว่า “เพิ่มขนาด” ในแบบฝึกของอาจารย์หมายถึง <b>สร้าง Array ใหม่ → copy → return reference ใหม่</b></p>
+<h3>1) addFirst()</h3>
+<div class="steps">
+<div class="step"><div>สร้าง <code>temp</code> ยาวกว่าเดิม 1</div></div>
+<div class="step"><div>ใส่ค่าใหม่ที่ <code>temp[0]</code></div></div>
+<div class="step"><div>คัด <code>source[0]</code> ไป <code>temp[1]</code>, source[1] ไป temp[2] ...</div></div>
+<div class="step"><div>คืน temp ให้ผู้เรียก</div></div>
+</div>
+<pre><code>static int[] addFirst(int[] source, int x){
+    int[] temp = new int[source.length + 1];
+    temp[0] = x;
+
+    for(int i=0; i&lt;source.length; i++){
+        temp[i+1] = source[i];
+    }
+    return temp;
+}</code></pre>
+<div class="codeWalk"><b>ภาพการเลื่อน:</b> [1,2,3] → ต้องการเพิ่ม 0 ด้านหน้า → [0,1,2,3] ดังนั้นสมาชิกเดิมทุกตัวเลื่อนไปทางขวา 1 index</div>
+<h3>2) addLast()</h3>
+<pre><code>static int[] addLast(int[] source, int x){
+    int[] temp = new int[source.length + 1];
+
+    for(int i=0; i&lt;source.length; i++){
+        temp[i] = source[i];
+    }
+
+    temp[temp.length - 1] = x;
+    return temp;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 2) addLast()</span><p>เชื่อมท้ายเดิมไป Node ใหม่ก่อน แล้วค่อยย้าย tail; ถ้าเป็น Doubly ต้องเชื่อม prev ย้อนกลับด้วย</p></div>
+<p>ต่างจาก addFirst ตรงที่ข้อมูลเดิมไม่ต้องเปลี่ยนตำแหน่ง แค่ copy เหมือนเดิม แล้วใส่ค่าที่ช่องสุดท้าย</p>
+<h3>3) insert(index, x)</h3>
+<div class="memoryMap">
+<b>ก่อน:</b> [10,20,30,40] ต้อง insert 99 ที่ index 2<br/>
+<b>หลัง:</b> [10,20,<span style="color:var(--red);font-weight:900">99</span>,30,40]
+  </div>
+<pre><code>static int[] insert(int[] source, int index, int x){
+    int[] temp = new int[source.length + 1];
+
+    for(int i=0; i&lt;index; i++)
+        temp[i] = source[i];
+
+    temp[index] = x;
+
+    for(int i=index; i&lt;source.length; i++)
+        temp[i+1] = source[i];
+
+    return temp;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 3) insert(index, x)</span><p>ก่อนเขียนทับ link เดิม ต้องเก็บเส้นทางไป Node ทางขวาไว้ก่อน จึงจะสอด Node ใหม่เข้าได้โดยไม่ทำ chain หาย</p></div>
+<div class="examFocus"><b>จุดหลอก:</b> loop หลัง index ต้องเขียน <code>temp[i+1] = source[i]</code> เพราะข้อมูลเดิมถูกดันไปขวา</div>
+<h3>4) replace()</h3>
+<p>replace ไม่เปลี่ยนจำนวนสมาชิก ดังนั้นไม่จำเป็นต้องสร้าง Array ใหม่เสมอไป</p>
+<pre><code>static void replace(int[] a, int index, int value){
+    if(index &gt;= 0 &amp;&amp; index &lt; a.length){
+        a[index] = value;
+    }
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 4) replace()</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>
+<h3>5) deleteFirst(), deleteLast(), delete(index)</h3>
+<div class="grid3">
+<div class="card"><h4>deleteFirst</h4>[10,20,30] → [20,30]<br/>copy source[i+1] ไป temp[i]</div>
+<div class="card"><h4>deleteLast</h4>[10,20,30] → [10,20]<br/>copy แค่ n-1 ตัวแรก</div>
+<div class="card"><h4>delete(index)</h4>[10,20,30,40] ลบ index1 → [10,30,40]</div>
+</div>
+<pre><code>static int[] delete(int[] source, int index){
+    int[] temp = new int[source.length - 1];
+
+    for(int i=0; i&lt;index; i++)
+        temp[i] = source[i];
+
+    for(int i=index+1; i&lt;source.length; i++)
+        temp[i-1] = source[i];
+
+    return temp;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — delete(index)</span><p>ให้แบ่งข้อมูลเป็นซ้ายของตำแหน่งลบกับขวาของตำแหน่งลบ แล้วต่อ/เลื่อนข้ามตัวที่ถูกลบ</p></div>
+<h3>6) ทำไมต้อง Return Reference ใหม่</h3>
+<pre><code>static void wrong(int[] source){
+    int[] temp = new int[source.length + 1];
+    source = temp;  // เปลี่ยน local reference เท่านั้น
+}
+
+static int[] correct(int[] source){
+    int[] temp = new int[source.length + 1];
+    return temp;
+}
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 6) ทำไมต้อง Return Reference ใหม่</span><p>ประเด็นของตัวอย่างนี้คือการ assign reference ไม่ได้สร้างสำเนาใหม่ ทั้งสองตัวแปรจึงมองเห็น object เดียวกัน</p></div>
+<p>ดังนั้นฝั่งเรียกใช้ต้องรับค่ากลับ เช่น <code>x = addLast(x, 99);</code></p>
+<h3>7) Size กับ Capacity — ความเข้าใจเสริม</h3>
+<div class="supplement"><b>เสริมเพื่อเข้าใจ ArrayList:</b> Dynamic Array ที่ใช้จริงมักแยก <b>size</b> (จำนวนข้อมูลจริง) กับ <b>capacity</b> (จำนวนช่องที่เผื่อไว้) เพื่อไม่ต้องสร้าง Array ใหม่ทุกครั้งที่ addLast</div>
+<h3>8) Complexity</h3>
+<div class="tableWrap"><table>
+<tr><th>Operation ในแบบฝึกที่ “สร้าง Array ใหม่ทุกครั้ง”</th><th>เวลา</th></tr>
+<tr><td>addFirst</td><td>O(n)</td></tr>
+<tr><td>addLast</td><td>O(n)</td></tr>
+<tr><td>insert</td><td>O(n)</td></tr>
+<tr><td>delete</td><td>O(n)</td></tr>
+<tr><td>replace ด้วย index</td><td>O(1)</td></tr>
+</table></div>
+</div>
+</section>
+<section class="chapter list" id="list"><div class="kicker">CHAPTER 3</div><h2>Linked List — Node + Reference</h2><p class="lead">จุดแกนของ Linked List คือข้อมูลไม่ได้อาศัย index แบบ Array แต่ใช้ Node ที่ชี้หากันด้วย reference ดังนั้นโจทย์ส่วนใหญ่คือ “ลูกศรไหนต้องย้าย”</p>
+<div id="singly"><h3>3.1 Singly Linked List</h3><div class="visual"><div class="nodeRow"><span class="tag">head</span><div class="arrow">→</div><div class="node"><span>A</span><span>next</span></div><div class="arrow">→</div><div class="node"><span>B</span><span>next</span></div><div class="arrow">→</div><div class="node"><span>C</span><span>next</span></div><div class="arrow">→</div><span class="null">null</span></div></div>
+<h3>3.2 Node และ LinkedList Class</h3><pre><code>class Node {
+    Student data;
+    Node next;
+
+    Node(Student data) {
+        this.data = data;
+    }
+}
+
+class MyLinkedList {
+    Node head;
+    Node tail;
+    int count;
+}</code></pre><div class="codeExplain"><ul><li><code>head</code> = โหนดแรก</li><li><code>tail</code> = โหนดสุดท้าย</li><li><code>count</code> = จำนวนโหนด</li><li>โหนดท้ายสุดมี <code>next == null</code></li></ul></div>
+<h3>3.3 addFirst()</h3><pre><code>void addFirst(Node n) {
+    if (head == null) {
+        head = tail = n;
+    } else {
+        n.next = head;
+        head = n;
+    }
+    count++;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ถ้าลิสต์ว่าง Node ใหม่เป็นทั้ง head และ tail</li><li>ถ้าไม่ว่าง ให้ <code>n.next = head</code> ก่อนเพื่อเก็บลิงก์ไปหัวเดิม</li><li>ค่อยทำ <code>head = n</code> แล้วเพิ่ม count</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ลำดับคำสั่งสำคัญมาก ถ้าย้าย head ก่อนอาจเกิด self-loop หรือทำลิงก์เดิมหาย</span></div>
+<div class="visual">
+<div class="visualTitle">ภาพทีละขั้นของ <code>addFirst(n)</code></div>
+<div class="linkedSteps">
+<div class="linkedStep">
+<div class="linkedStepNum">1</div>
+<div class="linkedStepBody">
+<b>ก่อนเพิ่ม — List เดิม</b>
+<div class="linkedMiniDiagram">
+<span class="tag">head</span><span class="arrow">→</span>
+<div class="node"><span>A</span><span>next</span></div>
+<span class="arrow">→</span>
+<div class="node"><span>B</span><span>next</span></div>
+<span class="arrow">→</span><span class="null">null</span>
+</div>
+<p class="caption">ตอนนี้ <code>head</code> ยังชี้ A และ Node ใหม่ N ยังไม่ได้อยู่ใน List</p>
+</div>
+</div>
+<div class="linkedStep">
+<div class="linkedStepNum">2</div>
+<div class="linkedStepBody">
+<b>ทำ <span class="linkedCode">n.next = head;</span></b>
+<div class="linkedMiniDiagram">
+<div class="node hot"><span>N</span><span>next</span></div>
+<span class="arrow">→</span>
+<div class="node"><span>A</span><span>next</span></div>
+<span class="arrow">→</span>
+<div class="node"><span>B</span><span>next</span></div>
+</div>
+<p class="caption"><b>ความหมาย:</b> ให้ N จำหัวเดิม A เอาไว้ก่อน แต่ตอนนี้ <code>head</code> ยังชี้ A อยู่</p>
+</div>
+</div>
+<div class="linkedStep">
+<div class="linkedStepNum">3</div>
+<div class="linkedStepBody">
+<b>ทำ <span class="linkedCode">head = n;</span></b>
+<div class="linkedMiniDiagram">
+<span class="tag">head</span><span class="arrow">→</span>
+<div class="node hot"><span>N</span><span>next</span></div>
+<span class="arrow">→</span>
+<div class="node"><span>A</span><span>next</span></div>
+<span class="arrow">→</span>
+<div class="node"><span>B</span><span>next</span></div>
+</div>
+<p class="caption"><b>ผลสุดท้าย:</b> N กลายเป็น Node แรก และยังไม่ทำลิงก์ไป A/B หาย</p>
+</div>
+</div>
+</div>
+</div>
+<div class="note bad"><b>Self-loop trap:</b> ถ้าเขียน <code>head=n</code> ก่อนแล้ว <code>n.next=head</code> จะกลายเป็น n.next ชี้ n</div>
+<h3>3.4 addLast()</h3><pre><code>void addLast(Node n) {
+    if (head == null) {
+        head = tail = n;
+    } else {
+        tail.next = n;
+        tail = n;
+    }
+    count++;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ถ้าลิสต์ว่าง Node ใหม่เป็นทั้ง head และ tail</li><li>ถ้าไม่ว่าง <code>tail.next = n</code> ต่อ Node ใหม่ไว้ด้านท้าย</li><li>จากนั้นเลื่อน <code>tail = n</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> มี tail ทำให้เพิ่มท้ายได้โดยไม่ต้องเดินหาท้ายใหม่</span></div><p>เพราะมี tail จึงเข้าถึงโหนดสุดท้ายตรง ๆ และเพิ่มท้ายได้โดยไม่ traversal ทั้งลิสต์</p>
+<h3>3.5 Traversal</h3><pre><code>Node p = head;
+while (p != null) {
+    System.out.println(p.data);
+    p = p.next;
+}</code></pre>
+<div class="codeWalk">
+<b>ไล่โค้ด Traversal ทีละบรรทัด:</b>
+<ol>
+<li><code>Node p = head;</code> — สร้างตัวแปร p ให้เริ่มชี้ Node แรก แต่ <b>ไม่ได้ย้าย head</b></li>
+<li><code>while (p != null)</code> — ถ้า p ยังชี้ Node อยู่ ให้ทำงานใน loop</li>
+<li><code>System.out.println(p.data)</code> — อ่านข้อมูลของ Node ที่ p กำลังชี้</li>
+<li><code>p = p.next;</code> — ให้ p เดินไป Node ถัดไป</li>
+<li>เมื่อ Node สุดท้ายมี <code>next == null</code> → p กลายเป็น null → loop จบ</li>
+</ol>
+</div>
+<div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>p = head</code> ให้ตัวแปรชั่วคราวเริ่มที่ Node แรก</li><li><code>while(p != null)</code> ทำงานตราบใดที่ยังมี Node ให้เยี่ยมชม</li><li><code>p = p.next</code> ย้าย p ไป Node ถัดไป</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Traversal ไม่ได้ย้าย head; เราใช้ p เพื่อเดินโดยไม่ทำลายตำแหน่งหัวลิสต์</span></div>
+<div class="rule">
+<code>p = p.next;</code> คือคำสั่งที่ทำให้ตัวแปร <b>p เดินจาก Node ปัจจุบันไป Node ถัดไป</b>
+</div>
+<div class="visual">
+<div class="visualTitle">ทำไมบรรทัดนี้ถึงสำคัญ</div>
+<div class="linkedSteps">
+<div class="linkedStep">
+<div class="linkedStepNum">1</div>
+<div class="linkedStepBody">
+<b>เริ่มต้น</b>
+<div class="linkedMiniDiagram">
+<span class="tag">p / head</span><span class="arrow">→</span>
+<div class="node hot"><span>A</span><span>next</span></div>
+<span class="arrow">→</span><div class="node"><span>B</span><span>next</span></div>
+<span class="arrow">→</span><div class="node"><span>C</span><span>next</span></div>
+</div>
+</div>
+</div>
+<div class="linkedStep">
+<div class="linkedStepNum">2</div>
+<div class="linkedStepBody">
+<b>หลัง <span class="linkedCode">p = p.next;</span> 1 ครั้ง</b>
+<div class="linkedMiniDiagram">
+<div class="node"><span>A</span><span>next</span></div>
+<span class="arrow">→</span>
+<span class="tag">p</span><span class="arrow">→</span>
+<div class="node hot"><span>B</span><span>next</span></div>
+<span class="arrow">→</span><div class="node"><span>C</span><span>next</span></div>
+</div>
+<p class="caption">p ไม่ได้เปลี่ยนข้อมูลใน Node — มันเปลี่ยนว่า “ตัวแปร p กำลังชี้ Node ไหน”</p>
+</div>
+</div>
+</div>
+<div class="note bad"><b>ถ้าลืม <code>p = p.next;</code>:</b> p จะชี้ Node เดิมตลอด ทำให้ <code>while(p != null)</code> มีโอกาสวนไม่จบ</div>
+</div>
+<h3>3.6 Search</h3><pre><code>Node search(int id) {
+    Node p = head;
+    while (p != null) {
+        if (p.data.id == id)
+            return p;
+        p = p.next;
+    }
+    return null;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 3.6 Search</span><p>ต่างจาก traversal ปกติตรงที่แต่ละ Node ต้องตรวจเงื่อนไขค้นหา; พบแล้ว return ได้ทันที ถ้าเดินถึง null แปลว่าไม่พบ</p></div>
+<h3>3.7 Insert หลัง Node p</h3><pre><code>void insertAfter(Node p, Node n) {
+    n.next = p.next;
+    p.next = n;
+
+    if (tail == p)
+        tail = n;
+
+    count++;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>n.next = p.next</code> ให้ N จำ Node ทางขวาเดิมก่อน</li><li><code>p.next = n</code> จึงค่อยเชื่อม p มาหา N</li><li>ถ้า p เป็น tail ต้องอัปเดต tail เป็น n</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> หลักคือ <b>เก็บลิงก์เก่าก่อนเขียนทับ</b></span></div><div class="note bad">ลำดับคำสั่งสำคัญ: ต้องให้ n จำโหนดเดิมทางขวาก่อน ถ้าเขียน <code>p.next=n</code> แล้วค่อย <code>n.next=p.next</code> จะเกิด n.next=n</div>
+<h3>3.8 Delete หลัง p</h3><pre><code>void deleteAfter(Node p) {
+    if (p == null || p.next == null) return;
+
+    Node target = p.next;
+    p.next = target.next;
+
+    if (target == tail)
+        tail = p;
+
+    count--;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ตรวจว่ามี Node หลัง p จริงก่อน</li><li><code>target = p.next</code> จำ Node ที่กำลังจะลบ</li><li><code>p.next = target.next</code> ต่อข้าม target</li><li>ถ้า target เป็น tail ต้องเลื่อน tail กลับมาที่ p</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> การลบ Linked List คือการทำให้ Node เป้าหมายหลุดออกจาก chain</span></div></div>
+<div id="doubly"><h3>3.9 Doubly Linked List</h3><div class="visual"><div class="nodeRow"><span class="null">null</span><div class="arrow">←</div><div class="node"><span>prev</span><span>A</span><span>next</span></div><div class="arrow">⇄</div><div class="node"><span>prev</span><span>B</span><span>next</span></div><div class="arrow">⇄</div><div class="node"><span>prev</span><span>C</span><span>next</span></div><div class="arrow">→</div><span class="null">null</span></div></div>
+<pre><code>class Node {
+    Student data;
+    Node next;
+    Node prev;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>data</code> คือข้อมูลที่ Node นี้เก็บ</li><li><code>next</code> คือ reference ไป Node ถัดไป</li><li>ถ้ามี <code>prev</code> ด้วย แสดงว่าเป็นแนว Doubly Linked List</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Linked List ให้คิดเป็น <b>กล่องข้อมูล + ลูกศร</b> ไม่ใช่ช่อง index แบบ Array</span></div>
+<h3>3.10 addFirst Doubly</h3><pre><code>void addFirst(Node n) {
+    if (head == null) {
+        head = tail = n;
+    } else {
+        n.next = head;
+        head.prev = n;
+        head = n;
+    }
+    count++;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>กรณีว่างให้ <code>head = tail = n</code></li><li><code>n.next = head</code> เชื่อม N ไปหัวเดิม</li><li><code>head.prev = n</code> เชื่อมหัวเดิมย้อนกลับมาหา N</li><li>สุดท้ายค่อยเลื่อน <code>head = n</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Doubly ต้องรักษาทั้ง next และ prev ให้สมมาตรกัน</span></div><p>ต่างจาก Singly คือหลัง n.next ชี้หัวเก่าแล้ว ต้องทำให้หัวเก่า <code>prev</code> ชี้กลับมาหา n ด้วย</p>
+<h3>3.11 addLast Doubly</h3><pre><code>void addLast(Node n) {
+    if (head == null) {
+        head = tail = n;
+    } else {
+        n.prev = tail;
+        tail.next = n;
+        tail = n;
+    }
+    count++;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>tail.next = n</code> เชื่อมท้ายเดิมไป Node ใหม่</li><li><code>n.prev = tail</code> เชื่อมย้อนกลับ</li><li>ค่อยเลื่อน <code>tail = n</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Doubly addLast ต้องสร้างลิงก์สองทิศก่อนเปลี่ยน tail</span></div>
+<h3>3.12 Traversal ย้อนกลับ</h3><pre><code>Node p = tail;
+while (p != null) {
+    System.out.println(p.data);
+    p = p.prev;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>เริ่มจาก tail ซึ่งเป็น Node สุดท้าย</li><li>อ่านข้อมูล Node ปัจจุบัน</li><li><code>p = p.prev</code> เดินย้อนกลับทีละ Node จน null</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Traversal ย้อนกลับทำได้เพราะ Doubly มี prev</span></div>
+<h3>3.13 Delete Node กลาง</h3><pre><code>void delete(Node p) {
+    if (p == null) return;
+
+    if (p == head) head = p.next;
+    if (p == tail) tail = p.prev;
+
+    if (p.prev != null)
+        p.prev.next = p.next;
+
+    if (p.next != null)
+        p.next.prev = p.prev;
+
+    count--;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ต้องแยกกรณีลบ head, ลบ tail และลบ Node กลาง</li><li>กรณีกลางต้องต่อ <code>prev.next</code> ไปขวา และ <code>next.prev</code> กลับซ้าย</li><li>เมื่อ count เหลือ 0 head/tail ควรกลับเป็น null</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Doubly ต้องรักษา consistency ของลูกศรสองทิศเสมอ</span></div><div class="note bad"><b>ข้อสอบ Error:</b> ถ้าแก้ <code>prev.next</code> แต่ลืม <code>next.prev</code> โครงสร้างย้อนกลับจะผิด</div></div>
+<div class="source">Linked List ยึดแนว Node/head/tail/count และ operation จาก Week 4–5 ในสไลด์อาจารย์</div>
+<div class="deepDive" id="list-detail">
+<div class="deepDiveTitle"><span class="mark">L</span><h3 style="margin:0">Linked List แบบละเอียด: ให้คิดเป็น “ลูกศร” ไม่ใช่จำโค้ด</h3></div>
+<h3>1) Node คืออะไร</h3>
+<pre><code>class Student {
+    int id;
+    String name;
+}
+
+class Node {
+    Student data;
+    Node next;
+    Node prev;   // ใช้ใน Doubly
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 1) Node คืออะไร</span><p>ตัวอย่างนี้ใช้หลักเดียวกับคำอธิบายก่อนหน้า แต่ให้โฟกัสที่ state ที่เปลี่ยนในบรรทัดของโค้ดชุดนี้โดยตรง</p></div>
+<p>Node ไม่ได้เก็บแค่ข้อมูล แต่ยังเก็บ reference ที่ใช้เชื่อมไป Node อื่นด้วย นี่คือหัวใจที่ทำให้ List ไม่ต้องวางข้อมูลติดกันแบบ Array</p>
+<h3>2) LinkedList มี head, tail, count ทำไม</h3>
+<pre><code>class LinkedList {
+    Node head;
+    Node tail;
+    int count;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>head</code> ชี้ Node แรก, <code>tail</code> ชี้ Node สุดท้าย</li><li><code>count</code> ใช้เก็บจำนวน Node เพื่อไม่ต้อง traversal เพื่อนับทุกครั้ง</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> </span></div>
+<div class="tableWrap"><table>
+<tr><th>ตัวแปร</th><th>หน้าที่</th><th>กรณีลิสต์ว่าง</th></tr>
+<tr><td>head</td><td>ชี้ Node แรก</td><td>null</td></tr>
+<tr><td>tail</td><td>ชี้ Node สุดท้าย</td><td>null</td></tr>
+<tr><td>count</td><td>จำนวน Node</td><td>0</td></tr>
+</table></div>
+<h3>3) Traversal</h3>
+<pre><code>Node p = head;
+
+while(p != null){
+    System.out.println(p.data.id);
+    System.out.println(p.data.name);
+
+    p = p.next;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 3) Traversal</span><p>จุดสำคัญคือ p ต้องเลื่อนไป p.next ทุกครั้ง มิฉะนั้นจะอ่าน Node เดิมซ้ำและ loop อาจไม่จบ</p></div>
+<div class="examFocus"><b>จุดหลอก:</b> ถ้าลืม <code>p = p.next</code> loop จะไม่เดินไปไหนและอาจวนไม่จบ</div>
+<h3>4) Search</h3>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “4) Search” ใช้โค้ดหลักเดียวกับ “3.6 Search” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<p>Search ของ Linked List โดยทั่วไปเป็น O(n) เพราะต้องเดินทีละ Node จนกว่าจะเจอ</p>
+<h3>5) Singly addFirst</h3>
+<div class="steps">
+<div class="step"><div>ให้ Node ใหม่ n ชี้หัวเดิมก่อน: <code>n.next = head</code></div></div>
+<div class="step"><div>เลื่อน head มาชี้ n: <code>head = n</code></div></div>
+<div class="step"><div>ถ้าเดิมว่าง ต้องให้ tail ชี้ n ด้วย</div></div>
+<div class="step"><div>เพิ่ม count</div></div>
+</div>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “5) Singly addFirst” ใช้โค้ดหลักเดียวกับ “3.3 addFirst()” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<h3>6) Singly addLast</h3>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “6) Singly addLast” ใช้โค้ดหลักเดียวกับ “3.4 addLast()” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<p>ถ้ามี tail อยู่แล้ว addLast ทำ O(1) เพราะไม่ต้องเดินจาก head ไปหาท้าย</p>
+<h3>7) Insert หลัง Node p</h3>
+<div class="memoryMap">ก่อน: A → B → C<br/>ต้องการแทรก N หลัง A → A → N → B → C</div>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “7) Insert หลัง Node p” ใช้โค้ดหลักเดียวกับ “3.7 Insert หลัง Node p” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<div class="note bad"><b>อย่าสลับลำดับ:</b> ถ้าเขียน <code>p.next=n</code> ก่อน แล้วค่อย <code>n.next=p.next</code> จะกลายเป็น n.next=n</div>
+<h3>8) Delete กลางใน Singly</h3>
+<p>ถ้าต้องลบ B ใน A→B→C และ p ชี้ A ให้ต่อข้าม B ไป C</p>
+<pre><code>p.next = p.next.next;</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 8) Delete กลางใน Singly</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>
+<p>แต่ในโค้ดจริงต้องจัดการกรณีลบหัว, ลบท้าย และ count ด้วย</p>
+<h3>9) Doubly Linked List</h3>
+<p>Doubly มีทั้ง next และ prev ดังนั้นทุกครั้งที่เปลี่ยนโครงสร้างต้องตรวจสองทิศทาง</p>
+<pre><code>void addLast(Node n){
+    if(head == null){
+        head = tail = n;
+    }else{
+        tail.next = n;
+        n.prev = tail;
+        tail = n;
+    }
+    count++;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 9) Doubly Linked List</span><p>ทุกครั้งที่เปลี่ยนโครงสร้าง Doubly ต้องตรวจทั้ง next และ prev ให้ย้อนกลับหากันถูกต้อง</p></div>
+<h3>10) Delete Node กลางใน Doubly</h3>
+<pre><code>void deleteNode(Node p){
+    if(p == head){
+        head = p.next;
+        if(head != null)
+            head.prev = null;
+    }
+    else if(p == tail){
+        tail = p.prev;
+        if(tail != null)
+            tail.next = null;
+    }
+    else{
+        p.prev.next = p.next;
+        p.next.prev = p.prev;
+    }
+
+    count--;
+
+    if(count == 0){
+        head = tail = null;
+    }
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 10) Delete Node กลางใน Doubly</span><p>ให้แบ่งข้อมูลเป็นซ้ายของตำแหน่งลบกับขวาของตำแหน่งลบ แล้วต่อ/เลื่อนข้ามตัวที่ถูกลบ</p></div>
+<h3>11) Invariant ที่ควรตรวจหลังแก้ List</h3>
+<div class="examFocus">
+<b>เช็กลำดับนี้:</b><br/>
+    1. head ถูกไหม? → 2. tail ถูกไหม? → 3. next เชื่อมครบไหม? → 4. Doubly: prev ย้อนกลับถูกไหม? → 5. count ถูกไหม?
+  </div>
+<h3>12) Complexity</h3>
+<div class="tableWrap"><table>
+<tr><th>Operation</th><th>มี head/tail</th><th>เหตุผล</th></tr>
+<tr><td>addFirst</td><td>O(1)</td><td>แก้ link หัวไม่กี่ตัว</td></tr>
+<tr><td>addLast</td><td>O(1)</td><td>tail ชี้ท้ายตรง ๆ</td></tr>
+<tr><td>Search</td><td>O(n)</td><td>เดินทีละ Node</td></tr>
+<tr><td>Access ตำแหน่ง k</td><td>O(n)</td><td>ไม่มี random access</td></tr>
+</table></div>
+</div>
+</section>
+<section class="chapter stack" id="stack"><div class="kicker">CHAPTER 4</div><h2>Stack — LIFO</h2><p class="lead">Stack ทำงานเหมือนกองจาน: ใส่และเอาออกด้านบนสุด การเข้าทีหลังสุดจึงออกก่อนสุด</p><div class="visual"><div class="flow"><div class="stackBox"><div class="stackItem">10</div><div class="stackItem">20</div><div class="stackItem">30</div></div><div class="card"><b>top = 30</b><br>push(40) → 40 ขึ้นบน<br>pop() → 40 ออกก่อน</br></br></div></div></div>
+<h3>4.1 Array-based Stack แบบเขียนเอง</h3><pre><code>class MyStack {
+    int[] data;
+    int top;
+
+    MyStack(int size) {
+        data = new int[size];
+        top = -1;
+    }
+
+    boolean isEmpty() {
+        return top == -1;
+    }
+
+    boolean isFull() {
+        return top == data.length - 1;
+    }
+
+    boolean push(int x) {
+        if (isFull()) return false;
+        top++;
+        data[top] = x;
+        return true;
+    }
+
+    Integer pop() {
+        if (isEmpty()) return null;
+        int x = data[top];
+        top--;
+        return x;
+    }
+
+    Integer peek() {
+        if (isEmpty()) return null;
+        return data[top];
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>top=-1</code> หมายถึง Stack ว่าง</li><li>push: ตรวจ full → เพิ่ม top → เขียนค่าที่ data[top]</li><li>pop: ตรวจ empty → อ่าน data[top] → ลด top</li><li>peek: อ่าน top โดยไม่ลด top</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Stack แบบ Array ใช้ top เป็น index ของสมาชิกบนสุด</span></div><div class="note bad"><b>Error pattern:</b> ถ้า top เริ่ม -1 แต่เขียน <code>data[top]=x; top++;</code> จะพยายามใช้ data[-1] ก่อน</div>
+<h3>4.2 Linked-list-based Stack แนวคิด</h3><pre><code>class MyStack {
+    Node top;
+    int size;
+
+    void push(Node n) {
+        n.next = top;
+        top = n;
+        size++;
+    }
+
+    Node pop() {
+        if (top == null) return null;
+        Node x = top;
+        top = top.next;
+        size--;
+        return x;
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>มี if สำหรับแยกกรณีพิเศษหรือป้องกัน Error ควรไล่ว่าเงื่อนไข true/false แล้ว state เปลี่ยนอย่างไร</li><li>ค่าใน return คือผลลัพธ์ที่ส่งกลับไปยังผู้เรียก ต้องดูว่าผู้เรียกนำค่ากลับไป assign ต่อหรือไม่</li><li>ไล่ assignment ทีละบรรทัดว่าเป็นการเปลี่ยน “ค่า”, “index” หรือ “reference”</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div><p>ถ้า top เป็นหัวลิสต์ push คล้าย addFirst และ pop คล้าย deleteFirst จึงเป็น O(1)</p>
+<h3>4.3 Java <code>Stack&lt;E&gt;</code> ตามสไลด์</h3><pre><code>import java.util.Stack;
+
+Stack&lt;Integer&gt; s = new Stack&lt;&gt;();
+s.push(10);
+s.push(20);
+s.push(30);
+
+System.out.println(s.peek()); // 30
+System.out.println(s.pop());  // 30
+System.out.println(s.peek()); // 20</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>Generic type ใน <code>Stack&lt;T&gt;</code> กำหนดชนิดข้อมูลที่ Stack รับได้</li><li><code>push</code> เพิ่มบนสุด, <code>pop</code> ลบบนสุด, <code>peek</code> ดูบนสุด</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> เวลาวิเคราะห์ Stack ให้เขียนสถานะ top หลังทุก operation</span></div><div class="note warn">ถ้าประกาศ <code>Stack&lt;Integer&gt;</code> แล้ว <code>push("Hello")</code> จะ Compile Error เพราะ Generic type ไม่ตรง ซึ่งเป็นตัวอย่างที่มีในสไลด์</div>
+<div id="stackapp"><h3>4.4 Reverse String</h3><pre><code>static String reverse(String text) {
+    Stack&lt;Character&gt; s = new Stack&lt;&gt;();
+
+    for (int i = 0; i &lt; text.length(); i++)
+        s.push(text.charAt(i));
+
+    String result = "";
+    while (!s.isEmpty())
+        result += s.pop();
+
+    return result;
+}</code></pre><div class="codeExplain">push จากซ้ายไปขวา แต่ pop จากตัวล่าสุดกลับมา จึงได้ข้อความย้อนกลับ</div>
+<h3>4.5 Palindrome</h3><pre><code>static boolean isPalindrome(String text) {
+    String clean = text.toLowerCase();
+    Stack&lt;Character&gt; s = new Stack&lt;&gt;();
+
+    for (int i = 0; i &lt; clean.length(); i++)
+        s.push(clean.charAt(i));
+
+    String reversed = "";
+    while (!s.isEmpty())
+        reversed += s.pop();
+
+    return clean.equals(reversed);
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>push ตัวอักษรจากซ้ายไปขวาลง Stack</li><li>ตอน pop ลำดับจะกลับด้านเพราะ LIFO</li><li>loop ต้องใช้ <code>pop()</code> ไม่ใช่ peek ถ้าต้องการให้ Stack ค่อย ๆ ว่าง</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Reverse String เป็นตัวอย่างตรงที่สุดของ LIFO</span></div>
+<h3>4.6 Parentheses</h3><pre><code>static boolean validParentheses(String exp) {
+    Stack&lt;Character&gt; s = new Stack&lt;&gt;();
+
+    for (char ch : exp.toCharArray()) {
+        if (ch == '(') {
+            s.push(ch);
+        } else if (ch == ')') {
+            if (s.isEmpty()) return false;
+            s.pop();
+        }
+    }
+    return s.isEmpty();
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>เจอวงเล็บเปิดให้ push</li><li>เจอวงเล็บปิดต้องตรวจว่า Stack ไม่ว่างก่อน pop</li><li>เมื่ออ่านจบ Stack ต้องว่างจึงแปลว่าจับคู่ครบ</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> วงเล็บที่เปิดล่าสุดต้องถูกปิดก่อน จึงเหมาะกับ LIFO</span></div>
+<h3>4.7 Infix → Postfix แนวคิด</h3><p>Operand ออก output ทันที ส่วน operator เก็บใน stack ตาม precedence วงเล็บเปิด push และวงเล็บปิดทำให้ pop จนถึงวงเล็บเปิด</p><div class="visual"><table><tr><th>อ่าน</th><th>Stack</th><th>Output</th></tr><tr><td>A</td><td></td><td>A</td></tr><tr><td>+</td><td>+</td><td>A</td></tr><tr><td>B</td><td>+</td><td>AB</td></tr><tr><td>*</td><td>+ *</td><td>AB</td></tr><tr><td>C</td><td>+ *</td><td>ABC</td></tr><tr><td>-</td><td>-</td><td>ABC*+</td></tr><tr><td>D / จบ</td><td></td><td><b>ABC*+D-</b></td></tr></table></div>
+<h3>4.8 Postfix Evaluation</h3><pre><code>// แนวคิดสำหรับ token ตัวเลขและ operator
+if (เป็นตัวเลข) {
+    stack.push(value);
+} else {
+    int right = stack.pop();
+    int left  = stack.pop();
+    int result = left operator right;
+    stack.push(result);
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>มี if สำหรับแยกกรณีพิเศษหรือป้องกัน Error ควรไล่ว่าเงื่อนไข true/false แล้ว state เปลี่ยนอย่างไร</li><li>ไล่ assignment ทีละบรรทัดว่าเป็นการเปลี่ยน “ค่า”, “index” หรือ “reference”</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div><div class="note bad">สำหรับ <code>-</code> และ <code>/</code> ต้องจำว่า pop ครั้งแรกคือ “ขวา” และ pop ครั้งที่สองคือ “ซ้าย”</div></div><div class="source">Stack applications ยึดจาก Week 5: reverse, palindrome, recursion, expression, infix/postfix, parenthesis, backtracking</div>
+<div class="deepDive" id="stack-detail">
+<div class="deepDiveTitle"><span class="mark">S</span><h3 style="margin:0">Stack แบบละเอียด</h3></div>
+<h3>1) กฎเดียวที่กำหนด Stack: LIFO</h3>
+<p>ถ้า push A → push B → push C แล้ว pop จะได้ C ก่อน จากนั้น B แล้ว A เพราะ C เป็นตัวที่เข้าทีหลังสุด</p>
+<div class="memoryMap"><b>ลำดับเข้า:</b> A, B, C<br/><b>ลำดับออก:</b> C, B, A</div>
+<h3>2) Operations</h3>
+<div class="tableWrap"><table>
+<tr><th>Operation</th><th>ทำอะไร</th><th>ตัวอย่าง</th></tr>
+<tr><td>push(x)</td><td>เพิ่ม x ที่ top</td><td>push 40 → 40 เป็น top ใหม่</td></tr>
+<tr><td>pop()</td><td>ลบและคืนค่าที่ top</td><td>top 40 → pop ได้ 40</td></tr>
+<tr><td>top()/peek()</td><td>ดู top โดยไม่ลบ</td><td>ดู 40 แต่ Stack ยังเหมือนเดิม</td></tr>
+<tr><td>isEmpty()</td><td>ตรวจว่าว่างไหม</td><td>ใช้ก่อน pop</td></tr>
+<tr><td>isFull()</td><td>ตรวจเต็มไหม</td><td>สำคัญกับ Array-based แบบ capacity จำกัด</td></tr>
+</table></div>
+<h3>3) Array-based Stack</h3>
+<pre><code>class MyStack {
+    int[] data;
+    int top = -1;
+
+    MyStack(int capacity){
+        data = new int[capacity];
+    }
+
+    boolean isEmpty(){
+        return top == -1;
+    }
+
+    boolean isFull(){
+        return top == data.length - 1;
+    }
+
+    boolean push(int x){
+        if(isFull())
+            return false;
+
+        top++;
+        data[top] = x;
+        return true;
+    }
+
+    int pop(){
+        if(isEmpty())
+            throw new RuntimeException("Stack empty");
+
+        int x = data[top];
+        top--;
+        return x;
+    }
+
+    int peek(){
+        if(isEmpty())
+            throw new RuntimeException("Stack empty");
+
+        return data[top];
+    }
+}</code></pre>
+<div class="codeWalk"><b>ทำไม top เริ่ม -1?</b> เพราะยังไม่มีสมาชิก ช่องแรกคือ index 0 ดังนั้นตอน push ครั้งแรกจึง top++ กลายเป็น 0 แล้วค่อยเขียน data[0]</div>
+<h3>4) Linked-list-based Stack</h3>
+<pre><code>class StackNode {
+    int data;
+    StackNode next;
+}
+
+class MyLinkedStack {
+    StackNode top;
+
+    void push(int x){
+        StackNode n = new StackNode();
+        n.data = x;
+
+        n.next = top;
+        top = n;
+    }
+
+    int pop(){
+        if(top == null)
+            throw new RuntimeException("empty");
+
+        int x = top.data;
+        top = top.next;
+        return x;
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>top</code> ชี้ Node บนสุดของ Stack</li><li>push คล้าย addFirst: Node ใหม่ชี้ top เดิม แล้ว top เลื่อนมาหา Node ใหม่</li><li>pop เอา data ของ top แล้วเลื่อน top ไป <code>top.next</code></li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Linked Stack ไม่ต้องใช้ index และ push/pop ที่หัวทำ O(1)</span></div>
+<p>push คล้าย addFirst และ pop คล้าย deleteFirst จึงเป็น O(1)</p>
+<h3>5) java.util.Stack และ Generics</h3>
+<pre><code>Stack&lt;Integer&gt; s = new Stack&lt;&gt;();
+
+s.push(10);
+s.push(20);
+// s.push("Hello"); // Compile-time Error
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 5) java.util.Stack และ Generics</span><p>ส่วนนี้เน้น type parameter ของ Stack ว่ากำหนดชนิดข้อมูลที่ push ได้ และ operation ยังรักษากฎ LIFO เหมือนเดิม</p></div>
+<p>ถ้ากำหนด <code>Stack&lt;Integer&gt;</code> จะเก็บได้เฉพาะ Integer ตาม type parameter</p>
+<h3>6) Reverse String</h3>
+<pre><code>static String reverse(String text){
+    Stack&lt;Character&gt; s = new Stack&lt;&gt;();
+
+    for(int i=0; i&lt;text.length(); i++)
+        s.push(text.charAt(i));
+
+    String out = "";
+
+    while(!s.isEmpty())
+        out += s.pop();
+
+    return out;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>แต่ละรอบ pop ตัวอักษรบนสุดออกจาก Stack</li><li>นำตัวที่ pop ได้มาต่อท้ายข้อความผลลัพธ์</li><li>เพราะ pop ลบสมาชิกด้วย loop จึงหยุดเมื่อ Stack ว่าง</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ถ้าใช้ peek แทน pop loop จะไม่ทำให้ Stack เล็กลง</span></div>
+<p>เหตุผลที่ reverse ได้ เพราะตัวท้ายสุดถูก push หลังสุด จึง pop ออกก่อน</p>
+<h3>7) Palindrome</h3>
+<pre><code>static boolean isPalindrome(String text){
+    String reversed = reverse(text);
+    return text.equalsIgnoreCase(reversed);
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>สร้าง reversed string</li><li>เปรียบเทียบข้อความเดิมกับ reversed</li><li>คืน true เมื่อทั้งสองเหมือนกัน</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> </span></div>
+<div class="note good">แนวอาจารย์ใช้ Stack เพื่อกลับข้อความ แล้วเอาข้อความเดิมไปเทียบข้อความย้อนกลับ</div>
+<h3>8) Parentheses Matching</h3>
+<pre><code>static boolean valid(String text){
+    Stack&lt;Character&gt; s = new Stack&lt;&gt;();
+
+    for(char c : text.toCharArray()){
+        if(c == '('){
+            s.push(c);
+        }
+        else if(c == ')'){
+            if(s.isEmpty())
+                return false;
+
+            s.pop();
+        }
+    }
+
+    return s.isEmpty();
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 8) Parentheses Matching</span><p>วงเล็บเปิดล่าสุดต้องถูกปิดก่อน จึงใช้ Stack; ก่อน pop ต้องตรวจ empty และเมื่อจบ Stack ต้องว่าง</p></div>
+<p>เจอ '(' → push, เจอ ')' → ต้องมี '(' รออยู่บน Stack แล้ว pop หนึ่งตัว จบแล้ว Stack ต้องว่าง</p>
+<h3>9) Infix → Postfix: ต้องรู้ Precedence</h3>
+<div class="tableWrap"><table>
+<tr><th>Operator</th><th>Priority โดยทั่วไป</th></tr>
+<tr><td>* / %</td><td>สูงกว่า</td></tr>
+<tr><td>+ -</td><td>ต่ำกว่า</td></tr>
+<tr><td>( )</td><td>ใช้ควบคุมกลุ่ม</td></tr>
+</table></div>
+<div class="steps">
+<div class="step"><div>อ่าน operand → ส่งออก output ทันที</div></div>
+<div class="step"><div>อ่าน operator → เทียบ priority กับ top ของ Stack</div></div>
+<div class="step"><div>ถ้าเจอ '(' → push</div></div>
+<div class="step"><div>ถ้าเจอ ')' → pop จนเจอ '('</div></div>
+<div class="step"><div>จบ input → pop operator ที่เหลือออกทั้งหมด</div></div>
+</div>
+<h3>10) Postfix Evaluation</h3>
+<div class="examFocus"><b>สูตรจำ:</b> เจอตัวเลข push • เจอ operator pop สองตัว • <u>pop ครั้งแรก = operand ขวา</u> • pop ครั้งสอง = operand ซ้าย</div>
+<pre><code>// postfix: 2 3 4 * + 5 -
+
+push 2
+push 3
+push 4
+
+* : 3 * 4 = 12 → push 12
++ : 2 + 12 = 14 → push 14
+push 5
+- : 14 - 5 = 9
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 10) Postfix Evaluation</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>
+</div>
+</section>
+<section class="chapter queue" id="queue"><div class="kicker">CHAPTER 5</div><h2>Queue — FIFO</h2><p class="lead">Queue คือเข้าก่อนออกก่อน โดยข้อมูลใหม่เข้าที่ Rear และข้อมูลเก่าออกที่ Front</p><div class="visual"><div class="queueTrack"><span class="tag">FRONT</span><div class="qcell">A</div><div class="qcell">B</div><div class="qcell">C</div><span class="tag">REAR</span></div></div>
+<h3>5.1 Queue ด้วย LinkedList ใน Java</h3><pre><code>import java.util.Queue;
+import java.util.LinkedList;
+
+Queue&lt;String&gt; q = new LinkedList&lt;&gt;();
+q.add("A");
+q.add("B");
+q.add("C");
+
+System.out.println(q);        // [A, B, C]
+System.out.println(q.peek()); // A
+System.out.println(q.poll()); // A
+System.out.println(q);        // [B, C]</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ประกาศตัวแปรผ่าน interface <code>Queue</code> แต่ใช้ LinkedList เป็น implementation</li><li><code>add/offer</code> เพิ่มท้ายคิว</li><li><code>peek</code> ดูหัวโดยไม่ลบ ส่วน <code>poll</code> ดูและลบหัว</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> วิเคราะห์ Queue ด้วยภาพ Front → ... → Rear และจำ FIFO</span></div>
+<h3>5.2 คู่เมธอดที่ต้องจำ</h3><table><tr><th>งาน</th><th>Throws exception</th><th>Returns special value</th></tr><tr><td>Insert</td><td><code>add(e)</code></td><td><code>offer(e)</code></td></tr><tr><td>Remove</td><td><code>remove()</code></td><td><code>poll()</code></td></tr><tr><td>Examine</td><td><code>element()</code></td><td><code>peek()</code></td></tr></table><div class="note bad"><b>คิวว่าง:</b> <code>remove()/element()</code> โยน exception แต่ <code>poll()/peek()</code> คืน null</div>
+<h3>5.3 Bounded Queue / Full</h3><pre><code>import java.util.concurrent.ArrayBlockingQueue;
+
+Queue&lt;String&gt; q = new ArrayBlockingQueue&lt;&gt;(2);
+q.add("A");
+q.add("B");
+q.add("C"); // IllegalStateException: Queue full</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>กำหนด capacity ตอนสร้าง Queue</li><li>เมื่อเต็ม <code>add()</code> อาจโยน exception</li><li>ถ้าไม่ต้องการ exception ให้พิจารณาเมธอดฝั่ง special value เช่น offer</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Queue แบบ bounded ต้องตรวจทั้งกรณี empty และ full</span></div><div class="note warn">ตัวอย่างนี้ตรงแนวสไลด์ที่เตือนเรื่องทั้ง empty และ full</div>
+<h3>5.4 ใช้ Queue กับอะไร</h3><div class="grid3"><div class="card blue">Printer jobs</div><div class="card green">Input / interrupt requests</div><div class="card amber">BFS</div></div><div class="source">Queue methods และ bounded queue ยึดตาม Week 6/7 Queue slides</div>
+<div class="deepDive" id="queue-detail">
+<div class="deepDiveTitle"><span class="mark">Q</span><h3 style="margin:0">Queue แบบละเอียด</h3></div>
+<h3>1) FIFO และ Front/Rear</h3>
+<p>Queue มีสองตำแหน่งสำคัญ: <b>Front</b> คือหัวที่กำลังจะออก และ <b>Rear</b> คือท้ายที่สมาชิกใหม่เข้ามาต่อ</p>
+<div class="memoryMap">Enqueue D: A B C → A B C D<br/>Dequeue: A B C D → B C D และคืน A</div>
+<h3>2) Java Queue Methods ต้องจำเป็นคู่</h3>
+<div class="tableWrap"><table>
+<tr><th>งาน</th><th>Throws exception</th><th>Special value</th><th>ความหมาย</th></tr>
+<tr><td>Insert</td><td>add(e)</td><td>offer(e)</td><td>เพิ่มท้ายคิว</td></tr>
+<tr><td>Remove</td><td>remove()</td><td>poll()</td><td>ลบและคืนหัว</td></tr>
+<tr><td>Examine</td><td>element()</td><td>peek()</td><td>ดูหัวโดยไม่ลบ</td></tr>
+</table></div>
+<div class="examFocus"><b>ข้อสอบชอบมาก:</b> Queue ว่าง → <code>peek()/poll()</code> คืน null แต่ <code>element()/remove()</code> อยู่ฝั่ง exception</div>
+<h3>3) Queue ด้วย LinkedList</h3>
+<pre><code>Queue&lt;String&gt; q = new LinkedList&lt;&gt;();
+
+q.add("A");
+q.add("B");
+q.add("C");
+
+System.out.println(q.peek()); // A
+System.out.println(q.poll()); // A
+System.out.println(q);        // [B, C]
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 3) Queue ด้วย LinkedList</span><p>อ่าน Queue จากหัวไปท้าย: add/offer เพิ่ม Rear ส่วน peek/poll ทำงานที่ Front; poll ลบแต่ peek ไม่ลบ</p></div>
+<h3>4) Queue ที่มี Capacity จำกัด</h3>
+<pre><code>Queue&lt;String&gt; q = new ArrayBlockingQueue&lt;&gt;(2);
+
+q.add("A");
+q.add("B");
+q.add("C"); // อาจ throw เพราะเต็ม
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 4) Queue ที่มี Capacity จำกัด</span><p>ตัวอย่างนี้เพิ่มเงื่อนไข capacity; เมื่อเต็มต้องแยก add ที่อาจ throw ออกจาก offer ที่ใช้ special result</p></div>
+<p>สไลด์อาจารย์เน้นให้ระวังทั้ง <b>empty</b> และ <b>full</b> ใน BlockingQueue/ArrayBlockingQueue</p>
+<h3>5) size() และ remainingCapacity()</h3>
+<pre><code>BlockingQueue&lt;String&gt; q =
+    new LinkedBlockingQueue&lt;&gt;(10);
+
+q.add("A");
+q.add("B");
+
+System.out.println(q.size());              // 2
+System.out.println(q.remainingCapacity()); // 8
+</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>size()</code> คือจำนวนสมาชิกปัจจุบัน</li><li><code>remainingCapacity()</code> คือจำนวนช่องที่ยังเพิ่มได้</li><li>capacity ช่วยให้รู้ว่า Queue ใกล้เต็มหรือยัง</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> อย่าสับสน size กับ capacity</span></div>
+<h3>6) Queue ใช้กับ BFS เพราะอะไร</h3>
+<div class="supplement"><b>เสริมเพื่อเห็นภาพ:</b> BFS ต้องการสำรวจโหนด “ตามลำดับที่ค้นพบ” จึงเหมาะกับ FIFO Queue: โหนดที่ถูกพบก่อนจะถูกนำออกมาขยายก่อน</div>
+</div>
+</section>
+<section class="chapter queue" id="deque"><div class="kicker">CHAPTER 6</div><h2>Deque — Double Ended Queue</h2><p class="lead">Deque เพิ่ม/ลบได้ทั้งด้านหน้าและด้านท้าย</p><div class="visual"><div class="queueTrack"><span class="tag">Front</span><div class="arrow">↔</div><div class="qcell">A</div><div class="qcell">B</div><div class="qcell">C</div><div class="arrow">↔</div><span class="tag">Rear</span></div></div>
+<h3>6.1 Java Deque Example</h3><pre><code>import java.util.Deque;
+import java.util.ArrayDeque;
+
+Deque&lt;String&gt; d = new ArrayDeque&lt;&gt;();
+d.add("A");       // เหมือน addLast
+ d.addFirst("B");
+d.addLast("C");
+
+System.out.println(d); // [B, A, C]
+
+String x = d.removeLast(); // C
+System.out.println(d);     // [B, A]</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>Deque เพิ่ม/ลบได้ทั้ง First และ Last</li><li><code>addFirst/removeFirst</code> ทำงานด้านหน้า</li><li><code>addLast/removeLast</code> ทำงานด้านท้าย</li><li>สามารถใช้รูปแบบเดียวกันเพื่อจำลอง Stack หรือ Queue ได้</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Deque ให้คิดว่าเป็น Queue ที่มีประตูสองด้าน</span></div>
+<h3>6.2 เมธอดสองด้าน</h3><table><tr><th>งาน</th><th>Front</th><th>Rear</th></tr><tr><td>Insert / Throws</td><td>addFirst</td><td>addLast</td></tr><tr><td>Insert / Special</td><td>offerFirst</td><td>offerLast</td></tr><tr><td>Remove / Throws</td><td>removeFirst</td><td>removeLast</td></tr><tr><td>Remove / Special</td><td>pollFirst</td><td>pollLast</td></tr><tr><td>Examine / Throws</td><td>getFirst</td><td>getLast</td></tr><tr><td>Examine / Special</td><td>peekFirst</td><td>peekLast</td></tr></table><div class="source">ตาราง Deque methods ยึดตาม Week 7 slide</div>
+<div class="deepDive" id="deque-detail">
+<div class="deepDiveTitle"><span class="mark">D</span><h3 style="margin:0">Deque แบบละเอียด</h3></div>
+<p>Deque = Double Ended Queue คือเพิ่ม/ลบได้ทั้ง First และ Last จึงใช้ทำ Queue ก็ได้ และใช้เป็น Stack ก็ได้</p>
+<h3>1) Method Matrix</h3>
+<div class="tableWrap"><table>
+<tr><th>งาน</th><th>First — Exception</th><th>First — Special</th><th>Last — Exception</th><th>Last — Special</th></tr>
+<tr><td>Insert</td><td>addFirst</td><td>offerFirst</td><td>addLast</td><td>offerLast</td></tr>
+<tr><td>Remove</td><td>removeFirst</td><td>pollFirst</td><td>removeLast</td><td>pollLast</td></tr>
+<tr><td>Examine</td><td>getFirst</td><td>peekFirst</td><td>getLast</td><td>peekLast</td></tr>
+</table></div>
+<h3>2) ตัวอย่างตามแนวสไลด์</h3>
+<pre><code>Deque&lt;String&gt; d = new ArrayDeque&lt;&gt;();
+
+d.add("A");        // เหมือน addLast
+d.addFirst("B");
+d.addLast("C");
+
+System.out.println(d); // [B, A, C]
+
+System.out.println(d.element()); // B
+
+d.removeLast();
+System.out.println(d); // [B, A]
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 2) ตัวอย่างตามแนวสไลด์</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>
+<h3>3) ใช้ Deque เป็น Stack</h3>
+<pre><code>Deque&lt;Integer&gt; s = new ArrayDeque&lt;&gt;();
+
+s.addFirst(10);
+s.addFirst(20);
+s.addFirst(30);
+
+System.out.println(s.removeFirst()); // 30
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 3) ใช้ Deque เป็น Stack</span><p>ใช้ด้าน First เป็น top: addFirst คือ push และ removeFirst คือ pop จึงได้ LIFO</p></div>
+<p>ถ้าเลือกใช้ด้าน First เป็น top จะได้พฤติกรรม LIFO</p>
+<h3>4) ใช้ Deque เป็น Queue</h3>
+<pre><code>Deque&lt;Integer&gt; q = new ArrayDeque&lt;&gt;();
+
+q.addLast(10);
+q.addLast(20);
+q.addLast(30);
+
+System.out.println(q.removeFirst()); // 10
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 4) ใช้ Deque เป็น Queue</span><p>ใช้ addLast เป็น enqueue และ removeFirst เป็น dequeue จึงได้ FIFO</p></div>
+</div>
+</section>
+<section class="chapter queue" id="priority"><div class="kicker">CHAPTER 7</div><h2>Priority Queue — เรียงตาม Priority</h2><p class="lead">สมาชิกที่จะออกก่อนถูกกำหนดด้วย natural ordering หรือ Comparator ไม่จำเป็นต้องเป็นคนที่เข้าก่อน</p>
+<h3>7.1 Natural Ordering</h3><pre><code>import java.util.PriorityQueue;
+import java.util.Queue;
+
+Queue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();
+pq.add(3);
+pq.add(2);
+pq.add(1);
+
+System.out.println(pq);       // อาจเห็น [1, 3, 2]
+System.out.println(pq.peek()); // 1
+System.out.println(pq.poll()); // 1</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>PriorityQueue จะรักษาสมาชิกที่ควรออกก่อนตาม ordering ไว้ที่หัว</li><li><code>peek()</code> ใช้ดูหัวโดยไม่ลบ</li><li>การ print ทั้งโครงสร้างไม่จำเป็นต้องเป็น sorted list เพราะภายในเป็น Heap</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> รับประกัน priority ที่หัว ไม่ได้รับประกันว่าทุกตำแหน่งเรียงเส้นตรง</span></div><div class="note warn"><b>สำคัญ:</b> PriorityQueue เป็น Heap ไม่ใช่ sorted list ทั้ง array representation จึงอย่าคิดว่า print ต้องได้ [1,2,3] เสมอ</div>
+<h3>7.2 Min Heap / Max Heap</h3><div class="grid2"><div class="card blue"><h4>Min Heap</h4>Natural ordering ของ Integer → ตัวเล็กสุดอยู่หัว</div><div class="card purple"><h4>Max Heap</h4>ใช้ reverse comparator → ตัวใหญ่สุดอยู่หัว</div></div>
+<pre><code>Queue&lt;Integer&gt; maxPQ =
+    new PriorityQueue&lt;&gt;(java.util.Collections.reverseOrder());
+
+maxPQ.add(1);
+maxPQ.add(2);
+maxPQ.add(3);
+
+System.out.println(maxPQ.peek()); // 3</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>Collections.reverseOrder()</code> กลับ natural ordering</li><li>Integer จึงมีค่ามากสุดเป็นหัวก่อน ลักษณะเหมือน Max Heap</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Comparator/ordering เป็นตัวกำหนดว่าใครมี priority สูงกว่า</span></div>
+<h3>7.3 Student Object + Comparator</h3><pre><code>class Student {
+    String code;
+    String name;
+    double gpa;
+
+    Student(String code, String name, double gpa) {
+        this.code = code;
+        this.name = name;
+        this.gpa = gpa;
+    }
+
+    public String toString() {
+        return name + "(" + gpa + ")";
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>override <code>toString()</code> เพื่อกำหนดข้อความที่ใช้แทน Object</li><li>เมื่อ print Student จะเห็นข้อมูลที่อ่านง่าย แทนชื่อ class + hash แบบค่าเริ่มต้น</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> toString ไม่เปลี่ยน priority; มีไว้เพื่อการแสดงผล</span></div>
+<pre><code>class StudentComparator
+        implements java.util.Comparator&lt;Student&gt; {
+
+    public int compare(Student s1, Student s2) {
+        if (s1.gpa &gt; s2.gpa) return 1;
+        if (s1.gpa &lt; s2.gpa) return -1;
+        return 0;
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li><code>compare(a,b) &lt; 0</code> หมายถึง a ควรมาก่อน b ตามกติกา</li><li><code>compare(a,b) == 0</code> หมายถึง key ที่ใช้เทียบถือว่าเท่ากัน</li><li><code>compare(a,b) &gt; 0</code> หมายถึง a ควรมาหลัง b</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ถ้าต้องการ descending ให้กลับทิศของผลเปรียบเทียบ</span></div>
+<pre><code>Queue&lt;Student&gt; pq =
+    new PriorityQueue&lt;&gt;(new StudentComparator());
+
+pq.add(new Student("001", "Student1", 3.04));
+pq.add(new Student("002", "Student2", 2.58));
+pq.add(new Student("003", "Student3", 3.55));
+
+System.out.println(pq.peek()); // Student2(2.58)</code></pre><div class="codeExplain"><b>Comparator sign</b><ul><li>ลบ → s1 มาก่อน s2</li><li>0 → มองว่าเท่ากันตาม key นี้</li><li>บวก → s1 มาหลัง s2</li></ul></div><div class="note bad">ถ้าใช้ <code>new PriorityQueue&lt;Student&gt;()</code> โดย Student ไม่ Comparable และไม่มี Comparator อาจเกิด ClassCastException ตามตัวอย่างสไลด์</div><div class="source">Priority Queue, comparator, min/max heap ยึดตาม week-6-2/Week 7 slides</div>
+<div class="deepDive" id="priority-detail">
+<div class="deepDiveTitle"><span class="mark">P</span><h3 style="margin:0">Priority Queue แบบละเอียด</h3></div>
+<h3>1) ต่างจาก Queue ปกติยังไง</h3>
+<div class="compareCards">
+<div class="card blue"><h4>Queue</h4>ลำดับหลักคือเวลาที่เข้ามา → FIFO</div>
+<div class="card purple"><h4>Priority Queue</h4>ลำดับหลักคือ priority / ordering → คนสำคัญกว่าอาจออกก่อน</div>
+</div>
+<h3>2) Natural Ordering</h3>
+<pre><code>PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();
+
+pq.add(3);
+pq.add(2);
+pq.add(1);
+
+System.out.println(pq.peek()); // 1
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 2) Natural Ordering</span><p>PriorityQueue ใช้ ordering เพื่อรักษาหัวที่ควรออกก่อน; natural ordering ของ Integer ทำให้ค่าน้อยสุดอยู่หัว</p></div>
+<p>สำหรับ Integer แบบปกติ natural ordering คือจากน้อยไปมาก ดังนั้นค่าต่ำสุดจะเป็นหัว</p>
+<h3>3) ทำไม print แล้วไม่เห็นเรียงทั้งหมด</h3>
+<p>PriorityQueue ใช้ Heap ดังนั้นสิ่งที่รับประกันคือ root/head มี priority ถูกต้อง ไม่ได้สัญญาว่าสมาชิกทุกตำแหน่งจะเป็น sorted list</p>
+<div class="memoryMap"><code>[1,3,2]</code> ยังเป็นตัวแทน Min Heap ที่ถูกได้ เพราะ 1 อยู่ root และเล็กกว่าลูก 3 กับ 2</div>
+<h3>4) Min Heap และ Max Heap</h3>
+<div class="grid2">
+<div class="card green"><h4>Min Heap</h4>root เป็นค่าต่ำสุด<br/>natural ordering ของ Integer โดยทั่วไป</div>
+<div class="card red"><h4>Max Heap</h4>root เป็นค่ามากสุด<br/>ใช้ Comparator เช่น <code>Collections.reverseOrder()</code></div>
+</div>
+<pre><code>PriorityQueue&lt;Integer&gt; max =
+    new PriorityQueue&lt;&gt;(Collections.reverseOrder());
+
+max.add(1);
+max.add(2);
+max.add(3);
+
+System.out.println(max.peek()); // 3
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — Max Heap</span><p>reverseOrder กลับทิศ natural ordering ทำให้ค่ามากสุดมี priority ก่อน</p></div>
+<h3>5) Object ที่ไม่มี Ordering</h3>
+<pre><code>class Student {
+    String name;
+    double gpa;
+}
+
+PriorityQueue&lt;Student&gt; pq =
+    new PriorityQueue&lt;&gt;();
+
+pq.add(new Student()); // อาจ ClassCastException
+</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>PriorityQueue ต้องรู้วิธีเปรียบเทียบ Student</li><li>ถ้า Student ไม่ Comparable และไม่ได้ส่ง Comparator อาจเกิด ClassCastException</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Object custom ต้องมีหลัก ordering ก่อนจึงจัด Priority ได้</span></div>
+<p>เพราะ PriorityQueue ต้องรู้ว่า Student คนไหนมาก่อน ถ้า Student ไม่ implements Comparable และไม่มี Comparator ก็ไม่มีหลักเปรียบเทียบ</p>
+<h3>6) Custom Comparator</h3>
+<pre><code>class StudentComparator
+        implements Comparator&lt;Student&gt; {
+
+    public int compare(Student s1, Student s2){
+        if(s1.gpa &gt; s2.gpa)
+            return 1;
+        else if(s1.gpa &lt; s2.gpa)
+            return -1;
+
+        return 0;
+    }
+}</code></pre>
+<div class="codeWalk"><b>เครื่องหมายสำคัญ:</b> ลบ = s1 ควรอยู่ก่อน s2, ศูนย์ = key เท่ากัน, บวก = s1 ควรอยู่หลัง s2</div>
+<h3>7) Descending Comparator</h3>
+<pre><code>if(s1.gpa &gt; s2.gpa)
+    return -1;
+else if(s1.gpa &lt; s2.gpa)
+    return 1;
+return 0;
+</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>มี if สำหรับแยกกรณีพิเศษหรือป้องกัน Error ควรไล่ว่าเงื่อนไข true/false แล้ว state เปลี่ยนอย่างไร</li><li>ค่าใน return คือผลลัพธ์ที่ส่งกลับไปยังผู้เรียก ต้องดูว่าผู้เรียกนำค่ากลับไป assign ต่อหรือไม่</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div>
+<p>กลับเครื่องหมายเพื่อให้ GPA มากมีลำดับก่อน</p>
+<h3>8) toString() กับการแสดงผล Object</h3>
+<p>ถ้า print Student แล้วเห็นค่าแนว hash/object identity ให้ override <code>toString()</code> เพื่อให้แสดงข้อมูลอ่านง่าย</p>
+<pre><code>@Override
+public String toString(){
+    return name;
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 8) toString() กับการแสดงผล Object</span><p>toString มีผลเฉพาะรูปแบบการแสดง object ไม่ได้เปลี่ยน priority หรือโครงสร้าง Heap</p></div>
+</div>
+</section>
+<section class="chapter sort" id="sorting"><div class="kicker">CHAPTER 8 • SUPPLEMENTARY</div><h2>Sorting 6 แบบ — พร้อม Java แบบเขียน Algorithm เอง</h2><div class="note warn"><b>แยกจากสไลด์:</b> ชุดไฟล์ที่คุณส่งมายังไม่มีบท Sorting โดยตรง ส่วนนี้จึงเป็นเนื้อหาเสริมตามหัวข้อวันที่ 25 ส.ค. ที่คุณแจ้งเอง ไม่ได้อ้างว่าเป็นโค้ดจาก PDF อาจารย์ และไม่ใช้ <code>Arrays.sort()</code> เป็นตัวแก้โจทย์</div>
+<h3>8.1 Bubble Sort</h3><p>เทียบตัวติดกัน ถ้าซ้ายมากกว่าขวา swap กัน หลังหนึ่ง pass ค่ามากสุดของช่วงจะไปอยู่ท้าย</p><pre><code>static void bubbleSort(int[] a) {
+    for (int end = a.length - 1; end &gt; 0; end--) {
+        boolean swapped = false;
+
+        for (int j = 0; j &lt; end; j++) {
+            if (a[j] &gt; a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+                swapped = true;
+            }
+        }
+
+        if (!swapped) break;
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>loop นอกลดขอบเขตท้าย เพราะท้ายที่ sorted แล้วไม่ต้องตรวจซ้ำ</li><li>loop ในเปรียบเทียบสมาชิกติดกัน <code>a[j]</code> กับ <code>a[j+1]</code></li><li>ถ้าซ้ายมากกว่าขวาให้ swap</li><li>ตัวแปร swapped ใช้หยุดเร็วเมื่อไม่มีการสลับเลย</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> จบหนึ่ง pass ค่ามากสุดของช่วงที่ยังไม่ sorted จะไปอยู่ท้าย</span></div><div class="note bad">Error trap: ถ้า loop ในเขียน <code>j &lt;= end</code> จะอ่าน <code>a[j+1]</code> เกินช่วงตอน j=end</div>
+<h3>8.2 Selection Sort</h3><p>ในแต่ละรอบหา index ของค่าต่ำสุดจากส่วนที่ยังไม่ sorted แล้ว swap มาที่ i</p><pre><code>static void selectionSort(int[] a) {
+    for (int i = 0; i &lt; a.length - 1; i++) {
+        int minIndex = i;
+
+        for (int j = i + 1; j &lt; a.length; j++) {
+            if (a[j] &lt; a[minIndex])
+                minIndex = j;
+        }
+
+        int temp = a[i];
+        a[i] = a[minIndex];
+        a[minIndex] = temp;
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>ตำแหน่ง i คือจุดที่กำลังจะวางค่าที่ถูกต้อง</li><li>ตั้ง <code>minIndex=i</code> แล้วสแกนส่วนที่เหลือเพื่อหา minimum</li><li>หลังหา min จบจึง swap แค่ครั้งเดียวต่อ pass</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> อย่าเอา swap ไปไว้ใน loop ค้นหา min</span></div><div class="note bad">Logical trap: <code>minIndex</code> ต้องเริ่มที่ i ของ pass ปัจจุบัน ไม่ใช่ 0 ทุกครั้ง</div>
+<h3>8.3 Shell Sort</h3><p>ทำ gapped insertion sort โดยเริ่ม gap ใหญ่ แล้วลดลงจน gap=1</p><pre><code>static void shellSort(int[] a) {
+    for (int gap = a.length / 2; gap &gt; 0; gap /= 2) {
+        for (int i = gap; i &lt; a.length; i++) {
+            int temp = a[i];
+            int j = i;
+
+            while (j &gt;= gap &amp;&amp; a[j - gap] &gt; temp) {
+                a[j] = a[j - gap];
+                j -= gap;
+            }
+
+            a[j] = temp;
+        }
+    }
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>เริ่มด้วย gap ขนาดใหญ่เพื่อย้ายค่าที่อยู่ไกลกัน</li><li>แต่ละรอบทำ gapped insertion sort</li><li>ลด gap จนสุดท้าย gap=1</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ถ้า trace มี gap เช่น 4→2→1 ให้นึกถึง Shell Sort</span></div><div class="rule">Shell = จำคำว่า GAP ถ้า trace มี gap 4 → 2 → 1 ให้คิด Shell ก่อน</div>
+<h3>8.4 Radix Sort (LSD)</h3><p>จัดตาม digit จากหลักหน่วย → สิบ → ร้อย โดยใช้ stable counting/bucket ในแต่ละหลัก</p><pre><code>static void radixSort(int[] a) {
+    int max = a[0];
+    for (int x : a)
+        if (x &gt; max) max = x;
+
+    for (int exp = 1; max / exp &gt; 0; exp *= 10)
+        countingByDigit(a, exp);
+}
+
+static void countingByDigit(int[] a, int exp) {
+    int[] output = new int[a.length];
+    int[] count = new int[10];
+
+    for (int x : a)
+        count[(x / exp) % 10]++;
+
+    for (int i = 1; i &lt; 10; i++)
+        count[i] += count[i - 1];
+
+    for (int i = a.length - 1; i &gt;= 0; i--) {
+        int digit = (a[i] / exp) % 10;
+        output[count[digit] - 1] = a[i];
+        count[digit]--;
+    }
+
+    for (int i = 0; i &lt; a.length; i++)
+        a[i] = output[i];
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>หา digit ปัจจุบันด้วย <code>(x/exp)%10</code></li><li>นับจำนวนสมาชิกในแต่ละ digit 0..9</li><li>สร้าง output แบบ stable เพื่อไม่ทำลายลำดับจากหลักก่อนหน้า</li><li>ทำซ้ำ exp=1,10,100,...</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> Radix ไม่ใช้การ compare คู่ค่าเป็นแกนหลัก แต่แจกข้อมูลตามหลัก</span></div>
+<h3>8.5 Merge Sort</h3><p>แบ่งช่วงครึ่งซ้ำ ๆ จนเหลือ 1 ตัว แล้ว merge สองช่วงที่ sorted กลับเข้าด้วยกัน</p><pre><code>static void mergeSort(int[] a, int left, int right) {
+    if (left &gt;= right) return;
+
+    int mid = (left + right) / 2;
+    mergeSort(a, left, mid);
+    mergeSort(a, mid + 1, right);
+    merge(a, left, mid, right);
+}
+
+static void merge(int[] a, int left, int mid, int right) {
+    int[] temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+
+    while (i &lt;= mid &amp;&amp; j &lt;= right) {
+        if (a[i] &lt;= a[j]) temp[k++] = a[i++];
+        else              temp[k++] = a[j++];
+    }
+
+    while (i &lt;= mid) temp[k++] = a[i++];
+    while (j &lt;= right) temp[k++] = a[j++];
+
+    for (int t = 0; t &lt; temp.length; t++)
+        a[left + t] = temp[t];
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>base case หยุดเมื่อช่วงมี 0 หรือ 1 ตัว</li><li>แบ่งช่วงเป็น left..mid และ mid+1..right</li><li>recursive เรียงสองฝั่งก่อน แล้วค่อย merge</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ถ้า recursive ฝั่งขวาเริ่มที่ mid แทน mid+1 อาจทำให้ช่วงไม่ลด</span></div><div class="note bad">Recursion trap: base case ต้องหยุดเมื่อ <code>left &gt;= right</code> เพราะช่วง 1 ตัวเรียงอยู่แล้ว</div>
+<h3>8.6 Quick Sort</h3><p>เลือก pivot, partition ให้ค่าที่ควรอยู่ซ้าย/ขวา แล้ว recursive สองฝั่ง</p><pre><code>static void quickSort(int[] a, int low, int high) {
+    if (low &lt; high) {
+        int p = partition(a, low, high);
+        quickSort(a, low, p - 1);
+        quickSort(a, p + 1, high);
+    }
+}
+
+static int partition(int[] a, int low, int high) {
+    int pivot = a[high];
+    int i = low - 1;
+
+    for (int j = low; j &lt; high; j++) {
+        if (a[j] &lt;= pivot) {
+            i++;
+            int temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+    }
+
+    int temp = a[i + 1];
+    a[i + 1] = a[high];
+    a[high] = temp;
+
+    return i + 1;
+}</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>partition คืน index ของ pivot หลังจัดตำแหน่ง</li><li>pivot ตำแหน่งนั้นถูกแล้ว จึง recursive เฉพาะซ้าย p-1 และขวา p+1</li><li>base case คือ low ไม่ต่ำกว่า high</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> อย่าเอา pivot เข้า recursive ซ้ำ</span></div><div class="note bad">Partition trap: ถ้า pivot อยู่ a[high] loop scan ปกติจะถึง <code>j &lt; high</code> แล้วค่อยย้าย pivot หลัง scan</div>
+<h3>8.7 ตารางเปรียบเทียบ</h3><table><tr><th>Sort</th><th>ภาพจำ</th><th>Time โดยทั่วไป</th><th>Stable?</th></tr><tr><td>Bubble</td><td>คู่ติดกัน</td><td>O(n²), best O(n) ถ้ามี early stop</td><td>Yes</td></tr><tr><td>Selection</td><td>หา min</td><td>O(n²)</td><td>No แบบ swap</td></tr><tr><td>Shell</td><td>gap</td><td>ขึ้นกับ gap sequence</td><td>No</td></tr><tr><td>Radix</td><td>digit/bucket</td><td>O(d(n+k))</td><td>Yes ถ้า pass stable</td></tr><tr><td>Merge</td><td>แบ่ง/รวม</td><td>O(n log n)</td><td>Yes</td></tr><tr><td>Quick</td><td>pivot/partition</td><td>avg O(n log n), worst O(n²)</td><td>No</td></tr></table>
+<div class="deepDive" id="sorting-detail">
+<div class="deepDiveTitle"><span class="mark">Σ</span><h3 style="margin:0">Sorting แบบละเอียด: ต้องมอง “หนึ่ง Pass ทำอะไร”</h3></div>
+<div class="supplement"><b>หมายเหตุ:</b> บท Sorting นี้เป็นส่วนเสริมตามหัวข้อที่คุณแจ้ง เพราะชุด PDF ที่มีในแชตไม่ได้มีไฟล์สอน Sorting โดยตรง จึงแยกจากเนื้อหาสไลด์อาจารย์อย่างชัดเจน</div>
+<h3>1) Bubble Sort</h3>
+<p><b>ภาพในหัว:</b> เทียบเพื่อนบ้านสองตัว ถ้าซ้ายมากกว่าขวาให้สลับ ทำไปทางขวาเรื่อย ๆ จนค่ามากสุดลอยไปท้าย</p>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “1) Bubble Sort” ใช้โค้ดหลักเดียวกับ “8.1 Bubble Sort” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<div class="memoryMap">[5,1,4,2] → [1,5,4,2] → [1,4,5,2] → [1,4,2,5]<br/>จบ pass แรก: 5 อยู่ท้ายแน่นอน</div>
+<p><span class="badge">Best O(n) ถ้ามี early stop</span><span class="badge">Average/Worst O(n²)</span><span class="badge">Stable</span><span class="badge">In-place</span></p>
+<h3>2) Selection Sort</h3>
+<p><b>ภาพในหัว:</b> ในแต่ละ pass ให้ “เลือกค่าน้อยสุด” จากส่วนที่ยังไม่ sorted แล้ว swap มาที่ตำแหน่ง i</p>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “2) Selection Sort” ใช้โค้ดหลักเดียวกับ “8.2 Selection Sort” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<div class="examFocus"><b>จุดหลอก:</b> ต้องหา min ให้เสร็จ “ก่อน” แล้วค่อย swap การเอา swap ไปไว้ใน loop ด้านในจะทำให้ algorithm เปลี่ยน</div>
+<p><span class="badge">Best/Average/Worst O(n²)</span><span class="badge">ปกติไม่ Stable</span><span class="badge">In-place</span></p>
+<h3>3) Shell Sort</h3>
+<p><b>ภาพในหัว:</b> แทนที่จะเลื่อนทีละ 1 ช่อง ให้ใช้ gap เพื่อขยับค่าที่อยู่ไกล ๆ ก่อน จากนั้นลด gap จนเหลือ 1</p>
+<div class="note good dedupNote"><b>ตัดโค้ดที่ซ้ำ 100% ออกแล้ว: </b>ส่วน “3) Shell Sort” ใช้โค้ดหลักเดียวกับ “8.3 Shell Sort” ด้านบน จึงไม่แสดงโค้ดชุดเดิมซ้ำอีก ให้อ่านเฉพาะคำอธิบาย/ประเด็นเพิ่มเติมของส่วนนี้</div>
+<p><span class="badge">Gap สำคัญมาก</span><span class="badge">ปกติไม่ Stable</span><span class="badge">Complexity ขึ้นกับ gap sequence</span></p>
+<h3>4) Radix Sort</h3>
+<p><b>ภาพในหัว:</b> ไม่ compare ค่าทั้งจำนวนโดยตรง แต่แยกตาม digit ทีละหลัก เช่น หน่วย → สิบ → ร้อย</p>
+<pre><code>int digit = (x / exp) % 10;
+// exp = 1   → หลักหน่วย
+// exp = 10  → หลักสิบ
+// exp = 100 → หลักร้อย
+</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 4) Radix Sort</span><p>ตัวอย่างนี้เน้นการดึง digit ปัจจุบันและรักษา stability ระหว่าง pass หน่วย/สิบ/ร้อย</p></div>
+<div class="steps">
+<div class="step"><div>เอาทุกตัวเข้ากลุ่มตามหลักหน่วย</div></div>
+<div class="step"><div>นำออกจาก bucket 0→9 โดยรักษาลำดับเดิมภายใน bucket</div></div>
+<div class="step"><div>ทำซ้ำกับหลักสิบ แล้วหลักร้อย</div></div>
+</div>
+<p><span class="badge">Non-comparison</span><span class="badge">ต้องใช้ stable digit sort</span><span class="badge">O(d(n+k))</span></p>
+<h3>5) Merge Sort</h3>
+<p><b>ภาพในหัว:</b> Array ใหญ่เรียงยาก → แบ่งครึ่งจนเหลือกลุ่มเล็ก → merge กลุ่มที่ sorted แล้วกลับขึ้นมา</p>
+<pre><code>static void mergeSort(int[] a, int left, int right){
+    if(left &gt;= right)
+        return;
+
+    int mid = (left + right) / 2;
+
+    mergeSort(a, left, mid);
+    mergeSort(a, mid+1, right);
+
+    merge(a, left, mid, right);
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 5) Merge Sort</span><p>ให้โฟกัส base case และการแบ่ง left..mid กับ mid+1..right เพื่อให้ขนาดปัญหาลดจริง</p></div>
+<div class="examFocus"><b>Base case:</b> เมื่อ left == right มีสมาชิกตัวเดียว ซึ่งถือว่า sorted แล้ว ต้องหยุด recursion</div>
+<p><span class="badge">O(n log n) ทุกกรณีหลัก</span><span class="badge">Stable</span><span class="badge">ใช้ temp O(n)</span></p>
+<h3>6) Quick Sort</h3>
+<p><b>ภาพในหัว:</b> เลือก pivot → partition ให้ฝั่งหนึ่งเป็นค่าที่ควรอยู่ซ้าย pivot อีกฝั่งอยู่ขวา → recursive ต่อ</p>
+<pre><code>static void quickSort(int[] a, int low, int high){
+    if(low &lt; high){
+        int p = partition(a, low, high);
+
+        quickSort(a, low, p-1);
+        quickSort(a, p+1, high);
+    }
+}</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — 6) Quick Sort</span><p>หลัง partition pivot อยู่ตำแหน่งของมันแล้ว จึง recursive เฉพาะช่วง p-1 และ p+1 ไม่รวม pivot ซ้ำ</p></div>
+<div class="examFocus"><b>จุดสำคัญ:</b> หลัง partition pivot อยู่ตำแหน่งสุดท้ายของมันแล้ว จึงไม่ต้องเอา pivot เข้า recursion อีก</div>
+<p><span class="badge">Average O(n log n)</span><span class="badge">Worst O(n²)</span><span class="badge">ปกติไม่ Stable</span></p>
+<h3>7) ตารางแยก 6 Algorithm</h3>
+<div class="tableWrap"><table>
+<tr><th>Algorithm</th><th>หนึ่ง Pass ทำอะไร</th><th>คำจำ</th></tr>
+<tr><td>Bubble</td><td>เทียบตัวติดกัน</td><td>เพื่อนบ้าน</td></tr>
+<tr><td>Selection</td><td>เลือก min ของช่วง</td><td>หาน้อยสุด</td></tr>
+<tr><td>Shell</td><td>เรียงแบบมี gap</td><td>gap</td></tr>
+<tr><td>Radix</td><td>แยกตาม digit</td><td>หน่วย/สิบ/ร้อย</td></tr>
+<tr><td>Merge</td><td>แบ่งครึ่งและ merge</td><td>split + merge</td></tr>
+<tr><td>Quick</td><td>pivot + partition</td><td>pivot</td></tr>
+</table></div>
+</div>
+</section>
+<section id="errors"><div class="kicker">ERROR PATTERNS</div><h2>รูปแบบ Error ที่ควรฝึกดูจากโค้ด</h2><div class="grid2"><div class="card red"><h4>ArrayIndexOutOfBounds</h4><pre><code>int[] a = new int[5];
+a[5] = 99; // ผิด</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — ArrayIndexOutOfBounds</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>index ที่ถูกคือ 0..4</div><div class="card red"><h4>NullPointer ใน 2D</h4><pre><code>int[][] m = new int[3][];
+m[1][0] = 7; // m[1] ยัง null</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — NullPointer ใน 2D</span><p>ให้อ่านมิติแรกเป็น row และมิติที่สองเป็น column พร้อมตรวจขอบเขตของแต่ละมิติแยกกัน</p></div>ต้อง new row ก่อน</div><div class="card amber"><h4>Reference Logical Error</h4><pre><code>source = temp;</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — Reference Logical Error</span><p>ประเด็นของตัวอย่างนี้คือการ assign reference ไม่ได้สร้างสำเนาใหม่ ทั้งสองตัวแปรจึงมองเห็น object เดียวกัน</p></div>เปลี่ยน local parameter ไม่เปลี่ยน reference ผู้เรียก</div><div class="card amber"><h4>Linked List Self-loop</h4><pre><code>head = n;
+n.next = head;</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — Linked List Self-loop</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>สุดท้าย n.next=n</div><div class="card amber"><h4>Doubly Link ขาดด้าน</h4><pre><code>p.prev.next = p.next;</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — Doubly Link ขาดด้าน</span><p>ทุกครั้งที่เปลี่ยนโครงสร้าง Doubly ต้องตรวจทั้ง next และ prev ให้ย้อนกลับหากันถูกต้อง</p></div>ยังต้องแก้ p.next.prev ด้วย</div><div class="card red"><h4>Stack top=-1</h4><pre><code>data[top] = x;
+top++;</code></pre><div class="richCodeExplain dedupExplain"><span class="title">🔎 จุดเฉพาะของตัวอย่างนี้ — Stack top=-1</span><p>ไล่ assignment ทีละบรรทัดว่าแต่ละบรรทัดกำลังเปลี่ยนค่า, index หรือ reference ใด และผลกระทบยังอยู่หลังจบบรรทัดหรือไม่</p></div>ถ้า top=-1 จะใช้ index -1 ก่อน</div><div class="card red"><h4>Queue Empty</h4><pre><code>q.remove();
+q.element();</code></pre><div class="richCodeExplain"><span class="title">🔎 อธิบายโค้ดตัวอย่างนี้</span><ul><li>อ่านโค้ดจากบนลงล่างและจด state หลังแต่ละบรรทัด โดยเฉพาะตัวแปร index/reference ที่เปลี่ยน</li></ul><span class="why"><b>ภาพที่ควรนึก:</b> ในข้อ LEC อย่าดูโค้ดรวดเดียว ให้ไล่ state ทีละบรรทัด</span></div>บนคิวว่างอาจโยน exception</div><div class="card red"><h4>Comparator กลับทิศ</h4>ถ้าโจทย์บอก descending แต่ compare เขียนแบบ ascending คำตอบออกกลับด้าน</div></div>
+<div class="deepDive" id="errors-detail">
+<div class="deepDiveTitle"><span class="mark">!</span><h3 style="margin:0">Error แบบละเอียด: แยกให้ได้ 3 ประเภท</h3></div>
+<div class="grid3">
+<div class="card red"><h4>Compile-time Error</h4>โค้ดแปลไม่ผ่าน เช่น type ผิด, syntax ผิด, ใช้ String ใน Stack&lt;Integer&gt;</div>
+<div class="card amber"><h4>Runtime Error</h4>compile ผ่าน แต่พังตอนรัน เช่น index เกิน, null, remove จาก Queue ว่าง</div>
+<div class="card purple"><h4>Logical Error</h4>รันได้แต่ผลผิด เช่น Linked List เชื่อมผิด, Comparator กลับทิศ, postfix operand สลับ</div>
+</div>
+<h3>วิธีตรวจ Error ในข้อสอบ</h3>
+<div class="steps">
+<div class="step"><div>ตรวจ syntax/type ก่อน — compile ได้ไหม?</div></div>
+<div class="step"><div>ตรวจ index/null/empty/full — จะพังตอนรันไหม?</div></div>
+<div class="step"><div>ถ้ารันได้ ให้ไล่ state ทีละบรรทัด — ผลลัพธ์ตรงโจทย์ไหม?</div></div>
+<div class="step"><div>ถ้าเป็น List ให้วาดลูกศรก่อนและหลังบรรทัดที่สงสัย</div></div>
+<div class="step"><div>ถ้าเป็น Sorting ดู loop boundary, j+1, mid, pivot, gap</div></div>
+</div>
+<h3>Error ที่ควรจำภาพ</h3>
+<div class="tableWrap"><table>
+<tr><th>โค้ด</th><th>ปัญหา</th><th>วิธีคิด</th></tr>
+<tr><td><code>a[a.length]</code></td><td>Index เกิน</td><td>ช่องสุดท้ายคือ length-1</td></tr>
+<tr><td><code>m[1].length</code> ทั้งที่ m[1]==null</td><td>NullPointer</td><td>outer array มี แต่ row ยังไม่มี</td></tr>
+<tr><td><code>source=temp</code></td><td>Logical reference</td><td>เปลี่ยน local parameter</td></tr>
+<tr><td><code>head=n; n.next=head;</code></td><td>Self-loop</td><td>n.next ชี้ n</td></tr>
+<tr><td>Doubly แก้ next แต่ไม่ prev</td><td>List ขาด consistency</td><td>ต้องเช็กสองทิศ</td></tr>
+<tr><td><code>q.remove()</code> ตอนว่าง</td><td>Runtime exception</td><td>ถ้าอยาก null ใช้ poll</td></tr>
+<tr><td>Comparator sign กลับ</td><td>Logical ordering</td><td>ascending/descending สลับกัน</td></tr>
+<tr><td>Bubble loop ใช้ <code>j&lt;=end</code></td><td>อ่าน a[j+1] เกิน</td><td>j สูงสุดต้อง end-1</td></tr>
+</table></div>
+</div>
+</section>
+<section class="chapter sort" id="mockexam">
+<div class="kicker">HARD MOCK EXAM • 103 QUESTIONS • 5 CHOICES</div>
+<h2>ข้อสอบจำลอง LEC ระดับยาก — 103 ข้อ</h2>
+<p class="lead">เพิ่มให้แล้วตามที่ขอ: <b>103 ข้อ และทุกข้อมี 5 ตัวเลือก</b> โดยเพิ่มโจทย์แนว <b>หา Error / แก้โค้ด</b> ให้หนักขึ้น รวมไว้ในไฟล์เดียวกับสรุปเนื้อหา เพื่อให้คุณอ่านบทเรียนแล้วทำข้อสอบต่อได้ทันทีในหน้าเดียว</p>
+<div class="note warn">
+<b>เพิ่มแนว Code Error แล้ว:</b> ในชุด 103 ข้อนี้มีโจทย์ให้ดูโค้ดแล้วหา
+<b>Compile-time / Runtime / Logical Error</b> เช่น Array index เกิน, Null row, Dynamic Array reference,
+Linked List self-loop, Doubly prev/next, Stack empty, Queue empty/full, Comparator ผิดทิศ,
+และ loop boundary ของ Sorting
+</div>
+<div class="examHero">
+<b>วิธีใช้</b>
+<ol>
+<li>ถ้าต้องการรูปแบบเหมือนสอบจริง กด <b>สุ่มข้อ + สุ่มตัวเลือก</b> ก่อนเริ่ม</li>
+<li>เลือกคำตอบของแต่ละข้อ แล้วกด <b>ตรวจข้อนี้</b> ได้ทันที ไม่ต้องรอครบ 103 ข้อ</li>
+<li>ปุ่ม <b>สรุปคะแนนที่ตรวจแล้ว</b> จะสรุปเฉพาะข้อที่คุณกดตรวจไปแล้ว</li>
+<li>มีปุ่ม <b>ดูเฉพาะข้อที่ผิด</b> เพื่อย้อนทบทวนจุดอ่อน</li>
+</ol>
+</div>
+<div class="examControls">
+<button onclick="rerollExam()">สุ่มข้อ + สุ่มตัวเลือก</button>
+<button class="primary" onclick="showExamSummary()">สรุปคะแนนที่ตรวจแล้ว</button>
+<button onclick="showWrongOnly()">ดูเฉพาะข้อที่ผิด</button>
+<button onclick="showAllExam()">แสดงทุกข้อ</button>
+<button class="danger" onclick="resetExam()">ล้างคำตอบทั้งหมด</button>
+</div>
+<div class="examSticky">
+<div class="examStickyRow">
+<div id="examMiniStats"><b>สถิติ:</b> ยังไม่ได้ตอบ</div>
+<div><span class="badge">Array 18</span><span class="badge">Dynamic 10</span><span class="badge">List 20</span><span class="badge">Stack 15</span><span class="badge">Queue/Deque 11</span><span class="badge">Priority 9</span><span class="badge">Sorting 20</span><span class="badge">Code Error / Debug หลายข้อ</span></div>
+</div>
+</div>
+<div class="examJump" id="examJump"></div>
+<div class="examResult" id="examResult"></div>
+<div id="examQuestions"></div>
+</section>
+<section id="last"><div class="kicker">LAST MINUTE</div><h2>จำแกนนี้ให้ได้ก่อนสอบ</h2><div class="grid3"><div class="card blue"><b>Array</b><br>index / length / reference</br></div><div class="card cyan"><b>Dynamic</b><br>new → copy → return</br></div><div class="card amber"><b>List</b><br>head/tail/next/prev</br></div><div class="card purple"><b>Stack</b><br>LIFO / top / push/pop</br></div><div class="card green"><b>Queue</b><br>FIFO / front/rear</br></div><div class="card cyan"><b>Deque</b><br>first/last ทั้งสองด้าน</br></div><div class="card red"><b>Priority</b><br>heap / comparator</br></div><div class="card amber"><b>Sorting 1</b><br>Bubble=adjacent, Selection=min, Shell=gap</br></div><div class="card purple"><b>Sorting 2</b><br/>Radix=digit, Merge=merge, Quick=pivot</div></div><div class="rule">ข้อโค้ด: วาด state หลังแต่ละบรรทัด • ข้อ List: วาดลูกศร • ข้อ Stack/Queue: เขียนลำดับเข้า-ออก • ข้อ Sorting: เขียน array หลังแต่ละ pass</div></section>
+</main></div></div>
+<script>
+document.querySelectorAll('pre').forEach(pre=>{
+  const b=document.createElement('button');
+  b.className='copy';
+  b.textContent='Copy';
+  b.onclick=()=>navigator.clipboard.writeText(pre.innerText.replace(/^Copy\s*/,''));
+  pre.appendChild(b);
+});
+
+const navLinks=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{
+  let current=null;
+  document.querySelectorAll('main section').forEach(sec=>{
+    if(sec.getBoundingClientRect().top<140) current=sec;
+  });
+  navLinks.forEach(a=>a.classList.toggle('active', current && a.getAttribute('href')==='#'+current.id));
+},{passive:true});
+
+const QUESTION_BANK = [{"cat": "Array", "q": "โค้ดนี้ต้องการพิมพ์สมาชิกทุกตัว แต่เกิด Error:\n<pre><code>int[] a = {10,20,30,40,50};\n\nfor(int i = 0; i &lt;= a.length; i++) {\n    System.out.println(a[i]);\n}</code></pre>\nควรแก้ตรงไหน?", "choices": ["เปลี่ยน <code>i++</code> เป็น <code>i--</code>", "เปลี่ยน <code>i &lt;= a.length</code> เป็น <code>i &lt; a.length</code>", "เปลี่ยน <code>i=0</code> เป็น <code>i=1</code>", "เปลี่ยน <code>a[i]</code> เป็น <code>a[i+1]</code>", "ไม่มี Error"], "ans": 1, "exp": "Array ยาว 5 มี index 0..4 รอบที่ i=5 จะอ่าน <code>a[5]</code> เกินขอบเขต จึงต้องใช้ <code>i &lt; a.length</code>"}, {"cat": "Array", "q": "พิจารณาโค้ด\n<pre><code>int[] x = {10,20,30};\nint[] y = x;\ny[1] = 99;\nSystem.out.println(x[1] + \" \" + (x == y));</code></pre>\nผลลัพธ์คือข้อใด?", "choices": ["20 false", "20 true", "99 false", "99 true", "เกิด ArrayIndexOutOfBoundsException"], "ans": 3, "exp": "x และ y เก็บ reference ที่ชี้ array object เดียวกัน จึงเห็นค่า 99 เหมือนกัน และ <code>x == y</code> เป็น true"}, {"cat": "Array", "q": "โค้ด 2D Array นี้ผิดตรงไหน?\n<pre><code>int[][] a = new int[3][4];\n\nfor(int i=0; i&lt;a.length; i++) {\n    for(int j=0; j&lt;=a[i].length; j++) {\n        a[i][j] = 1;\n    }\n}</code></pre>", "choices": ["loop นอกต้องใช้ <code>i&lt;=a.length</code>", "loop ในต้องใช้ <code>j&lt;a[i].length</code>", "ต้องเปลี่ยนเป็น <code>a[j][i]</code>", "ต้องเริ่ม j=1", "ต้องลบ loop ด้านใน"], "ans": 1, "exp": "ปัญหาเป็น off-by-one ที่ loop ด้านใน เพราะ index คอลัมน์สุดท้ายคือ <code>a[i].length-1</code>"}, {"cat": "Array", "q": "ถ้าต้องการวนอ่าน Ragged Array ทุกสมาชิกโดยไม่เสี่ยงหลุดขอบเขต ข้อใดเหมาะสมที่สุด?", "choices": ["ใช้ <code>j &lt; m.length</code> ใน loop ด้านใน", "ใช้ <code>j &lt; m[0].length</code> ทุกแถว", "ใช้ <code>j &lt; m[i].length</code> ใน loop ด้านใน", "ใช้ <code>j &lt;= m[i].length</code>", "ใช้ <code>j &lt; m.length-1</code>"], "ans": 2, "exp": "Ragged Array แต่ละแถวยาวไม่เท่ากัน จึงต้องอิง <code>m[i].length</code> ของแถวปัจจุบัน"}, {"cat": "Array", "q": "โค้ดนี้ผิดตรงไหน?\n<pre><code>int[] a = new int[5];\na[5] = 99;</code></pre>", "choices": ["บรรทัดแรกผิด เพราะ Array ต้องเริ่มขนาด 0", "บรรทัดที่สองผิดตอนรัน เพราะ index 5 เกินขอบเขตที่ถูกต้อง 0..4", "ไม่มี Error เพราะ length=5 จึงใช้ index 5 ได้", "ต้องเปลี่ยนเป็น a[-1]", "Error เพราะ int[] ห้ามเก็บ 99"], "ans": 1, "exp": "นี่คือ <b>Runtime Error</b> ชนิด ArrayIndexOutOfBoundsException โดย <code>new int[5]</code> มี index 0–4 เท่านั้น ต้องแก้เป็น index ที่อยู่ในช่วง เช่น <code>a[4]=99;</code>"}, {"cat": "Array", "q": "พิจารณา\n<pre><code>static void f(int[] a) {\n    a[0] = 50;\n    a = new int[]{7,8,9};\n    a[1] = 80;\n}\nint[] x = {1,2,3};\nf(x);</code></pre>\nหลังเรียก <code>f(x)</code> ค่า x คือข้อใด?", "choices": ["[1,2,3]", "[50,2,3]", "[7,80,9]", "[50,80,3]", "เกิด compile error"], "ans": 1, "exp": "บรรทัด <code>a[0]=50</code> แก้ object เดิมที่ x ชี้อยู่ แต่ <code>a = new int...</code> เปลี่ยนเฉพาะ local reference a; x ยังชี้ array เดิม"}, {"cat": "Array", "q": "โค้ดนี้ compile ผ่าน แต่ค่าของ Array ไม่เปลี่ยน:\n<pre><code>int[] a = {1,2,3};\n\nfor(int x : a) {\n    x = x * 10;\n}</code></pre>\nถ้าต้องการเปลี่ยนสมาชิกจริง ๆ ควรแก้อย่างไร?", "choices": ["ใช้ <code>for(int i=0;i&lt;a.length;i++) a[i]*=10;</code>", "เปลี่ยน x เป็น String", "เปลี่ยน enhanced for เป็น while โดยไม่ใช้ index", "เพิ่ม <code>return x;</code>", "ใช้ <code>a.length++</code>"], "ans": 0, "exp": "ตัวแปร x ใน enhanced for ของ primitive เป็นสำเนาค่า ไม่ได้ชี้กลับไปยังช่องใน array ถ้าจะเขียนกลับต้องใช้ index"}, {"cat": "Array", "q": "ข้อใดอธิบาย Object Array ได้แม่นที่สุดสำหรับ\n<code>Student[] s = new Student[4];</code>?", "choices": ["สร้าง Student 4 object ทันที", "สร้าง array 4 ช่องที่ทุกช่องเริ่มเป็น reference null", "สร้าง Student 1 object และ copy 4 ครั้ง", "แต่ละช่องเริ่มเป็น Student ที่มี field default", "array นี้ไม่สามารถกำหนด s[0] ภายหลังได้"], "ans": 1, "exp": "คำสั่งนี้สร้าง “array ของ reference” 4 ช่อง แต่ยังไม่ได้สร้าง Student แต่ละตัว จึงเริ่มเป็น null"}, {"cat": "Array", "q": "พิจารณาโค้ด\n<pre><code>int[][] m = new int[3][];\nm[0] = new int[2];\nm[1][0] = 7;</code></pre>\nError เกิดตรงไหนและควรแก้อย่างไร?", "choices": ["ไม่มี Error", "บรรทัด m[0] ผิด ต้องลบออก", "บรรทัด m[1][0] เกิด NullPointerException เพราะ m[1] ยังไม่ได้สร้าง row; ต้องสร้าง m[1] ก่อน", "m ต้องเป็น int[] ไม่ใช่ int[][]", "ต้องเปลี่ยน 7 เป็น null"], "ans": 2, "exp": "สร้าง outer array แล้วแต่ <code>m[1]</code> ยังเป็น null ต้องมีเช่น <code>m[1] = new int[...];</code> ก่อนจึงใช้ <code>m[1][0]</code> ได้"}, {"cat": "Array", "q": "กำหนด\n<pre><code>int[][] a = new int[3][];\na[0] = new int[2];\na[2] = new int[4];</code></pre>\nข้อใดจะเกิด <code>NullPointerException</code>?", "choices": ["<code>a.length</code>", "<code>a[0].length</code>", "<code>a[2][3]</code>", "<code>a[1].length</code>", "<code>a[0][1]</code>"], "ans": 3, "exp": "a[1] ยังเป็น null การเรียก <code>a[1].length</code> จึง dereference null"}, {"cat": "Array", "q": "ถ้า array มี n สมาชิก การเข้าถึง <code>a[k]</code> เมื่อ k ถูกต้องมีเวลาทำงานเชิงแนวคิดเป็นข้อใด?", "choices": ["O(1)", "O(log n)", "O(n)", "O(n log n)", "O(n²)"], "ans": 0, "exp": "Array รองรับ random access ด้วย index จึงเข้าถึงตำแหน่งที่รู้โดยตรงในเวลาคงที่เชิง asymptotic"}, {"cat": "Array", "q": "ถ้าต้องค้นหาค่า 77 ใน int array ที่ “ยังไม่เรียง” และไม่มีข้อมูลอื่นช่วย วิธีพื้นฐานที่รับประกันคำตอบต้องใช้เวลา worst-case เท่าใด?", "choices": ["O(1)", "O(log n)", "O(n)", "O(n log n)", "O(n²)"], "ans": 2, "exp": "อาจต้องตรวจครบทุกสมาชิกหาก 77 อยู่ท้ายสุดหรือไม่มีอยู่ จึงเป็น O(n)"}, {"cat": "Array", "q": "ข้อใดคือความแตกต่างสำคัญระหว่าง <code>array.length</code> กับ index สุดท้าย?", "choices": ["ทั้งสองเท่ากันเสมอ", "index สุดท้าย = length + 1", "index สุดท้าย = length - 1", "length เริ่มนับจาก 0", "index สุดท้ายใช้ได้เฉพาะ Object Array"], "ans": 2, "exp": "จำนวนสมาชิกคือ length แต่ index เริ่ม 0 จึงจบที่ length-1"}, {"cat": "Array", "q": "โค้ดนี้ตั้งใจ Copy Array แต่ผลคือแก้ b แล้ว a เปลี่ยนด้วย:\n<pre><code>int[] a = {1,2,3};\nint[] b = a;\nb[0] = 99;</code></pre>\nควรแก้แนวคิดใด?", "choices": ["ใช้ <code>int[] b = new int[a.length]</code> แล้วคัดค่าทีละช่อง", "เปลี่ยน b เป็น final", "เปลี่ยน a เป็น static", "ใช้ <code>b[0] = a[0]</code> อย่างเดียว", "เพิ่ม <code>b = null</code>"], "ans": 0, "exp": "<code>b=a</code> ไม่ได้ copy element แต่ copy reference ทำให้ทั้งสองชื่อชี้ array object เดียวกัน"}, {"cat": "Array", "q": "ถ้า <code>int[][] m = new int[4][6];</code> ข้อใดถูกต้อง?", "choices": ["m.length = 6 และ m[0].length = 4", "m.length = 4 และ m[0].length = 6", "m.length = 24", "m[3][5] ผิดขอบเขต", "m[4][0] ถูกต้อง"], "ans": 1, "exp": "มิติแรกคือจำนวนแถว 4; แต่ละแถวยาว 6; index ถูกต้องแถว 0..3 คอลัมน์ 0..5"}, {"cat": "Array", "q": "ถ้าต้องการแก้สมาชิกทุกช่องใน primitive array ให้คูณ 2 ข้อใด “ตรงเป้าหมายที่สุด”?", "choices": ["enhanced for แล้วเขียน <code>x*=2</code>", "loop index แล้วเขียน <code>a[i]*=2</code>", "อ่าน <code>a.length</code> อย่างเดียว", "กำหนด reference ใหม่ให้ตัวแปร loop", "ใช้ <code>System.out.println()</code> ใน loop"], "ans": 1, "exp": "เมื่อจะเขียนกลับสู่สมาชิก array ต้องอ้างตำแหน่งจริง เช่น <code>a[i]</code>"}, {"cat": "Array", "q": "เพราะเหตุใด Array จึงมักไม่เหมาะกับการแทรกข้อมูลกลางลำดับบ่อย ๆ เมื่อเทียบกับ Linked List (สมมติรักษาลำดับ)?", "choices": ["เพราะ Array อ่าน index ไม่ได้", "เพราะ Array ต้องขยับสมาชิกจำนวนหนึ่ง และถ้าความจุไม่พอยังอาจต้องสร้างใหม่", "เพราะ Array เก็บ primitive ไม่ได้", "เพราะ Array ไม่มี length", "เพราะ Linked List ค้นหาตำแหน่งกลางเป็น O(1) เสมอ"], "ans": 1, "exp": "การแทรกกลาง Array มักต้องเลื่อนข้อมูลทางขวา; Linked List หากมี pointer ตำแหน่งที่เหมาะสมแล้วจะเน้นเปลี่ยน link"}, {"cat": "Array", "q": "ข้อใดเป็นตัวอย่างที่ “ควรนึกถึง Ragged Array” มากที่สุด?", "choices": ["ตารางคะแนน 100 คน x 5 วิชาเท่ากันทุกคน", "ภาพ 1920x1080 ทุกแถวกว้างเท่ากัน", "ข้อมูลแต่ละแถวมีจำนวนสมาชิกไม่เท่ากัน เช่น กลุ่มวิชาของแต่ละนักศึกษา", "ตัวเลข 10 ค่าเรียงเป็นเส้นเดียว", "Stack แบบ array"], "ans": 2, "exp": "Ragged Array เหมาะเมื่อแต่ละแถวต้องมีจำนวนสมาชิกต่างกัน"}, {"cat": "Dynamic Array", "q": "โค้ด addLast นี้มี Logical Error ตรงไหน?\n<pre><code>static int[] addLast(int[] source, int x) {\n    int[] temp = new int[source.length + 1];\n    temp[0] = x;\n    for(int i=0; i&lt;source.length; i++)\n        temp[i] = source[i];\n    return temp;\n}</code></pre>", "choices": ["ผิดที่สร้าง temp ใหญ่เกินไป", "ผิดที่ <code>temp[0] = x</code>; ควรใส่ x ที่ <code>temp[temp.length-1]</code> หลัง copy", "loop ต้องเริ่ม i=1", "return temp ผิด ต้อง return source", "ไม่มี Error"], "ans": 1, "exp": "โค้ด copy เดิมจะทับ <code>temp[0]</code> อีกครั้ง ทำให้ x หาย จุดแก้หลักคือใส่ x ที่ช่องสุดท้ายหลังคัดลอก"}, {"cat": "Dynamic Array", "q": "โค้ดนี้ compile ผ่าน แต่ผลไม่เพิ่มข้อมูลด้านหน้า:\n<pre><code>static void addFirst(int[] source, int x) {\n    int[] temp = new int[source.length+1];\n    temp[0] = x;\n    for(int i=0;i&lt;source.length;i++)\n        temp[i+1] = source[i];\n    source = temp;\n}\n\nint[] a = {1,2,3};\naddFirst(a,0);</code></pre>\nควรแก้แบบใด?", "choices": ["เปลี่ยน source เป็น final", "เปลี่ยนเมธอดให้คืน <code>int[]</code> และเรียก <code>a = addFirst(a,0)</code>", "เพิ่ม <code>a.length++</code>", "ลบ temp", "ใช้ <code>break</code> หลัง loop"], "ans": 1, "exp": "ปัญหาเป็นเรื่อง reference: <code>source=temp</code> เปลี่ยนแค่ local parameter จึงต้อง return reference ใหม่ให้ผู้เรียกรับ"}, {"cat": "Dynamic Array", "q": "วิธีแก้ปัญหาข้อก่อนที่ตรงหลักที่สุดคือข้อใด?", "choices": ["เปลี่ยน source เป็น static เสมอ", "คืน <code>temp</code> แล้วเขียน <code>a = addFirst(a,0)</code>", "เขียน <code>a.length++</code>", "ใช้ enhanced for", "กำหนด <code>temp = source</code>"], "ans": 1, "exp": "ต้องส่ง reference ของ array ใหม่กลับสู่ผู้เรียก เพื่อให้ตัวแปรหลักเปลี่ยนไปชี้ object ใหม่"}, {"cat": "Dynamic Array", "q": "เมื่อต้อง insert ค่า x ที่ index k ใน array ใหม่ยาว n+1 การคัดด้านขวาที่ถูกต้องคือแนวใด?", "choices": ["source[i] → temp[i] สำหรับ i ≥ k โดยไม่มีการเลื่อน", "source[i] → temp[i+1] สำหรับ i ≥ k", "source[i] → temp[i-1] สำหรับ i ≥ k", "copy เฉพาะสมาชิกก่อน k", "เขียน x ที่ temp[n+1]"], "ans": 1, "exp": "ช่อง temp[k] ถูกใช้โดยข้อมูลใหม่ ดังนั้นสมาชิกเดิมตั้งแต่ k เป็นต้นไปต้องเลื่อนไปขวา 1 ช่อง"}, {"cat": "Dynamic Array", "q": "ถ้า <code>delete(index=2)</code> จาก [10,20,30,40,50] ผลที่ถูกต้องคือข้อใด?", "choices": ["[10,20,30,40]", "[10,20,40,50]", "[10,30,40,50]", "[20,30,40,50]", "[10,20,0,40,50]"], "ans": 1, "exp": "index 2 คือค่า 30; เมื่อรักษาลำดับ ค่าด้านขวา 40,50 เลื่อนซ้ายหนึ่งช่อง"}, {"cat": "Dynamic Array", "q": "ข้อใดอธิบาย <code>Arrays.copyOf(a, a.length+1)</code> ได้ถูกต้องที่สุด?", "choices": ["เปลี่ยนขนาด object a เดิม", "สร้าง array object ใหม่และคัดข้อมูลตามขนาดใหม่", "ใช้ได้เฉพาะ String[]", "คืนค่า void", "ลบสมาชิกตัวแรกเสมอ"], "ans": 1, "exp": "<code>copyOf</code> คืน array ใหม่ ไม่ได้ยืด object เดิม"}, {"cat": "Dynamic Array", "q": "เมธอด insert นี้มี Logical Error:\n<pre><code>static int[] insert(int[] a, int index, int x) {\n    int[] temp = new int[a.length + 1];\n\n    for(int i=0; i&lt;index; i++)\n        temp[i] = a[i];\n\n    temp[index] = x;\n\n    for(int i=index; i&lt;a.length; i++)\n        temp[i] = a[i];\n\n    return temp;\n}</code></pre>\nควรแก้ส่วนใด?", "choices": ["loop แรกต้องเริ่ม 1", "loop หลังต้องเขียน <code>temp[i+1] = a[i]</code>", "temp ต้องยาวเท่าเดิม", "ต้องลบ <code>temp[index]=x</code>", "return ต้องเป็น a"], "ans": 1, "exp": "หลังแทรกที่ index แล้ว สมาชิกเดิมตั้งแต่ index เป็นต้นไปต้องเลื่อนไปขวา 1 ช่อง"}, {"cat": "Dynamic Array", "q": "ใน dynamic array implementation จริง คำว่า size กับ capacity ต่างกันอย่างไร?", "choices": ["size คือจำนวนช่องที่จัดสรร, capacity คือจำนวนข้อมูลจริง", "size คือจำนวนข้อมูลจริง, capacity คือจำนวนช่องที่จัดสรรไว้", "ทั้งสองต้องเท่ากันเสมอ", "capacity ใช้เฉพาะ Linked List", "size ใช้เฉพาะ 2D Array"], "ans": 1, "exp": "size นับสมาชิกใช้งานจริง ส่วน capacity คือพื้นที่ที่มีอยู่ก่อนต้องขยาย"}, {"cat": "Dynamic Array", "q": "เหตุผลสำคัญที่ dynamic array implementation จริงมักเผื่อ capacity มากกว่า size คือข้อใด?", "choices": ["เพื่อให้ทุก add ต้อง copy ทั้ง array", "เพื่อลดความถี่ของการ allocate/copy เมื่อเพิ่มท้ายหลายครั้ง", "เพื่อทำให้ index เริ่มที่ 1", "เพื่อทำให้ remove เป็น O(log n)", "เพื่อให้ข้อมูลเรียงอัตโนมัติ"], "ans": 1, "exp": "การเผื่อพื้นที่ทำให้ addLast หลายครั้งไม่ต้องสร้างใหม่ทุกครั้ง จึงช่วยให้ต้นทุนเฉลี่ยต่ำลง"}, {"cat": "Dynamic Array", "q": "เมธอด deleteLast นี้ต้องการลบสมาชิกท้าย แต่ผิด:\n<pre><code>static int[] deleteLast(int[] a) {\n    int[] temp = new int[a.length - 1];\n\n    for(int i=0; i&lt;a.length; i++) {\n        temp[i] = a[i];\n    }\n    return temp;\n}</code></pre>\nError จะเกิดเพราะอะไร?", "choices": ["temp ใหญ่เกินไป", "loop วิ่งถึง i=a.length-1 แต่ temp มี index แค่ 0..a.length-2", "ต้องใช้ temp ยาว a.length+1", "ต้องเริ่ม loop ที่ 1", "ไม่มี Error"], "ans": 1, "exp": "Array ใหม่สั้นกว่าเดิม 1 ช่อง จึงคัดได้เพียงถึง <code>temp.length-1</code>"}, {"cat": "Linked List", "q": "Singly Linked List node ขั้นพื้นฐานต้องมีอะไรเป็นอย่างน้อย?", "choices": ["data และ prev", "data และ next", "head และ tail ภายในทุก node", "index และ length", "front และ rear"], "ans": 1, "exp": "Singly node เก็บข้อมูลและ reference ไปยังโหนดถัดไปคือ <code>next</code>"}, {"cat": "Linked List", "q": "Doubly Linked List ต่างจาก Singly ในเชิงโครงสร้างหลักอย่างไร?", "choices": ["มี array อยู่ในทุก node", "เพิ่ม reference <code>prev</code> เพื่อชี้โหนดก่อนหน้า", "ไม่มี data", "ไม่มี next", "ใช้ FIFO"], "ans": 1, "exp": "Doubly มีทั้ง <code>next</code> และ <code>prev</code> ทำให้เดินได้สองทิศ"}, {"cat": "Linked List", "q": "Singly Linked List: โค้ด addFirst นี้มีปัญหาอะไรเมื่อ list ไม่ว่าง?\n<pre><code>void addFirst(Node n) {\n    head = n;\n    n.next = head;\n    count++;\n}</code></pre>", "choices": ["ไม่มีปัญหา", "เกิด self-loop เพราะหลัง <code>head=n</code> แล้ว <code>n.next=head</code> คือ n.next ชี้ n เอง", "tail จะชี้ null เสมอ", "count ต้องลด", "Node ต้องมี prev"], "ans": 1, "exp": "ลำดับถูกควรเป็น <code>n.next = head;</code> ก่อน แล้วค่อย <code>head = n;</code> เพื่อไม่ทำลิงก์ไปยังหัวเดิมหาย"}, {"cat": "Linked List", "q": "Doubly Linked List: โค้ดนี้ขาดคำสั่งใด?\n<pre><code>void addLast(Node n) {\n    if(head == null) {\n        head = tail = n;\n    } else {\n        tail.next = n;\n        ____________;\n        tail = n;\n    }\n    count++;\n}</code></pre>", "choices": ["n.next = head;", "n.prev = tail;", "head.prev = n;", "tail.prev = n;", "n.prev = head;"], "ans": 1, "exp": "เมื่อเชื่อม <code>tail.next=n</code> ต้องเชื่อมย้อนกลับด้วย <code>n.prev=tail</code> ก่อนย้าย tail"}, {"cat": "Linked List", "q": "ถ้าจากสถานะข้อก่อนทำ <code>p=p.next;</code> อีกครั้ง p จะเป็นอะไร?", "choices": ["A", "B", "C", "null", "tail.next.next"], "ans": 3, "exp": "C เป็นโหนดสุดท้ายและ C.next เป็น null"}, {"cat": "Linked List", "q": "การ addFirst โหนด n ใน Singly List ที่ไม่ว่าง ลำดับคำสั่งใดรักษาลิงก์เดิมได้ถูกต้อง?", "choices": ["head=n; n.next=head;", "n.next=head; head=n;", "tail=n; head.next=n;", "head.next=n; n.next=null;", "n=head; head=n.next;"], "ans": 1, "exp": "ต้องให้ n.next เก็บ old head ก่อน แล้วจึงย้าย head มาหา n"}, {"cat": "Linked List", "q": "ต้องการแทรก N หลัง p ใน Singly List แต่เขียน:\n<pre><code>p.next = N;\nN.next = p.next;</code></pre>\nผลที่ผิดคืออะไร?", "choices": ["N หายจากลิสต์", "N.next กลายเป็น N เกิด self-loop", "p กลายเป็น null", "tail ถูกลบ", "compile error"], "ans": 1, "exp": "หลังคำสั่งแรก <code>p.next</code> เปลี่ยนเป็น N แล้ว จึงทำให้คำสั่งสองกลายเป็น <code>N.next=N</code>. ควรเขียน <code>N.next=p.next</code> ก่อน"}, {"cat": "Linked List", "q": "สำหรับ Doubly List ไม่ว่าง การ addFirst(n) ข้อใดเป็นชุด link สำคัญที่ถูกต้อง?", "choices": ["head.prev=n; n.next=head; head=n", "head.next=n; n.prev=head; tail=n", "n.prev=head; n.next=tail; head=n", "tail.next=n; n.prev=tail; head=n", "n.next=null; tail.prev=n; head=tail"], "ans": 0, "exp": "โหนดหัวเดิมต้อง prev กลับมาหา n, n.next ชี้หัวเดิม แล้วค่อยอัปเดต head"}, {"cat": "Linked List", "q": "สำหรับ Doubly List ไม่ว่าง การ addLast(n) ข้อใดถูกต้องที่สุด?", "choices": ["head.prev=n; n.next=head; head=n", "tail.next=n; n.prev=tail; tail=n", "n.next=tail; tail.prev=n; head=n", "tail=n; n.next=tail", "head.next=n; n.prev=null; tail=head"], "ans": 1, "exp": "เชื่อมท้ายเดิมไป n, เชื่อม n.prev กลับท้ายเดิม แล้วเลื่อน tail ไป n"}, {"cat": "Linked List", "q": "Doubly List A⇄B⇄C ต้องลบ B แต่เขียนแค่:\n<pre><code>B.prev.next = B.next;</code></pre>\nสิ่งใดยังขาด?", "choices": ["ต้อง sort list", "ต้องอัปเดต <code>B.next.prev = B.prev</code> ด้วย", "ต้องเปลี่ยน head เป็น B", "ต้องเพิ่ม count", "ต้องสร้าง array ใหม่"], "ans": 1, "exp": "Doubly ต้องรักษาลิงก์สองทิศ การต่อ A.next=C อย่างเดียวทำให้ C.prev ยังชี้ B อยู่"}, {"cat": "Linked List", "q": "ถ้าต้องแทรก N ระหว่าง A และ B ใน Singly List โดยมี pointer <code>p</code> ชี้ A ข้อใดถูกต้อง?", "choices": ["p.next=N; N.next=p.next", "N.next=p.next; p.next=N", "N.next=p; p=N", "p=N; N.next=null", "tail=N; head=N"], "ans": 1, "exp": "ต้องเก็บ B ผ่าน <code>N.next=p.next</code> ก่อน แล้วจึงเปลี่ยน A.next ให้ชี้ N"}, {"cat": "Linked List", "q": "ทำไมลำดับ <code>p.next=N; N.next=p.next;</code> จึงผิดสำหรับการแทรก N หลัง p?", "choices": ["เพราะ N.next จะกลายเป็น null เสมอ", "เพราะหลังคำสั่งแรก p.next คือ N แล้ว จึงทำให้ N.next ชี้ N เอง", "เพราะ p ต้องเป็น tail", "เพราะ N ต้องเป็น primitive", "เพราะ next ใช้ได้เฉพาะ Doubly"], "ans": 1, "exp": "หลัง <code>p.next=N</code> ค่า p.next ไม่ใช่ B เดิมแล้ว การเอา <code>N.next=p.next</code> จึงทำ self-loop"}, {"cat": "Linked List", "q": "โค้ด traversal ของ Singly List นี้มีปัญหา:\n<pre><code>Node p = head;\n\nwhile(p != null) {\n    System.out.println(p.data);\n}</code></pre>\nจะเกิดอะไรขึ้น?", "choices": ["NullPointerException ทันที", "วนซ้ำไม่จบ เพราะ p ไม่เคยเลื่อนไป node ถัดไป", "พิมพ์เฉพาะ tail", "compile error", "head กลายเป็น null"], "ans": 1, "exp": "ต้องมี <code>p = p.next;</code> ภายใน loop ไม่เช่นนั้น p จะชี้ node เดิมตลอด"}, {"cat": "Linked List", "q": "กรณีใดทำให้การลบโหนดต้องอัปเดต head?", "choices": ["ลบโหนดแรก", "ลบโหนดกลางเท่านั้น", "ลบโหนดสุดท้ายเท่านั้น", "ค้นหาไม่พบ", "เพิ่มท้าย"], "ans": 0, "exp": "เมื่อลบหัว โหนดถัดไปต้องกลายเป็น head ใหม่"}, {"cat": "Linked List", "q": "ต้องการ addLast ใน Singly Linked List ที่มี tail แต่เขียน:\n<pre><code>void addLast(Node n) {\n    tail = n;\n    tail.next = n;\n    count++;\n}</code></pre>\nปัญหาหลักคืออะไร?", "choices": ["เกิด self-loop และขาดการเชื่อม tail เดิมไป n", "ต้องลบ count", "n ต้องเป็น null", "head ต้องชี้ null", "ไม่มีปัญหา"], "ans": 0, "exp": "ควรเชื่อม <code>oldTail.next=n</code> ก่อน แล้วค่อยเลื่อน tail ไป n; โค้ดนี้ทำให้ n.next ชี้ n เอง"}, {"cat": "Linked List", "q": "เวลาในการเข้าถึง “โหนดลำดับที่ k” ของ Singly Linked List จาก head โดยทั่วไปเป็นอย่างไร?", "choices": ["O(1) เสมอ", "O(log n)", "O(n) ใน worst-case", "O(n log n)", "O(n²)"], "ans": 2, "exp": "ไม่มี random access ด้วย index จึงต้องเดินตาม next ทีละโหนด"}, {"cat": "Linked List", "q": "ถ้ามี tail อยู่แล้ว addLast ใน Singly Linked List ที่ไม่ว่างสามารถทำ O(1) ได้เพราะเหตุใด?", "choices": ["เพราะหาโหนดสุดท้ายด้วย binary search", "เพราะ tail ชี้โหนดสุดท้ายตรง ๆ จึงไม่ต้อง traversal ทั้งลิสต์", "เพราะ count บอกค่าของ data", "เพราะ next เป็น array index", "เพราะ Linked List เรียงข้อมูลเสมอ"], "ans": 1, "exp": "tail ทำให้เข้าถึงจุดต่อท้ายได้โดยตรง"}, {"cat": "Linked List", "q": "Doubly Linked List มีโค้ด addFirst:\n<pre><code>void addFirst(Node n) {\n    n.next = head;\n    head = n;\n    count++;\n}</code></pre>\nเมื่อ list เดิมไม่ว่าง สิ่งใด “ยังขาด”?", "choices": ["<code>n.prev = tail</code>", "<code>head.prev = n</code> โดยต้องทำกับ head เดิมก่อนย้าย head", "<code>tail.next = head</code>", "<code>count--</code>", "ไม่มีอะไรขาด"], "ans": 1, "exp": "Doubly ต้องอัปเดตลิงก์ย้อนด้วย เช่น oldHead.prev=n ก่อนอัปเดต head"}, {"cat": "Linked List", "q": "หลังลบโหนดเดียวที่มีอยู่ในลิสต์ สถานะที่ถูกต้องควรเป็นอะไร?", "choices": ["head=tail=โหนดเดิม, count=0", "head=null, tail=null, count=0", "head=null, tail=โหนดเดิม, count=0", "head=tail=null, count=1", "head=โหนดเดิม, tail=null, count=-1"], "ans": 1, "exp": "เมื่อลิสต์ไม่มีสมาชิกอีก head/tail ต้องไม่ชี้โหนดใดและ count เป็น 0"}, {"cat": "Stack", "q": "Array-based Stack มี <code>top=-1</code> ตอนว่าง โค้ด push:\n<pre><code>void push(int x) {\n    data[top] = x;\n    top++;\n}</code></pre>\nปัญหาหลักคืออะไร?", "choices": ["ถูกต้องแล้ว", "เข้าถึง data[-1] ก่อนเพิ่ม top ทำให้ Runtime Error; ควรเพิ่ม top ก่อนเขียน", "top ต้องลดก่อน", "data ต้องเป็น String[]", "ต้องใช้ queue แทน"], "ans": 1, "exp": "ถ้า top=-1 หมายถึงว่าง ต้องทำแนว <code>top++; data[top]=x;</code> พร้อมตรวจ full ก่อน"}, {"cat": "Stack", "q": "ประเมิน postfix แล้วเขียน:\n<pre><code>int a = stack.pop();\nint b = stack.pop();\nstack.push(a - b);</code></pre>\nถ้า postfix ต้องคำนวณการลบ ปัญหาอยู่ตรงไหน?", "choices": ["ไม่มีปัญหา", "ควรเป็น <code>b - a</code> เพราะค่าที่ pop ครั้งที่สองเป็น operand ซ้าย", "ต้องเป็น a+b", "ห้าม pop สองครั้ง", "ต้องใช้ Queue"], "ans": 1, "exp": "ใน postfix operator <code>-</code> และ <code>/</code> ต้องรักษาลำดับ: right = pop ครั้งแรก, left = pop ครั้งที่สอง"}, {"cat": "Stack", "q": "push A, push B, push C, pop, push D, pop, pop ลำดับค่าที่ถูก pop คือข้อใด?", "choices": ["A,B,C", "C,D,B", "C,B,D", "D,C,B", "C,D,A"], "ans": 1, "exp": "หลัง A,B,C top=C → pop C; push D → pop D; ต่อไป top=B → pop B"}, {"cat": "Stack", "q": "Array-based Stack กำหนด <code>top=-1</code> ตอนว่าง และเขียน pop:\n<pre><code>int pop() {\n    return data[top--];\n}</code></pre>\nถ้า Stack ว่างจะเกิดปัญหาอะไร?", "choices": ["อ่าน <code>data[-1]</code> จึงผิดขอบเขต", "top จะกลายเป็น 0", "จะคืน null", "compile error เพราะ top-- ใช้ไม่ได้", "ไม่มีปัญหา"], "ans": 0, "exp": "ต้องตรวจ empty ก่อน pop เพราะ top=-1 ไม่ใช่ index ที่ถูกต้อง"}, {"cat": "Stack", "q": "Array-based Stack ที่มี capacity จำกัด พยายาม push เมื่อเต็มเรียกว่าอะไร?", "choices": ["Underflow", "Overflow", "Rehash", "Merge", "Wraparound"], "ans": 1, "exp": "พื้นที่เต็มแล้ว push เพิ่มเป็น overflow"}, {"cat": "Stack", "q": "Linked-list-based Stack ถ้า top ชี้โหนดแรก การ push ใหม่มีโครงสร้างคล้าย operation ใดของ Linked List มากที่สุด?", "choices": ["addFirst", "addLast โดย traversal", "deleteLast", "binarySearch", "merge"], "ans": 0, "exp": "push ที่ top เมื่อ top เป็นหัวลิสต์คือการเพิ่มหน้าสุด"}, {"cat": "Stack", "q": "โค้ดตรวจวงเล็บ:\n<pre><code>for(char c : text.toCharArray()) {\n    if(c == '(')\n        stack.push(c);\n    else if(c == ')')\n        stack.pop();\n}</code></pre>\nError case สำคัญที่ยังไม่ตรวจคืออะไร?", "choices": ["กรณีเจอ ')' ตอน Stack ว่าง", "กรณีเจอ '(' ตอน Stack ว่าง", "กรณี text มีตัวอักษร A", "กรณี Stack มีขนาดมากกว่า 1", "ไม่มีกรณีผิด"], "ans": 0, "exp": "ถ้าเจอ ')' โดยไม่มี '(' ค้างอยู่ก่อน จะ pop จาก Stack ว่าง ต้องตรวจ <code>isEmpty()</code> ก่อน"}, {"cat": "Stack", "q": "ในการตรวจวงเล็บ expression เมื่อเจอ <code>)</code> สิ่งใดควรเกิดขึ้นในแนวทาง Stack?", "choices": ["push ')' เสมอ", "ต้องมี '(' ที่เข้าคู่บน Stack แล้วนำออก", "ล้าง Stack ทั้งหมด", "สลับ Front/Rear", "เรียง Stack ก่อน"], "ans": 1, "exp": "วงเล็บปิดต้องจับคู่กับวงเล็บเปิดที่ยังค้างอยู่ล่าสุด"}, {"cat": "Stack", "q": "ข้อใดเป็น postfix ของ <code>A + B * C</code>?", "choices": ["AB+C*", "ABC*+", "A+BC*", "*+ABC", "ABC+*"], "ans": 1, "exp": "* มี precedence สูงกว่า + จึงคำนวณ B*C ก่อน: B C * แล้วค่อย A +"}, {"cat": "Stack", "q": "โค้ด reverse string นี้มี Logical Error:\n<pre><code>Stack&lt;Character&gt; s = new Stack&lt;&gt;();\n\nfor(int i=0;i&lt;text.length();i++)\n    s.push(text.charAt(i));\n\nString out = \"\";\n\nwhile(!s.isEmpty())\n    out += s.peek();</code></pre>\nปัญหาคืออะไร?", "choices": ["ต้องใช้ <code>pop()</code> ไม่ใช่ <code>peek()</code> เพราะ peek ไม่ลบ ทำให้ loop ไม่จบ", "ต้อง push จากขวาไปซ้ายเท่านั้น", "String ห้ามต่อด้วย +=", "Stack ห้ามเก็บ Character", "ไม่มีปัญหา"], "ans": 0, "exp": "<code>peek()</code> แค่ดู top แต่ไม่ลบ จึงทำให้ stack ไม่เคยว่างและวนไม่จบ"}, {"cat": "Stack", "q": "ประเมิน postfix <code>2 3 4 * + 5 -</code> ได้เท่าใด?", "choices": ["5", "9", "11", "14", "19"], "ans": 1, "exp": "3*4=12, 2+12=14, 14-5=9"}, {"cat": "Stack", "q": "เมื่อประเมิน postfix แล้วเจอ operator '-' โดย pop ครั้งแรกได้ 5 และ pop ครั้งที่สองได้ 14 ต้องคำนวณอะไร?", "choices": ["5-14", "14-5", "5+14", "14/5", "5*14"], "ans": 1, "exp": "ค่าที่ pop ทีหลังคือ operand ซ้าย จึงเป็น 14-5"}, {"cat": "Stack", "q": "ในการแปลง infix เป็น postfix เมื่อเจอ operand เช่น A ควรทำอะไร?", "choices": ["push ลง operator stack", "ส่งออก output ทันที", "ลบ operator บน stack", "สร้าง queue ใหม่", "หยุด algorithm"], "ans": 1, "exp": "Operand ไม่ต้องรอ precedence จึงส่งออกได้ทันที"}, {"cat": "Queue", "q": "Queue ว่าง:\n<pre><code>Queue&lt;String&gt; q = new LinkedList&lt;&gt;();\nString x = q.element();</code></pre>\nจะเกิดอะไร และถ้าอยากได้ null แทนควรแก้เป็นอะไร?", "choices": ["คืน null อยู่แล้ว; ไม่ต้องแก้", "โยน exception; ใช้ <code>q.peek()</code>", "โยน exception; ใช้ <code>q.add()</code>", "compile error; ใช้ <code>q.push()</code>", "คืน empty string; ใช้ <code>q.remove()</code>"], "ans": 1, "exp": "<code>element()</code> อยู่ฝั่ง Throws exception เมื่อคิวว่าง ส่วน <code>peek()</code> คืน null"}, {"cat": "Queue", "q": "Queue ว่าง:\n<pre><code>String x = q.remove();</code></pre>\nถ้าต้องการ “ลบหัวถ้ามี แต่ไม่โยน exception เมื่อว่าง” ควรเปลี่ยนเป็นอะไร?", "choices": ["q.element()", "q.peek()", "q.poll()", "q.offer(null)", "q.add(null)"], "ans": 2, "exp": "<code>poll()</code> คือ remove แบบคืน special value (null) เมื่อคิวว่าง"}, {"cat": "Stack", "q": "ข้อใด “ไม่ใช่” ลักษณะบังคับของ Stack ที่ถูกต้อง?", "choices": ["push ที่ top", "pop ที่ top", "LIFO", "สามารถลบสมาชิกกลางใด ๆ แล้วยังถือเป็น Stack operation ปกติ", "top คือจุดเข้าถึงหลัก"], "ans": 3, "exp": "ถ้าอนุญาตลบกลางได้ตามใจโดยถือเป็น operation ปกติ โครงสร้างนั้นไม่รักษา abstract behavior ของ Stack"}, {"cat": "Queue", "q": "โค้ด Queue:\n<pre><code>Queue&lt;String&gt; q = new LinkedList&lt;&gt;();\nq.add(\"A\");\nq.add(\"B\");\n\nwhile(q.peek() != null) {\n    System.out.println(q.peek());\n}</code></pre>\nทำไม loop ไม่จบ?", "choices": ["เพราะ <code>peek()</code> ไม่ได้ลบสมาชิกออกจาก Queue", "เพราะ LinkedList ใช้เป็น Queue ไม่ได้", "เพราะ add() คืน false", "เพราะ String ห้ามอยู่ใน Queue", "เพราะ q.peek() ต้องเป็น q.top()"], "ans": 0, "exp": "ถ้าต้องการเอาข้อมูลออกทีละตัวต้องใช้ <code>poll()</code> หรือ <code>remove()</code> ไม่ใช่ peek"}, {"cat": "Queue", "q": "Queue มี A,B,C โดย A อยู่ Front แล้ว enqueue D จากนั้น dequeue หนึ่งครั้ง ผลคิวคือข้อใด?", "choices": ["A,B,C", "A,B,C,D", "B,C,D", "D,C,B", "C,D"], "ans": 2, "exp": "enqueue D ต่อท้าย → A,B,C,D แล้ว dequeue A ออก → B,C,D"}, {"cat": "Queue", "q": "ArrayBlockingQueue ความจุ 2:\n<pre><code>Queue&lt;String&gt; q = new ArrayBlockingQueue&lt;&gt;(2);\nq.add(\"A\");\nq.add(\"B\");\nq.add(\"C\");</code></pre>\nบรรทัดใดเป็นปัญหา?", "choices": ["q.add(\"A\")", "q.add(\"B\")", "q.add(\"C\") เพราะคิวเต็มและ add อาจโยน IllegalStateException", "constructor", "ไม่มีปัญหา"], "ans": 2, "exp": "สไลด์อาจารย์เน้นให้ระวัง empty/full; <code>add()</code> เมื่อเต็มอาจ throw exception"}, {"cat": "Queue", "q": "Queue ว่าง: <code>peek()</code> โดยทั่วไปให้ผลอะไรตามสไลด์?", "choices": ["โยน exception เสมอ", "คืน null", "คืน 0", "สร้างสมาชิกใหม่", "คืน false"], "ans": 1, "exp": "<code>peek()</code> เป็นฝั่ง special value และคืน null เมื่อว่าง"}, {"cat": "Queue", "q": "Queue ว่าง: <code>element()</code> ต่างจาก <code>peek()</code> อย่างไร?", "choices": ["element เพิ่มข้อมูล", "element ลบข้อมูล", "element โยน exception เมื่อไม่มีหัว", "element คืน null เสมอ", "ไม่มีความต่าง"], "ans": 2, "exp": "element เป็นฝั่ง Throws exception ส่วน peek เป็นฝั่ง special value"}, {"cat": "Deque", "q": "กำหนด Deque:\n<pre><code>Deque&lt;String&gt; d = new ArrayDeque&lt;&gt;();\nd.add(\"A\");\nd.addFirst(\"B\");\nd.addLast(\"C\");\nString x = d.removeLast();\n</code></pre>\nx และ d หลังจบคือข้อใด?", "choices": ["x=A, d=[B,C]", "x=B, d=[A,C]", "x=C, d=[B,A]", "x=C, d=[A,B]", "เกิด error"], "ans": 2, "exp": "ลำดับก่อนลบคือ [B,A,C]; <code>removeLast()</code> จึงคืน C และเหลือ [B,A]"}, {"cat": "Deque", "q": "Deque:\n<pre><code>Deque&lt;String&gt; d = new ArrayDeque&lt;&gt;();\nd.addFirst(\"A\");\nd.addLast(\"B\");\nString x = d.pollFirst();\nString y = d.pollLast();\nString z = d.removeFirst();</code></pre>\nปัญหาอยู่ตรงไหน?", "choices": ["pollFirst() ผิด", "pollLast() ผิด", "removeFirst() สุดท้ายทำงานกับ Deque ว่างและอาจโยน exception", "ArrayDeque ใช้ addFirst ไม่ได้", "ไม่มีปัญหา"], "ans": 2, "exp": "หลัง pollFirst และ pollLast สมาชิกหมดแล้ว การ removeFirst ต่อจึงอยู่ในกรณี empty"}, {"cat": "Deque", "q": "Deque ต่างจาก Queue ปกติอย่างไร?", "choices": ["ไม่มี Front", "เพิ่มและลบได้ทั้งหัวและท้าย", "เรียงตาม priority เท่านั้น", "เก็บได้เฉพาะ int", "ไม่มี interface ใน Java"], "ans": 1, "exp": "Double Ended Queue เปิด operation ทั้งสองด้าน"}, {"cat": "Deque", "q": "เริ่ม Deque ว่าง ทำ <code>add(\"A\"), addFirst(\"B\"), addLast(\"C\")</code> ลำดับเชิงตรรกะคือข้อใด?", "choices": ["A,B,C", "B,A,C", "C,A,B", "B,C,A", "A,C,B"], "ans": 1, "exp": "add แบบ Queue เพิ่มท้าย → A; addFirst B → B,A; addLast C → B,A,C"}, {"cat": "Priority Queue", "q": "โค้ด:\n<pre><code>PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();\npq.add(3);\npq.add(2);\npq.add(1);\nSystem.out.println(pq);</code></pre>\nนักศึกษาบอกว่า “ถ้า output ไม่เป็น [1,2,3] แสดงว่า PriorityQueue ผิด” ข้อใดแก้ความเข้าใจได้ถูก?", "choices": ["จริง เพราะ PriorityQueue ต้อง print sorted", "ไม่จริง; heap รับประกันตัวหัวตาม priority ไม่ได้การันตี iteration/print เป็น sorted list ทั้งชุด", "จริง เพราะ add() ต้องเรียงเต็มทุกครั้ง", "ไม่จริงเพราะ Integer ใช้ FIFO", "ต้องเปลี่ยนเป็น Stack"], "ans": 1, "exp": "PriorityQueue ใช้ heap; root/head ถูกตาม priority แต่ representation ทั้งหมดไม่จำเป็นต้องเรียงเชิงเส้น"}, {"cat": "Deque", "q": "คู่ใดเป็นการ “ตรวจดูหัวโดยไม่ลบ” แบบคืน special value?", "choices": ["getFirst", "peekFirst", "pollFirst", "offerFirst", "removeFirst"], "ans": 1, "exp": "peekFirst ดูหัวและคืน null เมื่อไม่มีสมาชิก"}, {"cat": "Priority Queue", "q": "Comparator นี้ตั้งใจเรียง GPA จากมากไปน้อย แต่เขียน:\n<pre><code>if (s1.gpa &gt; s2.gpa) return 1;\nif (s1.gpa &lt; s2.gpa) return -1;\nreturn 0;</code></pre>\nควรแก้ตรงไหน?", "choices": ["ไม่ต้องแก้ นี่คือ descending", "สลับเครื่องหมาย: s1 มากกว่าให้ return -1 และ s1 น้อยกว่าให้ return 1", "return 0 ทุกกรณี", "ใช้ == เท่านั้น", "ลบ Comparator"], "ans": 1, "exp": "โค้ดเดิมคือ ascending ตาม GPA; descending ต้องกลับทิศของผลเปรียบเทียบ"}, {"cat": "Priority Queue", "q": "Java <code>PriorityQueue&lt;Integer&gt;</code> แบบ natural ordering ปกติให้สมาชิกใดที่หัว?", "choices": ["ค่ามากสุด", "ค่ากลาง", "ค่าต่ำสุด", "ค่าที่เข้าก่อนเสมอ", "ค่าที่เข้าทีหลังเสมอ"], "ans": 2, "exp": "natural ordering ของ Integer เป็น ascending และ PriorityQueue ปกติเป็น min-heap เชิงพฤติกรรมที่หัว"}, {"cat": "Priority Queue", "q": "โค้ด:\n<pre><code>class Student {\n    String name;\n    double gpa;\n}\n\nPriorityQueue&lt;Student&gt; pq = new PriorityQueue&lt;&gt;();\npq.add(new Student());</code></pre>\nถ้า Student ไม่ implements Comparable และไม่ได้ส่ง Comparator จะเกิดปัญหาใด?", "choices": ["StackOverflowError", "ClassCastException เมื่อ PriorityQueue พยายามจัดลำดับ", "ArrayIndexOutOfBoundsException", "NullPointerException เสมอ", "ไม่มีปัญหา"], "ans": 1, "exp": "PriorityQueue ต้องรู้วิธีเปรียบเทียบ object ถ้าไม่มี natural ordering หรือ Comparator อาจเกิด ClassCastException"}, {"cat": "Priority Queue", "q": "ถ้าใช้ <code>Collections.reverseOrder()</code> กับ PriorityQueue<Integer> เป้าหมายคืออะไร?", "choices": ["ห้ามเรียง", "เปลี่ยนให้ค่ามากมี priority ก่อนในลักษณะ max-heap", "ทำให้ queue เป็น FIFO", "อนุญาต null", "เปลี่ยนเป็น Deque"], "ans": 1, "exp": "reverse comparator กลับ natural order จึงให้ค่ามากออกก่อน"}, {"cat": "Priority Queue", "q": "Comparator นี้ต้องการ “GPA สูงออกก่อน”:\n<pre><code>public int compare(Student a, Student b) {\n    if(a.gpa &gt; b.gpa) return 1;\n    if(a.gpa &lt; b.gpa) return -1;\n    return 0;\n}</code></pre>\nLogical Error คืออะไร?", "choices": ["โค้ดนี้เป็น ascending ไม่ใช่ descending", "ต้อง return 0 ทุกกรณี", "ห้ามใช้ double", "ต้องใช้ Queue แทน", "Comparator ใช้กับ PriorityQueue ไม่ได้"], "ans": 0, "exp": "ถ้าต้องการ descending ต้องกลับทิศเครื่องหมาย เช่น a มากกว่า b ให้ return ค่าลบ"}, {"cat": "Priority Queue", "q": "Comparator คืน 0 หมายความว่าอะไร?", "choices": ["object สองตัวต้องเป็น object เดียวกัน", "ตามกติกาการเรียง comparator มองว่าทั้งคู่เทียบเท่ากัน", "ต้องลบทั้งคู่", "queue ว่าง", "เกิด overflow"], "ans": 1, "exp": "0 แปลว่า comparator ไม่กำหนดให้ตัวใดมาก่อนอีกตัวใน key ที่เปรียบเทียบ"}, {"cat": "Priority Queue", "q": "ตามสไลด์ Java PriorityQueue ไม่อนุญาตอะไร?", "choices": ["Integer", "String", "null element", "Comparator", "Serializable"], "ans": 2, "exp": "PriorityQueue ไม่อนุญาต null"}, {"cat": "Priority Queue", "q": "Object ที่ใช้ natural ordering ใน PriorityQueue แต่ไม่สามารถเปรียบเทียบกันได้ อาจเกิดอะไร?", "choices": ["ทำงานเป็น FIFO อัตโนมัติ", "ClassCastException", "NullPointerException เสมอ", "StackOverflowError", "ไม่มีผล"], "ans": 1, "exp": "ถ้าไม่มี comparator และ object ไม่ comparable การใส่อาจนำไปสู่ ClassCastException"}, {"cat": "Sorting", "q": "Bubble Sort:\n<pre><code>for(int i=0; i&lt;a.length; i++) {\n    for(int j=0; j&lt;a.length; j++) {\n        if(a[j] &gt; a[j+1]) {\n            int t=a[j]; a[j]=a[j+1]; a[j+1]=t;\n        }\n    }\n}</code></pre>\nRuntime Error เกิดจากตรงไหน?", "choices": ["j เริ่ม 0", "เมื่อ j=a.length-1 จะอ่าน a[j+1] เกินขอบเขต", "i ต้องเป็น while เท่านั้น", "swap ผิด", "ไม่มี Error"], "ans": 1, "exp": "เมื่อใช้งาน <code>a[j+1]</code> ค่า j สูงสุดต้องน้อยกว่า index สุดท้าย"}, {"cat": "Sorting", "q": "Bubble Sort หนึ่ง pass จากซ้ายไปขวาบนส่วนที่ยังไม่เรียง รับประกันอะไรในแบบ ascending?", "choices": ["ค่าต่ำสุดจะไปท้าย", "ค่ามากสุดของช่วงจะไปท้าย", "ค่ากลางจะอยู่ถูกตำแหน่ง", "array ทั้งชุด sorted", "pivot อยู่กลาง"], "ans": 1, "exp": "การสลับตัวติดกันจะดันค่ามากไปทางขวา จนสุดท้ายของ pass อยู่ท้ายช่วง"}, {"cat": "Sorting", "q": "Bubble Sort:\n<pre><code>for(int j=0; j&lt;=end; j++) {\n    if(a[j] &gt; a[j+1]) swap(...);\n}</code></pre>\nError สำคัญคืออะไร?", "choices": ["ไม่มี Error", "เมื่อ j=end จะอ่าน a[end+1] เกินช่วง จึงควรเป็น <code>j &lt; end</code>", "ต้องเริ่ม j=1 เท่านั้น", "ต้องใช้ j--", "ต้องเปลี่ยน > เป็น =="], "ans": 1, "exp": "เพราะมีการอ่าน <code>a[j+1]</code> ค่า j สูงสุดต้องเป็น end-1"}, {"cat": "Sorting", "q": "Selection Sort ในแต่ละ pass ทำอะไร?", "choices": ["เทียบเฉพาะตัวติดกัน", "หา minimum ของส่วนที่ยังไม่เรียงแล้ววางที่ตำแหน่งแรกของส่วนนั้น", "แบ่งครึ่ง", "ใช้ pivot", "แยก bucket ตาม digit"], "ans": 1, "exp": "นี่คือ signature ของ Selection Sort"}, {"cat": "Sorting", "q": "Selection Sort:\n<pre><code>for(int i=0; i&lt;a.length-1; i++) {\n    int minIndex = i;\n    for(int j=i+1; j&lt;a.length; j++) {\n        if(a[j] &lt; a[minIndex])\n            minIndex = j;\n        swap(a, i, minIndex);\n    }\n}</code></pre>\nLogical Error คือข้อใด?", "choices": ["swap อยู่ใน loop ด้านใน ควรย้ายออกมาหลังจากค้นหา min เสร็จ", "minIndex ต้องเป็น 0", "j ต้องเริ่ม 0", "ห้ามใช้ minIndex", "ไม่มี Error"], "ans": 0, "exp": "Selection Sort ควรค้นหา minimum ให้ครบช่วงก่อน แล้วค่อย swap ครั้งเดียวต่อ pass"}, {"cat": "Sorting", "q": "หลัง Selection Sort pass แรกของ [29,10,14,37,13] (ascending) array คือข้อใด?", "choices": ["[10,29,14,37,13]", "[13,10,14,37,29]", "[10,13,14,29,37]", "[29,10,14,13,37]", "[10,14,29,37,13]"], "ans": 0, "exp": "ค่าต่ำสุดทั้งช่วงคือ 10 ที่ index 1 จึง swap กับตำแหน่ง 0"}, {"cat": "Sorting", "q": "Selection Sort:\n<pre><code>for(int i=0;i&lt;a.length-1;i++){\n    int minIndex = 0;\n    for(int j=i+1;j&lt;a.length;j++)\n        if(a[j] &lt; a[minIndex]) minIndex=j;\n    swap(a,i,minIndex);\n}</code></pre>\nLogical Error อยู่ตรงไหน?", "choices": ["minIndex ควรเริ่มเป็น i ไม่ใช่ 0 ในทุก pass", "j ต้องเริ่ม 0", "ห้าม swap", "loop นอกต้องเริ่ม 1", "ต้องใช้ pivot"], "ans": 0, "exp": "ในแต่ละ pass ต้องค้นหา minimum ภายใน “ส่วนที่ยังไม่เรียง” ซึ่งเริ่มที่ i; ถ้าตั้ง 0 อาจเอาสมาชิกจากส่วน sorted กลับมาเปรียบเทียบผิดบริบท"}, {"cat": "Sorting", "q": "ถ้า Shell Sort ใช้ gap sequence n/2, n/4, ..., 1 ข้อใดควรระวังที่สุดเกี่ยวกับ complexity?", "choices": ["ต้องเป็น O(n log n) ทุกกรณี", "complexity ของ Shell ขึ้นกับ gap sequence และแบบง่ายอาจ worst O(n²)", "ต้องเป็น O(n) เสมอ", "ไม่มีการ compare", "เท่ากับ Radix เสมอ"], "ans": 1, "exp": "Shell ไม่มี complexity เดียวสำหรับทุก gap sequence"}, {"cat": "Sorting", "q": "Shell Sort:\n<pre><code>for(int gap = a.length/2; gap &gt; 0; gap /= 2) {\n    for(int i = 0; i &lt; a.length; i++) {\n        int temp = a[i];\n        int j = i;\n        while(j &gt;= gap && a[j-gap] &gt; temp) {\n            a[j] = a[j-gap];\n            j -= gap;\n        }\n        a[j] = temp;\n    }\n}</code></pre>\nถ้าต้องเขียนให้ตรง algorithm มาตรฐาน จุดใดควรแก้?", "choices": ["loop i ควรเริ่มที่ <code>i=gap</code>", "gap ต้องเริ่ม 1", "while ต้องใช้ j&lt;gap", "ห้ามใช้ temp", "ไม่มีจุดต้องแก้"], "ans": 0, "exp": "สมาชิกก่อน index gap ยังไม่มีสมาชิกห่าง gap ทางซ้ายให้เปรียบเทียบ จึงมักเริ่ม loop ที่ i=gap"}, {"cat": "Sorting", "q": "เหตุใด digit sort ในแต่ละ pass ของ LSD Radix ต้อง stable?", "choices": ["เพื่อให้ใช้ memory O(1)", "เพื่อรักษาลำดับที่ได้จากหลักที่ประมวลผลก่อนหน้า", "เพื่อให้ใช้ comparison น้อยลงเป็นศูนย์เท่านั้น", "เพื่อให้ pivot ไม่เปลี่ยน", "เพื่อให้ gap ลดครึ่ง"], "ans": 1, "exp": "ถ้าไม่ stable ลำดับจากหลักที่จัดไปแล้วอาจถูกทำลาย"}, {"cat": "Sorting", "q": "Radix Sort ใช้การหา digit:\n<pre><code>int digit = x / exp;</code></pre>\nถ้าต้องการ “เลขหลักปัจจุบันเพียงหลักเดียว” เช่น หน่วย/สิบ/ร้อย ควรแก้เป็นอะไร?", "choices": ["<code>(x / exp) % 10</code>", "<code>x % exp</code>", "<code>x * exp</code>", "<code>x / 10 / exp</code>", "<code>exp % x</code>"], "ans": 0, "exp": "การหารด้วย exp เลื่อนหลักที่ต้องการมาอยู่หน่วย แล้ว <code>%10</code> ดึงเฉพาะ digit นั้น"}, {"cat": "Sorting", "q": "Merge Sort ใช้แนวคิดใด?", "choices": ["Adjacent swap", "Select minimum", "Divide and conquer: แบ่งครึ่งแล้ว merge", "Digit bucket", "Gap only"], "ans": 2, "exp": "Merge Sort แบ่งย่อยจนเล็กแล้วรวมสองส่วนที่ sorted กลับ"}, {"cat": "Sorting", "q": "Merge Sort มี base case:\n<pre><code>static void mergeSort(int[] a, int left, int right) {\n    if (left &gt; right) return;\n    int mid = (left+right)/2;\n    mergeSort(a,left,mid);\n    mergeSort(a,mid+1,right);\n    ...\n}</code></pre>\nปัญหาคืออะไร?", "choices": ["ไม่มีปัญหา", "เมื่อ left==right ยังไม่ return ทำให้ recursion ซ้ำช่วงเดิม; ควรเป็น <code>if(left &gt;= right) return;</code>", "mid ต้องเป็น left-right", "Merge Sort ห้าม recursion", "right ต้องเป็น 0"], "ans": 1, "exp": "ช่วงที่เหลือสมาชิกเดียวถือว่า sorted แล้วและต้องหยุด recursion ถ้าไม่หยุดจะเรียกช่วงเดิมซ้ำ"}, {"cat": "Sorting", "q": "Merge Sort บน array implementation มาตรฐานมี worst-case time ใด?", "choices": ["O(n)", "O(log n)", "O(n log n)", "O(n²)", "O(2^n)"], "ans": 2, "exp": "มีประมาณ log n ระดับ และแต่ละระดับรวมงาน O(n)"}, {"cat": "Sorting", "q": "Merge Sort:\n<pre><code>int mid = (left + right) / 2;\n\nmergeSort(a, left, mid);\nmergeSort(a, mid, right);</code></pre>\nLogical Error คืออะไร?", "choices": ["ฝั่งขวาควรเริ่มที่ <code>mid+1</code> ไม่เช่นนั้นช่วง mid ถูกเรียกซ้ำและอาจ recursion ไม่ลด", "mid ต้องเป็น 0", "ห้ามแบ่งครึ่ง", "ต้องใช้ pivot", "ไม่มี Error"], "ans": 0, "exp": "การแบ่งช่วงมาตรฐานคือ left..mid และ mid+1..right เพื่อให้สองช่วงไม่ซ้ำ"}, {"cat": "Sorting", "q": "Quick Sort ใช้อะไรแบ่งข้อมูล?", "choices": ["Gap", "Bucket digit", "Pivot และ partition", "เฉพาะ adjacent pair", "minimum index เท่านั้น"], "ans": 2, "exp": "Quick Sort เลือก pivot แล้ว partition สมาชิกออกเป็นสองฝั่ง"}, {"cat": "Sorting", "q": "Quick Sort แบบเลือก pivot=a[high]:\n<pre><code>for(int j=low; j&lt;=high; j++) {\n    if(a[j] &lt;= pivot) { ... }\n}\n...\nswap(a, i+1, high);</code></pre>\nทำไม loop มักเขียน <code>j &lt; high</code> ไม่ใช่ <code>j &lt;= high</code>?", "choices": ["เพราะ high เป็น index ผิดเสมอ", "เพราะ a[high] คือ pivot ที่เก็บไว้ท้ายช่วง และจะนำมาวางหลังจาก scan สมาชิกอื่นเสร็จ", "เพราะ Quick Sort ห้ามอ่าน pivot", "เพราะ j ต้องเริ่ม high", "เพื่อให้ stable"], "ans": 1, "exp": "ใน Lomuto partition เราเว้น pivot ที่ตำแหน่ง high ไว้ แล้ว scan low..high-1 ก่อน จากนั้นจึง swap pivot เข้าตำแหน่ง i+1"}, {"cat": "Sorting", "q": "Quick Sort worst-case O(n²) มักเกิดจากอะไร?", "choices": ["pivot แบ่งได้สมดุลทุกครั้ง", "pivot แบ่งไม่สมดุลอย่างรุนแรงซ้ำ ๆ เช่น 0 กับ n-1", "ใช้ merge temp", "ใช้ bucket 10 ใบ", "ใช้ gap=1"], "ans": 1, "exp": "เมื่อขนาดปัญหาลดเพียง 1 ต่อระดับ recursion ความลึกใกล้ n และงานรวมกลายเป็นกำลังสอง"}, {"cat": "Sorting", "q": "Quick Sort:\n<pre><code>static void quickSort(int[] a, int low, int high) {\n    if(low &lt; high) {\n        int p = partition(a, low, high);\n        quickSort(a, low, p);\n        quickSort(a, p, high);\n    }\n}</code></pre>\nสำหรับ partition ที่คืนตำแหน่ง pivot จริง ข้อใดคือการแก้ recursion ที่ถูกต้อง?", "choices": ["<code>quickSort(a,low,p-1)</code> และ <code>quickSort(a,p+1,high)</code>", "เรียกช่วงเดิมทั้งสองฝั่ง", "เปลี่ยนเป็น p,p เท่านั้น", "ไม่ต้อง recursion", "ใช้ merge แทน"], "ans": 0, "exp": "เมื่อ pivot อยู่ตำแหน่งถูกแล้ว ไม่ต้องรวม pivot เข้าไปในสองช่วง recursive อีก"}, {"cat": "Sorting", "q": "ในรายการต่อไปนี้ ตัวใดเป็น non-comparison sorting ตามแนวที่เรียนในเว็บ?", "choices": ["Bubble", "Selection", "Shell", "Radix", "Quick"], "ans": 3, "exp": "Radix จัดตาม digit/bucket ไม่ได้ใช้การ compare คู่ค่าเป็นแกนหลัก"}, {"cat": "Sorting", "q": "ข้อใดถูกต้องเกี่ยวกับ stability ของ implementation มาตรฐานที่สรุปในเว็บ?", "choices": ["Bubble ปกติ stable, Merge ปกติ stable, Selection แบบ swap ปกติไม่ stable", "Selection stable เสมอและ Bubble ไม่ stable", "Quick stable เสมอ", "Shell stable เสมอ", "Radix ไม่ต้องพึ่ง stable sub-sort"], "ans": 0, "exp": "Bubble ที่ swap เฉพาะ > รักษาลำดับ equal; Merge มาตรฐานเลือกซ้ายก่อนเมื่อเท่ากันจึง stable; Selection แบบ swap อาจเปลี่ยนลำดับ equal"}];
+let examQuestions = [];
+let lastWrongIds = new Set();
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function seedExam(){
+  examQuestions = shuffle(QUESTION_BANK.map((q,qi)=>({
+    ...q,
+    originalId: qi,
+    displayChoices: shuffle(q.choices.map((text,idx)=>({text, originalIndex:idx})))
+  })));
+}
+
+function escapeAttr(s){
+  return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function letter(i){ return ["ก","ข","ค","ง","จ"][i] || String(i+1); }
+
+function renderExam(){
+  const wrap=document.getElementById("examQuestions");
+  const jump=document.getElementById("examJump");
+  if(!wrap || !jump) return;
+  wrap.innerHTML="";
+  jump.innerHTML="";
+  examQuestions.forEach((q,displayIndex)=>{
+    const sec=document.createElement("div");
+    sec.className="quizQ";
+    sec.id="exam-q-"+q.originalId;
+    sec.dataset.qid=q.originalId;
+    const saved=localStorage.getItem("dsExamAnswer_"+q.originalId);
+    const selected=saved===null?null:Number(saved);
+
+    let choicesHtml=q.displayChoices.map((c,ci)=>{
+      const checked=(selected===c.originalIndex)?"checked":"";
+      const selectedClass=checked?'selected':'';
+      return `<label class="choice ${selectedClass}" data-original="${c.originalIndex}">
+        <input type="radio" name="q_${q.originalId}" value="${c.originalIndex}" ${checked}
+          onchange="onExamAnswer(${q.originalId}, this)">
+        <div><b>${letter(ci)}.</b> ${c.text}</div>
+      </label>`;
+    }).join("");
+
+    sec.innerHTML=`<div class="quizHead">
+      <div class="quizNum">ข้อ ${displayIndex+1} <span style="font-size:.84rem;color:var(--muted)"> (รหัสเดิม ${q.originalId+1})</span></div>
+      <div class="quizCat">${q.cat}</div>
+    </div>
+    <div class="quizPrompt">${q.q}</div>
+    <div class="choices">${choicesHtml}</div>
+    <div class="perQControls">
+      <button class="perQCheck" onclick="checkOneQuestion(${q.originalId})">ตรวจข้อนี้</button>
+      <button class="perQClear" onclick="clearOneQuestion(${q.originalId})">ล้างคำตอบข้อนี้</button>
+    </div>
+    <div class="perQFeedback" id="feedback_${q.originalId}"></div>
+    <div class="explanation"><b>เฉลย:</b> ${q.exp}</div>`;
+    wrap.appendChild(sec);
+
+    const jb=document.createElement("button");
+    jb.textContent=displayIndex+1;
+    jb.dataset.qid=q.originalId;
+    if(saved!==null) jb.classList.add("answered");
+    jb.onclick=()=>sec.scrollIntoView({behavior:"smooth",block:"start"});
+    jump.appendChild(jb);
+  });
+  refreshExamStats();
+  QUESTION_BANK.forEach((_,qid)=>{
+    if(localStorage.getItem("dsExamChecked_"+qid)==="1"){
+      setTimeout(()=>checkOneQuestion(qid,false),0);
+    }
+  });
+}
+
+function onExamAnswer(qid,input){
+  localStorage.setItem("dsExamAnswer_"+qid,input.value);
+  localStorage.removeItem("dsExamChecked_"+qid);
+  const qel=document.querySelector(`.quizQ[data-qid="${qid}"]`);
+  qel.querySelectorAll(".choice").forEach(l=>l.classList.remove("selected"));
+  input.closest(".choice").classList.add("selected");
+  qel.classList.remove("graded","correctQ","wrongQ");
+  qel.querySelectorAll(".choice").forEach(l=>l.classList.remove("correctChoice","wrongChoice"));
+  const fb=document.getElementById("feedback_"+qid);
+  if(fb){fb.className="perQFeedback";fb.innerHTML="";}
+  const jb=document.querySelector(`#examJump button[data-qid="${qid}"]`);
+  if(jb){jb.classList.add("answered");jb.classList.remove("correct","wrong");}
+  refreshExamStats();
+}
+
+function checkOneQuestion(qid,saveState=true){
+  const q=QUESTION_BANK[qid];
+  const saved=localStorage.getItem("dsExamAnswer_"+qid);
+  const qel=document.querySelector(`.quizQ[data-qid="${qid}"]`);
+  const fb=document.getElementById("feedback_"+qid);
+  if(!qel || !fb) return;
+
+  qel.classList.remove("graded","correctQ","wrongQ");
+  qel.querySelectorAll(".choice").forEach(l=>l.classList.remove("correctChoice","wrongChoice"));
+
+  if(saved===null){
+    fb.className="perQFeedback show warn";
+    fb.innerHTML="ยังไม่ได้เลือกคำตอบ — เลือก 1 ตัวเลือกก่อนแล้วกดตรวจอีกครั้ง";
+    return;
+  }
+
+  qel.classList.add("graded");
+  const picked=Number(saved);
+  const correctLabel=qel.querySelector(`.choice[data-original="${q.ans}"]`);
+  const pickedLabel=qel.querySelector(`.choice[data-original="${picked}"]`);
+  if(correctLabel) correctLabel.classList.add("correctChoice");
+
+  const jb=document.querySelector(`#examJump button[data-qid="${qid}"]`);
+  if(jb) jb.classList.remove("correct","wrong");
+
+  if(picked===q.ans){
+    qel.classList.add("correctQ");
+    fb.className="perQFeedback show ok";
+    fb.innerHTML="✓ ถูกต้อง";
+    if(jb) jb.classList.add("correct");
+  } else {
+    qel.classList.add("wrongQ");
+    if(pickedLabel) pickedLabel.classList.add("wrongChoice");
+    fb.className="perQFeedback show bad";
+    fb.innerHTML="✗ ยังไม่ถูก — สีเขียวคือคำตอบที่ถูก อ่านเหตุผลด้านล่างก่อนทำข้อต่อไป";
+    if(jb) jb.classList.add("wrong");
+  }
+
+  if(saveState) localStorage.setItem("dsExamChecked_"+qid,"1");
+  refreshExamStats();
+}
+
+function clearOneQuestion(qid){
+  localStorage.removeItem("dsExamAnswer_"+qid);
+  localStorage.removeItem("dsExamChecked_"+qid);
+  const qel=document.querySelector(`.quizQ[data-qid="${qid}"]`);
+  if(!qel) return;
+  qel.querySelectorAll('input[type="radio"]').forEach(i=>i.checked=false);
+  qel.querySelectorAll(".choice").forEach(l=>l.classList.remove("selected","correctChoice","wrongChoice"));
+  qel.classList.remove("graded","correctQ","wrongQ");
+  const fb=document.getElementById("feedback_"+qid);
+  if(fb){fb.className="perQFeedback";fb.innerHTML="";}
+  const jb=document.querySelector(`#examJump button[data-qid="${qid}"]`);
+  if(jb) jb.classList.remove("answered","correct","wrong");
+  refreshExamStats();
+}
+
+function refreshExamStats(){
+  let answered=0, checked=0, correct=0;
+  QUESTION_BANK.forEach((q,i)=>{
+    const ans=localStorage.getItem("dsExamAnswer_"+i);
+    const isChecked=localStorage.getItem("dsExamChecked_"+i)==="1";
+    if(ans!==null) answered++;
+    if(isChecked){
+      checked++;
+      if(Number(ans)===q.ans) correct++;
+    }
+  });
+  const mini=document.getElementById("examMiniStats");
+  if(mini){
+    mini.innerHTML=`<b>สถิติ:</b> ตอบแล้ว ${answered}/103 • ตรวจแล้ว ${checked} • ถูก ${correct} • ผิด ${checked-correct}`;
+  }
+}
+
+function showExamSummary(){
+  let checked=0, score=0;
+  const byCat={};
+  QUESTION_BANK.forEach((q,i)=>{
+    if(!byCat[q.cat]) byCat[q.cat]={ok:0,checked:0,total:0};
+    byCat[q.cat].total++;
+    if(localStorage.getItem("dsExamChecked_"+i)==="1"){
+      checked++;
+      byCat[q.cat].checked++;
+      const ans=localStorage.getItem("dsExamAnswer_"+i);
+      if(ans!==null && Number(ans)===q.ans){
+        score++;
+        byCat[q.cat].ok++;
+      }
+    }
+  });
+  const pct=checked?Math.round(score/checked*100):0;
+  const result=document.getElementById("examResult");
+  const catHtml=Object.entries(byCat).map(([cat,s])=>
+    `<div class="topicScore"><b>${cat}</b><br><span>${s.ok}/${s.checked} ที่ตรวจแล้ว • ทั้งหมด ${s.total}</span></div>`
+  ).join("");
+
+  result.innerHTML=`<div class="scoreBig">${score}/${checked}</div>
+    <p><b>${pct}%</b> ของข้อที่ตรวจแล้ว • ตรวจแล้ว ${checked}/103 • ยังไม่ตรวจ ${103-checked}</p>
+    <div class="topicBreakdown">${catHtml}</div>`;
+  result.classList.add("show");
+  result.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function showWrongOnly(){
+  lastWrongIds=new Set();
+  QUESTION_BANK.forEach((q,i)=>{
+    const checked=localStorage.getItem("dsExamChecked_"+i)==="1";
+    const ans=localStorage.getItem("dsExamAnswer_"+i);
+    if(checked && ans!==null && Number(ans)!==q.ans) lastWrongIds.add(i);
+  });
+
+  if(lastWrongIds.size===0){
+    alert("ยังไม่มีข้อที่ตรวจแล้วและตอบผิด");
+    return;
+  }
+  document.querySelectorAll(".quizQ").forEach(el=>{
+    const id=Number(el.dataset.qid);
+    el.classList.toggle("hiddenByMode", !lastWrongIds.has(id));
+  });
+  const first=[...document.querySelectorAll(".quizQ:not(.hiddenByMode)")][0];
+  if(first) first.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function showAllExam(){
+  document.querySelectorAll(".quizQ").forEach(el=>el.classList.remove("hiddenByMode"));
+}
+
+function resetExam(){
+  if(!confirm("ต้องการล้างคำตอบทั้งหมดใช่ไหม?")) return;
+  QUESTION_BANK.forEach((_,i)=>{
+    localStorage.removeItem("dsExamAnswer_"+i);
+    localStorage.removeItem("dsExamChecked_"+i);
+  });
+  seedExam();
+  renderExam();
+  document.getElementById("examResult")?.classList.remove("show");
+  showAllExam();
+}
+
+function rerollExam(){
+  seedExam();
+  renderExam();
+  showAllExam();
+}
+
+seedExam();
+renderExam();
+</script>
+</body></html>
